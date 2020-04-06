@@ -5,16 +5,31 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">部屋リスト</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                <div class="card-body row">
+                    <div class="col-3">
+                        <form method="POST" action="{{ route('groups.update','Auth::id()')}}">
+                            @csrf
+                            <input type="hidden" name="_method" value="PUT">
+                            <button class="btn btn-primary" type="submit">部屋1</button>
+                            <input type="hidden" name="group" value="1">
+                        <form>
+                        <p class="d-inline">{{Auth::id()}}</p>
+                    </div>
 
-                    You are logged in!
+                    <div class="col-3">
+                        <button class="btn btn-primary">部屋2</button>
+                        <p class="d-inline">現在0/4人</p>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary">部屋3</button>
+                        <p class="d-inline">現在0/4人</p>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary">部屋4</button>
+                        <p class="d-inline">現在0/4人</p>
+                    </div>
                 </div>
             </div>
         </div>
