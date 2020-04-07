@@ -19,7 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('groups', 'groupController');
-Route::post('groups','GameController@initialization')->name('initialization');
+Route::get('groupshost','GameController@initialization')->name('initialization');
+Route::get('groupsdraw','GameController@drawCard')->name('drawCard');
 Route::get('/result/ajax', 'GameController@isCount');
 
 

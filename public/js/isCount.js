@@ -17,7 +17,7 @@ function get_data() {
         
       },
       error: () => {
-          alert("ajax Error");
+          
       }
   });
 

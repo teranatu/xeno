@@ -12,20 +12,24 @@
         </div>
         <div class="card-body">
           <div class="row">
-            @if ($key == 0)
+            @if (($key == 0) && ($user->id == Auth::id()))
             <div class="col-6 text-center">{{ $user->card_1 }}</div>
+            <div class="col-6 text-center">{{ $user->card_2 }}</div>
             @endif
-            @if ($key == 1)
+            @if ($key == 1 && ($user->id == Auth::id()))
             <div class="col-6 text-center">{{ $user->card_1 }}</div>
+            <div class="col-6 text-center">{{ $user->card_2 }}</div>
             @endif
-            @if ($key == 2)
+            @if ($key == 2 && ($user->id == Auth::id()))
             <div class="col-6 text-center">{{ $user->card_1 }}</div>
+            <div class="col-6 text-center">{{ $user->card_2 }}</div>
             @endif
-            @if ($key == 3)
+            @if ($key == 3 && ($user->id == Auth::id()))
             <div class="col-6 text-center">{{ $user->card_1 }}</div>
+            <div class="col-6 text-center">{{ $user->card_2 }}</div>
             @endif
 
-            <div class="col-6 text-center">なし</div>
+            
           </div>
         </div>
         <div class="card-footer">
@@ -44,18 +48,15 @@
   <div class="row">
     
       <div class="col-6">
-        <div class="card">
-          <button>1枚めくる</button>
-          <button>裏をめくる</button>
-          <form method="POST" action="{{ route('initialization')}}">
-              @csrf
-              <button class="btn btn-primary" type="submit">初期化</button>
-          <form>
+        <div class="row">
+            <button class="btn btn-danger col-2" onclick="location.href='{{ route('initialization')}}'">初期化</button>
+            <button class="btn btn-primary col-2" >裏を引く</button>
+            <button class="btn btn-primary col-2" onclick="location.href='{{ route('drawCard')}}'">1枚引く</button>
         </div>
       </div>
       <div class="col-6">
         <div class="card">
-          <div id="isCountCard" class="card-text pt-4 pb-4 text-center"> 
+          <div id="isCountCard" class="card-text pt-4 pb-4 text-center"> 0
           </div>
         </div>
       </div>
