@@ -20,7 +20,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('groups', 'groupController');
 Route::get('groupshost','GameController@initialization')->name('initialization');
-Route::get('groupsdraw','GameController@drawCard')->name('drawCard');
+Route::get('groupsdrawCard','GameController@drawCard')->name('drawCard');
+Route::get('groupsdrawKillCard','GameController@drawKillCard')->name('drawKillCard');
+Route::get('groupsdiscardLeft','GameController@discardLeft')->name('discardLeft');
+Route::get('groupsdiscardRight','GameController@discardRight')->name('discardRight');
+
+
 Route::get('/result/ajax', 'GameController@isCount');
 
 

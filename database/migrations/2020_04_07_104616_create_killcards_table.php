@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDeadcardsTable extends Migration
+class CreateKillcardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDeadcardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('deadcards', function (Blueprint $table) {
+        Schema::create('killcards', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('card_number')->nullable();
             $table->bigInteger('Group_id')->nullable();
@@ -28,6 +28,6 @@ class CreateDeadcardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deadcards');
+        Schema::dropIfExists('killcards');
     }
 }
