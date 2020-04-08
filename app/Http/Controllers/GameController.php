@@ -87,11 +87,7 @@ class GameController extends Controller
     public function drawKillCard() {
         $drawKillCard = Killcard::first();
         $user = User::find(Auth::id());
-        if (isset($user->card_1) && !isset($user->card_2)) {
-            $user->card_2 = $drawKillCard->card_number;
-            $user->save();
-            $drawKillCard->delete();
-        } elseif (!isset($user->card_1) && isset($user->card_2)) {
+        if (!isset($user->card_1) && !isset($user->card_2)) {
             $user->card_1 = $drawKillCard->card_number;
             $user->save();
             $drawKillCard->delete();
@@ -128,25 +124,47 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
+    public function selectedCard(Request $request) {
+        $selectedCardNumber = $request->selectedCard;
+        $selectedCard = Card::where('select_card','1')->where('card_number',$selectedCardNumber)->first();
+        $user = User::find(Auth::id());
+        if (isset($user->card_1) && !isset($user->card_2)) {
+            $user->card_2 = $selectedCard->card_number;
+            $user->save();
+            $selectedCard->delete();
+            $selectedCards = Card::where('select_card','1')->get();
+            foreach ($selectedCards as $nonselectCard) {
+                $nonselectCard->select_card = 0;
+                $nonselectCard->update();
+            }
+
+        } elseif (!isset($user->card_1) && isset($user->card_2)) {
+            $user->card_1 = $selectedCard->card_number;
+            $user->save();
+            $selectedCard->delete();
+            $selectedCards = Card::where('select_card','1')->get();
+            foreach ($selectedCards as $nonselectCard) {
+                $nonselectCard->select_card = 0;
+                $nonselectCard->update();
+            }
+        }
+        return redirect()->route('groups.index');
+    }
+
     public function isCount() {
         $isCountCards = count(Card::all());
         $isCountKillCards = count(Killcard::all());
         $inRoomUsers = count(User::where('group_id', '1')->get());
-        if(null !== (Deadcard::all()->sortByDesc('id')->first())){
+        if (null !== (Deadcard::all()->sortByDesc('id')->first())){
             $usedcard = Deadcard::all()->sortByDesc('id')->first();
             $usedCard = $usedcard->card_number;
         }if (null === (Deadcard::all()->sortByDesc('id')->first())) {
             $usedCard = null;
         }
-        //墓地のカードをカウントしてjsonでぶん投げる
-        //1から10までの死に札の判定の変数を用意する
-        for ($i=1; $i < 11; $i++) { 
-            ${'Deadcard_'.$i} = 0;
-        }
+
+        for ($i=1; $i < 11; $i++) { ${'Deadcard_'.$i} = 0; }
         $Deadcards = Deadcard::all();
         if (count($Deadcards)) {
-
-            //用意した箱の名前にあったカードをカウントしていく
             foreach ($Deadcards as $Deadcard) {
                 for ($i=1; $i < 11 ; $i++) { 
                     if($i == $Deadcard->card_number) {

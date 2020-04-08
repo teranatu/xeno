@@ -24,7 +24,7 @@ function get_data() {
         if (document.getElementById('isCountCard')) {
           document.getElementById('isCountCard').textContent ='残り' + data.isCountCards + '枚 +' + data.isCountKillCards + '枚';
         } if (document.getElementById('usedCard')) {
-          document.getElementById('usedCard').textContent = '使用されたカード：' + data.usedCard ;
+          document.getElementById('usedCard').textContent = 'フィールド：' + data.usedCard ;
         } if (document.getElementById('inRoomUsers')) {
           document.getElementById('inRoomUsers').textContent = data.inRoomUsers + '/4人';
         } if (document.getElementById('Deadcard_1')) {

@@ -25,6 +25,7 @@ Route::get('groupsdrawKillCard','GameController@drawKillCard')->name('drawKillCa
 Route::get('groupsdiscardLeft','GameController@discardLeft')->name('discardLeft');
 Route::get('groupsdiscardRight','GameController@discardRight')->name('discardRight');
 Route::get('groupsselectcard','GameController@selectCard')->name('selectCard');
+Route::post('groupsselectedcard','GameController@selectedCard')->name('selectedCard');
 
 
 Route::get('/result/ajax', 'GameController@isCount');

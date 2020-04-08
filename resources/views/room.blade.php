@@ -52,32 +52,49 @@
   <div class="row">
     <div class="col-6">
       <div class="row">
-        <button class="btn btn-danger col-4 pt-3 pb-3" onclick="location.href='{{ route('initialization')}}'">初期化</button>
-        <button class="btn btn-primary col-4 pt-3 pb-3" onclick="location.href='{{ route('drawKillCard')}}'">転生札を引く</button>
-        <button class="btn btn-primary col-4 pt-3 pb-3" onclick="location.href='{{ route('drawCard')}}'">1枚引く</button>
-        <button class="btn btn-success col-4 pt-3 pb-3" onclick="location.href='{{ route('discardLeft')}}'">左を使用</button>
-        <button class="btn btn-success col-4 pt-3 pb-3" onclick="location.href='{{ route('discardRight')}}'">右を使用</button>
-        <button class="btn btn-success col-4 pt-3 pb-3" onclick="location.href='{{ route('selectCard')}}'">選択(8)効果使用</button>
+        <button class="btn btn-danger col-2 pt-2 pb-2" onclick="location.href='{{ route('initialization')}}'">初期化</button>
+        <button class="btn btn-primary col-2 pt-2 pb-2" onclick="location.href='{{ route('drawKillCard')}}'">転生札を引く</button>
+        <button class="btn btn-primary col-2 pt-2 pb-2" onclick="location.href='{{ route('drawCard')}}'">1枚引く</button>
+        <button class="btn btn-success col-2 pt-2 pb-2" onclick="location.href='{{ route('discardLeft')}}'">左を使用</button>
+        <button class="btn btn-success col-2 pt-2 pb-2" onclick="location.href='{{ route('discardRight')}}'">右を使用</button>
+        <button class="btn btn-success col-2 pt-2 pb-2" onclick="location.href='{{ route('selectCard')}}'">選択(8)効果使用</button>
       </div>
     </div>
     <div class="card col-6">
       <div class="row">
-        <div id="usedCard" class="col-6">使用されたカード：? </div>
-        <div id="isCountCard" class="col-6">0</div>
+        <div id="usedCard" class=" col-3 pt-2 pb-2">フィールド：? </div>
+        <div id="isCountCard" class="col-3 pt-2 pb-2">0</div>
+        @if (isset($selectcard_1) && ($user->id == Auth::id()))
+        <div class="col-2">
+          <form method="POST" action="{{ route('selectedCard')}}">
+            @csrf
+            <button class="btn btn-primary pt-2 pb-2" type="submit">1枚目：{{ $selectcard_1 }}</button>
+            <input type="hidden" name="selectedCard" value="{{ $selectcard_1 }}">
+          </form>
+        </div>
+        @endif
+          @if (isset($selectcard_2) && ($user->id == Auth::id()))
+          <div class="col-2">
+          <form method="POST" action="{{ route('selectedCard')}}">
+            @csrf
+            <button class="btn btn-primary pt-2 pb-2" type="submit">2枚目：{{ $selectcard_2 }}</button>
+            <input type="hidden" name="selectedCard" value="{{ $selectcard_2 }}">
+          </form>
+        </div>
+        @endif
+          @if (isset($selectcard_3) && ($user->id == Auth::id()))
+          <div class="col-2">
+          <form method="POST" action="{{ route('selectedCard')}}">
+            @csrf
+            <button class="btn btn-primary pt-2 pb-2" type="submit">3枚目：{{ $selectcard_3 }}</button>
+            <input type="hidden" name="selectedCard" value="{{ $selectcard_3 }}">
+          </form>
+        </div>
+        @endif
       </div>
     </div>
   </div>
-  @if (isset($selectcard_1))
-  <div class="row col-6 mt-5">
-    <div class="col-4">1枚目：{{ $selectcard_1 }}</div>
-  @endif
-  @if (isset($selectcard_2))
-    <div class="col-4">2枚目：{{ $selectcard_2 }}</div>
-  @endif
-  @if (isset($selectcard_3))
-    <div class="col-4">3枚目：{{ $selectcard_3 }}</div>
-  </div>
-  @endif
+  
   <div class="row mt-5">
     <div class="col-1 navbar pt-4 pb-4 text-center"></div>
     <div class="col-1 card pt-4 pb-4 text-center" id="Deadcard_1">1:0枚</div>

@@ -16,9 +16,9 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {$selectcards = Card::where('select_card','1')->get();
-    if(isset($selectcards)){
+    public function index() {
+        $selectcards = Card::where('select_card','1')->get();
+    if(0 !== count($selectcards)){
         foreach ($selectcards as $key => $selectcard ) {
             if ($key == 0) {
                 $selectcard_1 = $selectcard->card_number;
