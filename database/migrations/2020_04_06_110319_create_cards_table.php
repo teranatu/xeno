@@ -17,6 +17,7 @@ class CreateCardsTable extends Migration
             $table->id();
             $table->bigInteger('card_number')->nullable();
             $table->bigInteger('Group_id')->nullable();
+            $table->boolean('select_card')->default(0);
             $table->timestamps();
         });
     }

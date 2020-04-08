@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Card;
 use App\Group;
 use Auth;
 
@@ -16,9 +17,21 @@ class GroupController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {$selectcards = Card::where('select_card','1')->get();
+    if(isset($selectcards)){
+        foreach ($selectcards as $key => $selectcard ) {
+            if ($key == 0) {
+                $selectcard_1 = $selectcard->card_number;
+            } if ($key == 1) {
+                $selectcard_2 =$selectcard->card_number;
+            } if ($key == 2) {
+                $selectcard_3 =$selectcard->card_number;
+            }
+        }
         $users = User::where('group_id', '1')->get();
-        
+        return view('room',compact('users','selectcard_1','selectcard_2','selectcard_3'));
+    }
+    $users = User::where('group_id', '1')->get();
     return view('room',compact('users'));
     }
 
