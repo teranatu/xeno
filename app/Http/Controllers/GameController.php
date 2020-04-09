@@ -166,6 +166,7 @@ class GameController extends Controller
         }
         return redirect()->route('groups.index');
     }
+    
 
     public function exchangedCard(Request $request) {
         $targetUser = User::where('name',$request->targetName)->first();
