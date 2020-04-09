@@ -9,7 +9,7 @@
 
                 <div class="card-body row">
                     <div class="col-3">
-                        <form method="POST" action="{{ route('groups.update','Auth::id()')}}">
+                        <form method="POST" action="{{ route('groups.update')}}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <button class="btn btn-primary" type="submit">部屋1</button>
