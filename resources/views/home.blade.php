@@ -17,7 +17,6 @@
                         <form>
                         <p id="inRoomUsers" class="d-inline">0/4人</p>
                     </div>
-
                     <div class="col-3">
                         <button class="btn btn-primary">部屋2</button>
                         <p class="d-inline">0/4人</p>
