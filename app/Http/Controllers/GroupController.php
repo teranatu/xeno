@@ -18,6 +18,7 @@ class GroupController extends Controller
      */
     public function index() {
         $selectcards = Card::where('select_card','1')->get();
+        
     if(0 !== count($selectcards)){
         foreach ($selectcards as $key => $selectcard ) {
             if ($key == 0) {

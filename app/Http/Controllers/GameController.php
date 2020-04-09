@@ -121,6 +121,10 @@ class GameController extends Controller
             $selectcard->select_card = 1;
             $selectcard->save();
         }
+        $select_user = Auth::user();
+        $select_user->select_user  = Auth::id();
+        $select_user->update();
+
         return redirect()->route('groups.index');
     }
 
@@ -148,6 +152,9 @@ class GameController extends Controller
                 $nonselectCard->update();
             }
         }
+        $select_user = Auth::user();
+        $select_user->select_user  = null;
+        $select_user->update();
         return redirect()->route('groups.index');
     }
 

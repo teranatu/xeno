@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container">
   <div class="row">
     @foreach ($users as $key => $user)
@@ -64,7 +63,8 @@
       <div class="row">
         <div id="usedCard" class=" col-3 pt-2 pb-2">フィールド：? </div>
         <div id="isCountCard" class="col-3 pt-2 pb-2">0</div>
-        @if (isset($selectcard_1) && ($user->id == Auth::id()))
+        @foreach($users as $user)
+        @if (isset($selectcard_1) && ($user->select_user == Auth::id()))
         <div class="col-2">
           <form method="POST" action="{{ route('selectedCard')}}">
             @csrf
@@ -73,7 +73,7 @@
           </form>
         </div>
         @endif
-          @if (isset($selectcard_2) && ($user->id == Auth::id()))
+          @if (isset($selectcard_2) && ($user->select_user == Auth::id()))
           <div class="col-2">
           <form method="POST" action="{{ route('selectedCard')}}">
             @csrf
@@ -82,7 +82,7 @@
           </form>
         </div>
         @endif
-          @if (isset($selectcard_3) && ($user->id == Auth::id()))
+          @if (isset($selectcard_3) && ($user->select_user == Auth::id()))
           <div class="col-2">
           <form method="POST" action="{{ route('selectedCard')}}">
             @csrf
@@ -91,6 +91,7 @@
           </form>
         </div>
         @endif
+        @endforeach
       </div>
     </div>
   </div>
