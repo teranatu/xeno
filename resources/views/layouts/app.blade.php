@@ -73,6 +73,6 @@
             @yield('content')
         </main>
     </div>
-    <!-- <script src="{{ asset('js/isCount.js') }}"></script> -->
+    <script src="{{ asset('js/isCount.js') }}"></script>
 </body>
 </html>

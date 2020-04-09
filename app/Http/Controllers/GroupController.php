@@ -54,7 +54,18 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (DB::table('users')->where('group_id', '1')->count() <= 4) {
+            $group = new Group;
+            $group->user_id = Auth::id();
+            $group->save();
+
+            $user = User::where('id', Auth::id())->first();
+            $user->group_id = $request->group;
+            $user->update();
+
+            return redirect()->route('groups.index');
+        }
+        return redirect('/home')->with('message','部屋１は満員です');
     }
 
     /**
@@ -88,18 +99,7 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (DB::table('users')->where('group_id', '1')->count() <= 4) {
-            $group = new Group;
-            $group->user_id = Auth::id();
-            $group->save();
-
-            $user = User::where('id', Auth::id())->first();
-            $user->group_id = $request->group;
-            $user->update();
-
-            return redirect()->route('groups.index');
-        }
-        return redirect('/home')->with('message','部屋１は満員です');
+        //
     }
 
     /**

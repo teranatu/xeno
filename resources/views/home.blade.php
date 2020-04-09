@@ -9,9 +9,8 @@
 
                 <div class="card-body row">
                     <div class="col-3">
-                        <form method="POST" action="{{ route('groups.update',[1]) }}">
+                        <form method="POST" action="{{ route('groups.store') }}">
                             @csrf
-                            <input type="hidden" name="_method" value="PUT">
                             <button class="btn btn-primary" type="submit">部屋1</button>
                             <input type="hidden" name="group" value="1">
                         <form>

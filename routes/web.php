@@ -29,4 +29,4 @@ Route::get('groupsexchangecard','GameController@exchangeCard')->name('exchangeCa
 Route::post('groupsexchangedCard','GameController@exchangedCard')->name('exchangedCard');
 
 
-// Route::get('/result/ajax', 'GameController@isCount');
+Route::get('/result/ajax', 'GameController@isCount');
