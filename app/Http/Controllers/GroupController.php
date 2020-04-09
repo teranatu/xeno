@@ -89,6 +89,7 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         if (DB::table('users')->where('group_id', '1')->count() <= 3) {
+            dd($id);
             $group = new Group;
             $group->user_id = Auth::id();
             $group->save();

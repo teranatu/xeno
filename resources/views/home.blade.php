@@ -9,7 +9,7 @@
 
                 <div class="card-body row">
                     <div class="col-3">
-                        <form method="POST" action="{{ route('groups.update','Auth::id()')}}">
+                        <form method="POST" action="{{ route('groups.update',[1]) }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <button class="btn btn-primary" type="submit">部屋1</button>
@@ -34,5 +34,4 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('js/isCount.js') }}"></script>
 @endsection
