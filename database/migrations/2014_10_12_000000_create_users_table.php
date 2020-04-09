@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('card_1')->nullable();
             $table->bigInteger('card_2')->nullable();
             $table->bigInteger('select_user')->nullable();
+            $table->bigInteger('exchange_user')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -56,7 +56,9 @@
         <button class="btn btn-primary col-2 pt-2 pb-2" onclick="location.href='{{ route('drawCard')}}'">1枚引く</button>
         <button class="btn btn-success col-2 pt-2 pb-2" onclick="location.href='{{ route('discardLeft')}}'">左を使用</button>
         <button class="btn btn-success col-2 pt-2 pb-2" onclick="location.href='{{ route('discardRight')}}'">右を使用</button>
-        <button class="btn btn-success col-2 pt-2 pb-2" onclick="location.href='{{ route('selectCard')}}'">選択(8)効果使用</button>
+        <button class="btn btn-success col-2 pt-2 pb-2" onclick="location.href='{{ route('selectCard')}}'">選択(7)効果使用</button>
+        <button class="btn btn-success col-2 pt-2 pb-2" onclick="location.href='{{ route('exchangeCard')}}'">交換(8)効果使用</button>
+
       </div>
     </div>
     <div class="card col-6">
@@ -74,7 +76,7 @@
         </div>
         @endif
           @if (isset($selectcard_2) && ($user->select_user == Auth::id()))
-          <div class="col-2">
+        <div class="col-2">
           <form method="POST" action="{{ route('selectedCard')}}">
             @csrf
             <button class="btn btn-primary pt-2 pb-2" type="submit">2枚目：{{ $selectcard_2 }}</button>
@@ -83,7 +85,7 @@
         </div>
         @endif
           @if (isset($selectcard_3) && ($user->select_user == Auth::id()))
-          <div class="col-2">
+        <div class="col-2">
           <form method="POST" action="{{ route('selectedCard')}}">
             @csrf
             <button class="btn btn-primary pt-2 pb-2" type="submit">3枚目：{{ $selectcard_3 }}</button>
@@ -91,7 +93,17 @@
           </form>
         </div>
         @endif
+        @if ((($user->id != Auth::id())) && ($user->exchange_user == Auth::id()))
+        <div class="col-2">
+          <form method="POST" action="{{ route('exchangedCard')}}">
+            @csrf
+            <button class="btn btn-primary pt-2 pb-2" type="submit">{{ $user->name }}</button>
+            <input type="hidden" name="targetName" value="{{ $user->name }}">
+          </form>
+        </div>
+        @endif
         @endforeach
+
       </div>
     </div>
   </div>

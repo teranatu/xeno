@@ -26,6 +26,8 @@ Route::get('groupsdiscardLeft','GameController@discardLeft')->name('discardLeft'
 Route::get('groupsdiscardRight','GameController@discardRight')->name('discardRight');
 Route::get('groupsselectcard','GameController@selectCard')->name('selectCard');
 Route::post('groupsselectedcard','GameController@selectedCard')->name('selectedCard');
+Route::get('groupsexchangecard','GameController@exchangeCard')->name('exchangeCard');
+Route::post('groupsexchangedCard','GameController@exchangedCard')->name('exchangedCard');
 
 
 Route::get('/result/ajax', 'GameController@isCount');

@@ -158,6 +158,26 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
+    public function exchangeCard () {
+        $exchangeusers = User::where('group_id', '1')->get();
+        foreach ($exchangeusers as $exchangeuser) {
+            $exchangeuser->exchange_user = Auth::id();
+            $exchangeuser->update();
+        }
+        return redirect()->route('groups.index');
+    }
+
+    public function exchangedCard(Request $request) {
+        $targetUser = User::where('name',$request->targetName)->first();
+        $authUser = Auth::user()->first();
+
+        $authUser->card_1 = $targetUser->card_1;
+        $targetUser->card_1 = Auth::user()->card_1;
+        $targetUser->save();
+        $authUser->save();
+        return redirect()->route('groups.index');
+    }
+
     public function isCount() {
         $isCountCards = count(Card::all());
         $isCountKillCards = count(Killcard::all());
