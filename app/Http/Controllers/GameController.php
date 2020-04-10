@@ -15,49 +15,37 @@ class GameController extends Controller
     public function initialization() {
         $cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,10];
         shuffle($cards);
-        $users = User::where('group_id', '1')->get();
-        foreach ($users as $key => $user) {
-            switch ($key) {
+        $users = User::where( 'group_id' , '1' )->get();
+        foreach ( $users as $key => $user ) {
+            if( isset( $user->card_2 ) ) { $user->card_2 = null; }
+            switch ( $key ) {
                 case 0:
-                    if(isset($user->card_2)) {
-                        $user->card_2 = null;
-                    }
                     $user->card_1 = array_shift($cards);
                     $user->update();
                 break;
                 case 1:
-                    if(isset($user->card_2)) {
-                        $user->card_2 = null;
-                    }
                     $user->card_1 = array_shift($cards);
                     $user->update();
                 break;
                 case 2:
-                    if(isset($user->card_2)) {
-                        $user->card_2 = null;
-                    }
                     $user->card_1 = array_shift($cards);
                     $user->update();
                 break;
                 case 3:
-                    if(isset($user->card_2)) {
-                        $user->card_2 = null;
-                    }
                     $user->card_1 = array_shift($cards);
                     $user->update();
                 break;
             }
         }
-        DB::table('cards')->truncate();
-        $killcard = array_pop($cards);
+        Card::truncate();
         foreach ($cards as $card) {
             $storecard = new card;
             $storecard->card_number = $card;
             $storecard->save();
         }
-        DB::table('killcards')->truncate();
-        DB::table('deadcards')->truncate();
-        $KillCard = Killcard::all();
+        Killcard::truncate();
+        Deadcard::truncate();
+        $killcard = array_pop($cards);
         $storekillcard = new Killcard;
         $storekillcard->card_number = $killcard;
         $storekillcard->save();
@@ -183,10 +171,10 @@ class GameController extends Controller
         $isCountCards = count(Card::all());
         $isCountKillCards = count(Killcard::all());
         $inRoomUsers = count(User::where('group_id', '1')->get());
-        if (null !== (Deadcard::all()->sortByDesc('id')->first())){
+        if ( null !== ( Deadcard::all()->sortByDesc('id')->first() ) ){
             $usedcard = Deadcard::all()->sortByDesc('id')->first();
             $usedCard = $usedcard->card_number;
-        }if (null === (Deadcard::all()->sortByDesc('id')->first())) {
+        }if ( null === ( Deadcard::all()->sortByDesc('id')->first() ) ) {
             $usedCard = null;
         }
 
