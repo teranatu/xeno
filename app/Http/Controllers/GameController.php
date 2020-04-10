@@ -38,17 +38,17 @@ class GameController extends Controller
             }
         }
         Card::truncate();
-        foreach ($cards as $card) {
-            $storecard = new card;
-            $storecard->card_number = $card;
-            $storecard->save();
-        }
         Killcard::truncate();
         Deadcard::truncate();
         $killcard = array_pop($cards);
         $storekillcard = new Killcard;
         $storekillcard->card_number = $killcard;
         $storekillcard->save();
+        foreach ($cards as $card) {
+            $storecard = new card;
+            $storecard->card_number = $card;
+            $storecard->save();
+        }
         
         return redirect()->route('groups.index');
     }
@@ -158,10 +158,10 @@ class GameController extends Controller
 
     public function exchangedCard(Request $request) {
         $targetUser = User::where('name',$request->targetName)->first();
-        $authUser = Auth::user()->first();
-
+        $authUser = Auth::user();
+        $authUserNumber = $authUser->card_1;
         $authUser->card_1 = $targetUser->card_1;
-        $targetUser->card_1 = Auth::user()->card_1;
+        $targetUser->card_1 = $authUserNumber;
         $targetUser->save();
         $authUser->save();
         return redirect()->route('groups.index');
