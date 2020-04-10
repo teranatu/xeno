@@ -9,7 +9,7 @@ use App\Card;
 use App\Group;
 use Auth;
 
-class GroupController extends Controller
+class groupController extends Controller
 {
     /**
      * Display a listing of the resource.
