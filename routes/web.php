@@ -17,7 +17,6 @@ Route::get('/', function () {return view('welcome');});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('groups', 'groupController');
 Route::get('groupshost','GameController@initialization')->name('initialization');
 Route::get('groupsdrawCard','GameController@drawCard')->name('drawCard');
 Route::get('groupsdrawKillCard','GameController@drawKillCard')->name('drawKillCard');
@@ -27,6 +26,6 @@ Route::get('groupsselectcard','GameController@selectCard')->name('selectCard');
 Route::post('groupsselectedcard','GameController@selectedCard')->name('selectedCard');
 Route::get('groupsexchangecard','GameController@exchangeCard')->name('exchangeCard');
 Route::post('groupsexchangedCard','GameController@exchangedCard')->name('exchangedCard');
-
+Route::resource('groups', 'groupController')->only(['index', 'store']);
 
 Route::get('/result/ajax', 'GameController@isCount');

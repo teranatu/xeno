@@ -55,5 +55,5 @@ function get_data() {
       }
   });
 
-  setTimeout("get_data()", 2000);
+  setTimeout("get_data()", 3000);
 }
