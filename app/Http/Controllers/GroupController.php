@@ -21,6 +21,17 @@ class groupController extends Controller
         
     if(0 !== count($selectcards)){
         foreach ($selectcards as $key => $selectcard ) {
+            switch ($key) {
+                case 0:
+                    $selectcard_1 = $selectcard->card_number;
+                    break;
+                case 1:
+                    $selectcard_2 =$selectcard->card_number;
+                    break;
+                case 2:
+                    $selectcard_3 =$selectcard->card_number;
+                    break;
+            }
             if ($key == 0) {
                 $selectcard_1 = $selectcard->card_number;
             } if ($key == 1) {
