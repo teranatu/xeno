@@ -17,27 +17,17 @@ class groupController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
+
         $selectcards = Card::where('select_card','1')->get();
         
     if(0 !== count($selectcards)){
         foreach ($selectcards as $key => $selectcard ) {
-            switch ($key) {
-                case 0:
-                    $selectcard_1 = $selectcard->card_number;
-                    break;
-                case 1:
-                    $selectcard_2 =$selectcard->card_number;
-                    break;
-                case 2:
-                    $selectcard_3 =$selectcard->card_number;
-                    break;
-            }
-            if ($key == 0) {
-                $selectcard_1 = $selectcard->card_number;
-            } if ($key == 1) {
-                $selectcard_2 =$selectcard->card_number;
-            } if ($key == 2) {
-                $selectcard_3 =$selectcard->card_number;
+            for ($i=0; $i < 3; $i++) { 
+                if ($key === $i) {
+                    $i++;
+                    ${'selectcard_'.$i} = $selectcard->card_number;
+                    $i--;
+                }
             }
         }
         $users = User::where('group_id', '1')->get();
@@ -65,7 +55,7 @@ class groupController extends Controller
      */
     public function store(Request $request)
     {
-        if (DB::table('users')->where('group_id', '1')->count() <= 4) {
+        if (Uer::where('group_id', '1')->count() <= 3) {
             $group = new Group;
             $group->user_id = Auth::id();
             $group->save();
@@ -121,6 +111,6 @@ class groupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }
