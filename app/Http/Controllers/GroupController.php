@@ -17,22 +17,16 @@ class groupController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-
-        $selectcards = Card::where('select_card','1')->get();
-        
-    if(0 !== count($selectcards)){
-        foreach ($selectcards as $key => $selectcard ) {
-            for ($i=0; $i < 3; $i++) { 
-                if ($key === $i) {
-                    $i++;
-                    ${'selectcard_'.$i} = $selectcard->card_number;
-                    $i--;
+    $selectcards = Card::where('select_card','1')->get();
+        if( 0 !== count($selectcards) ){
+            foreach ( $selectcards as $key => $selectcard ) {
+                for ( $i= 1; $i < 4; $i++ ) { 
+                    if (($key++) === $i) { ${'selectcard_'.$i} = $selectcard->card_number; }
                 }
             }
-        }
         $users = User::where('group_id', '1')->get();
         return view('room',compact('users','selectcard_1','selectcard_2','selectcard_3'));
-    }
+        }
     $users = User::where('group_id', '1')->get();
     return view('room',compact('users'));
     }
