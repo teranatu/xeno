@@ -21,7 +21,7 @@ class groupController extends Controller
         if( 0 !== count($selectcards) ){
             foreach ( $selectcards as $key => $selectcard ) {
                 for ( $i= 1; $i < 4; $i++ ) { 
-                    if (($key++) === $i) { ${'selectcard_'.$i} = $selectcard->card_number; }
+                    if ( ($key) === ($i -= 1) ) { ${'selectcard_'.$i} = $selectcard->card_number; }
                 }
             }
         $users = User::where('group_id', '1')->get();
