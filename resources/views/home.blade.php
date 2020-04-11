@@ -6,7 +6,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">部屋リスト</div>
-
                 <div class="card-body row">
                     <div class="col-3">
                         <form method="POST" action="{{ route('groups.store') }}">

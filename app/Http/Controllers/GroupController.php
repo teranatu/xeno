@@ -16,19 +16,24 @@ class groupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-    $selectcards = Card::where('select_card','1')->get();
-        if( 0 !== count($selectcards) ){
-            foreach ( $selectcards as $key => $selectcard ) {
-                for ( $i= 1; $i < 4; $i++ ) { 
-                    if ( ($key) === ($i -= 1) ) { ${'selectcard_'.$i} = $selectcard->card_number; }
+    public function index()
+    {
+        $selectcards = Card::where('select_card','1')->get();
+
+        //条件①選択されたカードがある時カードを受け渡す
+        if( 0 !== count($selectcards) ) { 
+            foreach ($selectcards as $key => $selectcard ) {
+                for ($i=1; $i < 4; $i++) {
+                    $JudgmentValue = $i;
+                    if ( $key === ($JudgmentValue -= 1) ) { ${'selectcard_'.$i} = $selectcard->card_number; }
                 }
             }
-        $users = User::where('group_id', '1')->get();
-        return view('room',compact('users','selectcard_1','selectcard_2','selectcard_3'));
+            $users = User::where('group_id', '1')->get();
+            return view('room',compact('users','selectcard_1','selectcard_2','selectcard_3'));
         }
-    $users = User::where('group_id', '1')->get();
-    return view('room',compact('users'));
+
+        $users = User::where('group_id', '1')->get();
+        return view('room',compact('users'));
     }
 
     /**
@@ -49,15 +54,13 @@ class groupController extends Controller
      */
     public function store(Request $request)
     {
-        if (User::where('group_id', '1')->count() <= 3) {
+        if (Uer::where('group_id', '1')->count() <= 3) {
             $group = new Group;
             $group->user_id = Auth::id();
             $group->save();
-
             $user = User::where('id', Auth::id())->first();
             $user->group_id = $request->group;
             $user->update();
-
             return redirect()->route('groups.index');
         }
         return redirect('/home')->with('message','部屋１は満員です');

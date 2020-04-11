@@ -12,34 +12,18 @@ use Auth;
 
 class GameController extends Controller
 {
-    public function initialization() {
+    public function initialization() //初期化&カード分配=>データベース保存
+    {
+        Card::truncate(); Killcard::truncate(); Deadcard::truncate();
         $cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,10];
         shuffle($cards);
         $users = User::where( 'group_id' , '1' )->get();
         foreach ( $users as $key => $user ) {
-            if( isset( $user->card_2 ) ) { $user->card_2 = null; }
-            switch ( $key ) {
-                case 0:
-                    $user->card_1 = array_shift($cards);
-                    $user->update();
-                break;
-                case 1:
-                    $user->card_1 = array_shift($cards);
-                    $user->update();
-                break;
-                case 2:
-                    $user->card_1 = array_shift($cards);
-                    $user->update();
-                break;
-                case 3:
-                    $user->card_1 = array_shift($cards);
-                    $user->update();
-                break;
-            }
+            if( $user->card_2 ) { $user->card_2 = null; }
+            $user->card_1 = array_shift($cards);
+            $user->update();
         }
-        Card::truncate();
-        Killcard::truncate();
-        Deadcard::truncate();
+    
         $killcard = array_pop($cards);
         $storekillcard = new Killcard;
         $storekillcard->card_number = $killcard;
@@ -53,7 +37,8 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function drawCard() {
+    public function drawCard()
+    {
         $drawCard = Card::first();
         $user = User::find(Auth::id());
         if (isset($user->card_1) && !isset($user->card_2)) {
@@ -68,7 +53,8 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function drawKillCard() {
+    public function drawKillCard()
+    {
         $drawKillCard = Killcard::first();
         $user = User::find(Auth::id());
         if (!isset($user->card_1) && !isset($user->card_2)) {
@@ -79,7 +65,8 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function discardLeft() {
+    public function discardLeft()
+    {
         $user = User::find(Auth::id());
         $deadcard = new Deadcard;
         $deadcard->card_number = $user->card_1;
@@ -89,7 +76,8 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function discardRight() {
+    public function discardRight()
+    {
         $user = User::find(Auth::id());
         $deadcards = new Deadcard;
         $deadcards->card_number = $user->card_2;
@@ -99,7 +87,8 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function selectCard() {
+    public function selectCard()
+    {
         $selectcards = Card::take(3)->get();
         foreach ($selectcards as $selectcard ) {
             $selectcard->select_card = 1;
@@ -112,7 +101,8 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function selectedCard(Request $request) {
+    public function selectedCard(Request $request)
+    {
         $selectedCardNumber = $request->selectedCard;
         $selectedCard = Card::where('select_card','1')->where('card_number',$selectedCardNumber)->first();
         $user = User::find(Auth::id());
@@ -142,7 +132,8 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function exchangeCard () {
+    public function exchangeCard ()
+    {
         $exchangeusers = User::where('group_id', '1')->get();
         foreach ($exchangeusers as $exchangeuser) {
             $exchangeuser->exchange_user = Auth::id();
@@ -152,18 +143,53 @@ class GameController extends Controller
     }
     
 
-    public function exchangedCard(Request $request) {
+    public function exchangedCard(Request $request)
+    {
         $targetUser = User::where('name',$request->targetName)->first();
+        $targetUserHasCardNumber_1 = $targetUser->card_1;
+        $targetUserHasCardGudgment_1 = isset($targetUser->card_1);
+        $targetUserHasCardNumber_2 = $targetUser->card_2;
+        $targetUserHasCardGudgment_2 = isset($targetUser->card_2);
         $authUser = Auth::user();
-        $authUserNumber = $authUser->card_1;
-        $authUser->card_1 = $targetUser->card_1;
-        $targetUser->card_1 = $authUserNumber;
-        $targetUser->save();
-        $authUser->save();
+        $authUserHasCardNumber_1 = $authUser->card_1;
+        $authUserHasCardGudgment_1 = isset($authUser->card_1);
+        $authUserHasCardNumber_2 = $authUser->card_2;
+        $authUserHasCardGudgment_2 = isset($authUser->card_2);
+
+        if ( $authUserHasCardGudgment_1 === $targetUserHasCardGudgment_1 )
+        {
+            $authUser->card_1 = $targetUserHasCardNumber_1;
+            $targetUser->card_1 = $authUserHasCardNumber_1;
+            $targetUser->save();
+            $authUser->save();
+        } 
+        if ($authUserHasCardGudgment_2 === $targetUserHasCardGudgment_1)
+        {
+            $authUser->card_2 = $targetUserHasCardNumber_1;
+            $targetUser->card_1 = $authUserHasCardNumber_2;
+            $targetUser->save();
+            $authUser->save();
+        } 
+        if ($authUserHasCardGudgment_1 === $targetUserHasCardGudgment_2)
+        {
+            $authUser->card_1 = $targetUserHasCardNumber_2;
+            $targetUser->card_2 = $authUserHasCardNumber_1;
+            $targetUser->save();
+            $authUser->save();
+        } 
+        if ($authUserHasCardGudgment_2 === $targetUserHasCardGudgment_2)
+        {
+            $authUser->card_2 = $targetUserHasCardNumber_2;
+            $targetUser->card_2 = $authUserHasCardNumber_2;
+            $targetUser->save();
+            $authUser->save();
+        }
+
         return redirect()->route('groups.index');
     }
 
-    public function isCount() {
+    public function isCount()
+    {
         $isCountCards = count(Card::all());
         $isCountKillCards = count(Killcard::all());
         $inRoomUsers = count(User::where('group_id', '1')->get());
