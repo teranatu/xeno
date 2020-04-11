@@ -129,6 +129,16 @@ class GameController extends Controller
         $select_user = Auth::user();
         $select_user->select_user  = null;
         $select_user->update();
+
+        $allCards = Card::all();
+        $reSuffleCards = [];
+        foreach ($allCards as $allCard) { $reSuffleCards[] = $allCard->card_number; }
+        shuffle($reSuffleCards);
+        foreach ($allCards as $allCard) { 
+            $allCard->card_number = array_pop($reSuffleCards); 
+            $allCard->update();
+        }
+
         return redirect()->route('groups.index');
     }
 
@@ -142,7 +152,6 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
     
-
     public function exchangedCard(Request $request)
     {
         $targetUser = User::where('name',$request->targetName)->first();
