@@ -55,7 +55,7 @@ class groupController extends Controller
      */
     public function store(Request $request)
     {
-        if (Uer::where('group_id', '1')->count() <= 3) {
+        if (User::where('group_id', '1')->count() <= 3) {
             $group = new Group;
             $group->user_id = Auth::id();
             $group->save();
