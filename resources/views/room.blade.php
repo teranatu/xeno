@@ -51,13 +51,13 @@
   <div class="row">
     <div class="col-6">
       <div class="row">
-        <button class="btn btn-danger col-2 pt-2 pb-2" onclick="location.href='{{ route('initialization')}}'">初期化</button>
-        <button class="btn btn-primary col-2 pt-2 pb-2" onclick="location.href='{{ route('drawKillCard')}}'">転生札を引く</button>
-        <button class="btn btn-primary col-2 pt-2 pb-2" onclick="location.href='{{ route('drawCard')}}'">1枚引く</button>
-        <button class="btn btn-success col-2 pt-2 pb-2" onclick="location.href='{{ route('discardLeft')}}'">左を使用</button>
-        <button class="btn btn-success col-2 pt-2 pb-2" onclick="location.href='{{ route('discardRight')}}'">右を使用</button>
-        <button class="btn btn-success col-2 pt-2 pb-2" onclick="location.href='{{ route('selectCard')}}'">選択(7)効果使用</button>
-        <button class="btn btn-success col-2 pt-2 pb-2" onclick="location.href='{{ route('exchangeCard')}}'">交換(8)効果使用</button>
+        <button class="btn btn-danger col-2 pt-2 pb-2" onclick="style.display ='none';location.href='{{ route('initialization')}}'">初期化</button>
+        <button class="btn btn-primary col-2 pt-2 pb-2" onclick="style.display ='none';location.href='{{ route('drawKillCard')}}'">転生札を引く</button>
+        <button class="btn btn-primary col-2 pt-2 pb-2" onclick="style.display ='none';location.href='{{ route('drawCard')}}'">1枚引く</button>
+        <button class="btn btn-success col-2 pt-2 pb-2" onclick="style.display ='none';location.href='{{ route('discardLeft')}}'">左を使用</button>
+        <button class="btn btn-success col-2 pt-2 pb-2" onclick="style.display ='none';location.href='{{ route('discardRight')}}'">右を使用</button>
+        <button class="btn btn-success col-2 pt-2 pb-2" onclick="style.display ='none';location.href='{{ route('selectCard')}}'">選択(7)効果使用</button>
+        <button class="btn btn-success col-2 pt-2 pb-2" onclick="style.display ='none';location.href='{{ route('exchangeCard')}}'">交換(8)効果使用</button>
 
       </div>
     </div>
