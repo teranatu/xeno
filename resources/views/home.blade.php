@@ -6,26 +6,17 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">部屋リスト</div>
-                <div class="card-body row">
-                    <div class="col-3">
-                        <form method="POST" action="{{ route('groups.store') }}">
-                            @csrf
-                            <button class="btn btn-primary" type="submit">部屋1</button>
-                            <input type="hidden" name="group" value="1">
-                        <form>
-                        <p id="inRoomUsers" class="d-inline">0/4人</p>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-primary">部屋2</button>
-                        <p class="d-inline">0/4人</p>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-primary">部屋3</button>
-                        <p class="d-inline">0/4人</p>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-primary">部屋4</button>
-                        <p class="d-inline">0/4人</p>
+                    <div class="card-body row">
+                    @for($i=1; $i < 11; $i++)
+                        <div class="col-3">
+                            <form method="POST" action="{{ route('groups.store') }}">
+                                @csrf
+                                <button class="btn btn-primary" type="submit">部屋{{ $i }}</button>
+                                <input type="hidden" name="group" value={{ $i }}>
+                            </form>
+                            <p id="inRoomUsers" class="d-inline">0/4人</p>
+                        </div>
+                    @endfor
                     </div>
                 </div>
             </div>

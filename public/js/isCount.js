@@ -7,19 +7,19 @@ function get_data() {
       url: "result/ajax/",
       dataType: "json",
       success: data => {
-        console.log(data.isCountCards);
-        console.log(data.inRoomUsers);
-        console.log(data.usedCard);
-        console.log(data.Deadcard_1);
-        console.log(data.Deadcard_2);
-        console.log(data.Deadcard_3);
-        console.log(data.Deadcard_4);
-        console.log(data.Deadcard_5);
-        console.log(data.Deadcard_6);
-        console.log(data.Deadcard_7);
-        console.log(data.Deadcard_8);
-        console.log(data.Deadcard_9);
-        console.log(data.Deadcard_10);
+        // console.log(data.isCountCards);
+        // console.log(data.inRoomUsers);
+        // console.log(data.usedCard);
+        // console.log(data.Deadcard_1);
+        // console.log(data.Deadcard_2);
+        // console.log(data.Deadcard_3);
+        // console.log(data.Deadcard_4);
+        // console.log(data.Deadcard_5);
+        // console.log(data.Deadcard_6);
+        // console.log(data.Deadcard_7);
+        // console.log(data.Deadcard_8);
+        // console.log(data.Deadcard_9);
+        // console.log(data.Deadcard_10);
 
         if (document.getElementById('isCountCard')) {
           document.getElementById('isCountCard').textContent ='残り' + data.isCountCards + '枚 +' + data.isCountKillCards + '枚';
@@ -55,5 +55,5 @@ function get_data() {
       }
   });
 
-  setTimeout("get_data()", 3000);
+  setTimeout("get_data()", 2000);
 }

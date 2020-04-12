@@ -31,7 +31,6 @@ class groupController extends Controller
             $users = User::where('group_id', '1')->get();
             return view('room',compact('users','selectcard_1','selectcard_2','selectcard_3'));
         }
-
         $users = User::where('group_id', '1')->get();
         return view('room',compact('users'));
     }
@@ -54,17 +53,23 @@ class groupController extends Controller
      */
     public function store(Request $request)
     {
-        if (User::where('group_id', '1')->count() <= 3) {
-            $group = new Group;
-            $group->user_id = Auth::id();
-            $group->save();
-            $user = User::where('id', Auth::id())->first();
-            $user->group_id = $request->group;
-            $user->update();
-            return redirect()->route('groups.index');
+        $groupNumber = (int)$request->group;
+        for ($i=1; $i < 5; $i++) { 
+            if ($groupNumber === $i) {
+                if ( User::where('group_id', $i)->count() === 4 ) {
+                    return redirect('/home')->with('message',"'部屋'{{ $i }}'は満員です'");
+                }
+                $group = new Group;
+                $group->user_id = Auth::id();
+                $group->save();
+                $user = User::where('id', Auth::id())->first();
+                $user->group_id = $request->group;
+                $user->update();
+                return redirect()->route('groups.index');
+           }
         }
-        return redirect('/home')->with('message','部屋１は満員です');
     }
+
 
     /**
      * Display the specified resource.
