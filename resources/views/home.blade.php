@@ -14,7 +14,7 @@
                                 <button class="btn btn-primary" type="submit">部屋{{ $i }}</button>
                                 <input type="hidden" name="group" value={{ $i }}>
                             </form>
-                            <p id="inRoomUsers" class="d-inline">0/4人</p>
+                            <p id="isCountInRoomUsers" class="d-inline">0/4人</p>
                         </div>
                     @endfor
                     </div>
