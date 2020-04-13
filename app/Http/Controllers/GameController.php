@@ -32,7 +32,6 @@ class GameController extends Controller
             $storecard->card_number = $card;
             $storecard->save();
         }
-        
         return redirect()->route('groups.index');
     }
 
@@ -192,50 +191,7 @@ class GameController extends Controller
             $targetUser->save();
             $authUser->save();
         }
-
         return redirect()->route('groups.index');
     }
 
-    public function isCount()
-    {
-        $isCountCards = count(Card::all());
-        $isCountKillCards = count(Killcard::all());
-        $inRoomUsers = count(User::where('group_id', '1')->get());
-        if ( null !== ( Deadcard::all()->sortByDesc('id')->first() ) ){
-            $usedcard = Deadcard::all()->sortByDesc('id')->first();
-            $usedCard = $usedcard->card_number;
-        }if ( null === ( Deadcard::all()->sortByDesc('id')->first() ) ) {
-            $usedCard = null;
-        }
-
-        for ($i=1; $i < 11; $i++) { ${'Deadcard_'.$i} = 0; }
-        $Deadcards = Deadcard::all();
-        if (count($Deadcards)) {
-            foreach ($Deadcards as $Deadcard) {
-                for ($i=1; $i < 11 ; $i++) { 
-                    if($i == $Deadcard->card_number) {
-                        ${'Deadcard_'.$i}++ ;
-                    }
-                }
-            }
-        }
-
-        $json = [
-                "isCountCards" => $isCountCards,
-                "inRoomUsers" => $inRoomUsers,
-                "isCountKillCards" => $isCountKillCards,
-                "usedCard" => $usedCard,
-                "Deadcard_1" => $Deadcard_1,
-                "Deadcard_2" => $Deadcard_2,
-                "Deadcard_3" => $Deadcard_3,
-                "Deadcard_4" => $Deadcard_4,
-                "Deadcard_5" => $Deadcard_5,
-                "Deadcard_6" => $Deadcard_6,
-                "Deadcard_7" => $Deadcard_7,
-                "Deadcard_8" => $Deadcard_8,
-                "Deadcard_9" => $Deadcard_9,
-                "Deadcard_10" => $Deadcard_10,
-                ];
-        return response()->json($json);
-    }
 }
