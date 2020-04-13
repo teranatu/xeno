@@ -21,14 +21,12 @@ class groupController extends Controller
         $selectcards = Card::where('select_card','1')->get();
 
         //条件①選択されたカードがある時カードを受け渡す
-        if( 0 !== count($selectcards) ) { 
+        if( (0 !== count($selectcards)) && (2 !== count($selectcards)) ) { 
             foreach ($selectcards as $key => $selectcard ) {
-                for ($i=1; $i < 4; $i++) {
-                    $JudgmentValue = $i;
-                    if ( $key === ($JudgmentValue -= 1) ) { ${'selectcard_'.$i} = $selectcard->card_number; }
-                }
+                ${'selectcard_'.($key+1)} = $selectcard->card_number;
             }
             $users = User::where('group_id', '1')->get();
+            
             return view('room',compact('users','selectcard_1','selectcard_2','selectcard_3'));
         }
         $users = User::where('group_id', '1')->get();

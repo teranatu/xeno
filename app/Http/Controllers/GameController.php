@@ -23,7 +23,6 @@ class GameController extends Controller
             $user->card_1 = array_shift($cards);
             $user->update();
         }
-    
         $killcard = array_pop($cards);
         $storekillcard = new Killcard;
         $storekillcard->card_number = $killcard;
@@ -41,15 +40,17 @@ class GameController extends Controller
     {
         $drawCard = Card::first();
         $user = User::find(Auth::id());
+        if (isset($user->card_1) && isset($user->card_2)) {
+            return redirect()->route('groups.index')->with('message','カードを使用してください');
+        } 
         if (isset($user->card_1) && !isset($user->card_2)) {
             $user->card_2 = $drawCard->card_number;
             $user->save();
             $drawCard->delete();
-        } else {
-            $user->card_1 = $drawCard->card_number;
-            $user->save();
-            $drawCard->delete();
         }
+        $user->card_1 = $drawCard->card_number;
+        $user->save();
+        $drawCard->delete();
         return redirect()->route('groups.index');
     }
 
@@ -61,8 +62,9 @@ class GameController extends Controller
             $user->card_1 = $drawKillCard->card_number;
             $user->save();
             $drawKillCard->delete();
+            return redirect()->route('groups.index');
         }
-        return redirect()->route('groups.index');
+        return redirect()->route('groups.index')->with('message',"転生札を引くためにはカードを全て捨ててください");
     }
 
     public function discardLeft()
@@ -89,16 +91,19 @@ class GameController extends Controller
 
     public function selectCard()
     {
-        $selectcards = Card::take(3)->get();
-        foreach ($selectcards as $selectcard ) {
-            $selectcard->select_card = 1;
-            $selectcard->save();
+        $user = User::find(Auth::id());
+        if ((isset($user->card_1) && !isset($user->card_2))||(!isset($user->card_1) && isset($user->card_2))) {
+            $selectcards = Card::take(3)->get();
+            foreach ($selectcards as $selectcard ) {
+                $selectcard->select_card = 1;
+                $selectcard->save();
+            }
+            $select_user = Auth::user();
+            $select_user->select_user  = Auth::id();
+            $select_user->update();
+            return redirect()->route('groups.index');
         }
-        $select_user = Auth::user();
-        $select_user->select_user  = Auth::id();
-        $select_user->update();
-
-        return redirect()->route('groups.index');
+        return redirect()->route('groups.index')->with('message',"手札を1枚にしてね。不正ダメ、絶対");
     }
 
     public function selectedCard(Request $request)
@@ -106,25 +111,19 @@ class GameController extends Controller
         $selectedCardNumber = $request->selectedCard;
         $selectedCard = Card::where('select_card','1')->where('card_number',$selectedCardNumber)->first();
         $user = User::find(Auth::id());
-        if (isset($user->card_1) && !isset($user->card_2)) {
+        if(isset($user->card_1) && isset($user->card_2) || !isset($user->card_1) && !isset($user->card_2)) {
+            return redirect()->route('groups.index')->with('message',"手札を1枚にしてね。不正ダメ、絶対");
+        } elseif (isset($user->card_1) && !isset($user->card_2)) {
             $user->card_2 = $selectedCard->card_number;
-            $user->save();
-            $selectedCard->delete();
-            $selectedCards = Card::where('select_card','1')->get();
-            foreach ($selectedCards as $nonselectCard) {
-                $nonselectCard->select_card = 0;
-                $nonselectCard->update();
-            }
-
         } elseif (!isset($user->card_1) && isset($user->card_2)) {
             $user->card_1 = $selectedCard->card_number;
-            $user->save();
-            $selectedCard->delete();
-            $selectedCards = Card::where('select_card','1')->get();
-            foreach ($selectedCards as $nonselectCard) {
-                $nonselectCard->select_card = 0;
-                $nonselectCard->update();
-            }
+        }
+        $user->save();
+        $selectedCard->delete();
+        $selectedCards = Card::where('select_card','1')->get();
+        foreach ($selectedCards as $nonselectCard) {
+            $nonselectCard->select_card = 0;
+            $nonselectCard->update();
         }
         $select_user = Auth::user();
         $select_user->select_user  = null;
