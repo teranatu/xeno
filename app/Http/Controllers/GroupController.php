@@ -18,18 +18,16 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $selectcards = Card::where('select_card','1')->get();
+        $selectcards = Card::where( 'select_card','1' )->get();
+        $users = User::where( 'group_id', Auth::user()->group_id )->get();
 
         //条件①選択されたカードがある時カードを受け渡す
         if( (0 !== count($selectcards)) && (2 !== count($selectcards)) ) { 
             foreach ($selectcards as $key => $selectcard ) {
                 ${'selectcard_'.($key+1)} = $selectcard->card_number;
             }
-            $users = User::where('group_id', '1')->get();
-            
             return view('room',compact('users','selectcard_1','selectcard_2','selectcard_3'));
         }
-        $users = User::where('group_id', '1')->get();
         return view('room',compact('users'));
     }
 
@@ -52,7 +50,7 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         $groupNumber = (int)$request->group;
-        for ($i=1; $i < 5; $i++) { 
+        for ($i=1; $i < 11; $i++) { 
             if ($groupNumber === $i) {
                 if ( User::where('group_id', $i)->count() === 4 ) {
                     return redirect('/home')->with('message',"'部屋'{{ $i }}'は満員です'");
@@ -64,7 +62,7 @@ class GroupController extends Controller
                 $user->group_id = $request->group;
                 $user->update();
                 return redirect()->route('groups.index');
-           }
+            }
         }
     }
 

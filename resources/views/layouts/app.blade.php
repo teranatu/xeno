@@ -75,9 +75,7 @@
     </div>
 
     @if(Auth::check())
-    @if ( Auth::user()->group_id == $i )
         <script src="{{ asset('js/isCount.js') }}"></script>
-    @endif
     @for ($i = 1; $i < 11; $i++)
         @if ( Auth::user()->group_id == $i )
         <script src="{{ asset("js/isCountInRooms$i.js") }}"></script>

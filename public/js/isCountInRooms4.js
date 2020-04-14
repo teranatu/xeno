@@ -7,33 +7,212 @@ function inRoomUsers() {
       url: "result/ajaxInRoomUsersDetails",
       dataType: "json",
       success: data => {
-        console.log(data.Users);
-        $("#inRoomUsers")
-        .find(".user-visible")
-        .remove();
-        // for (var i = 1; i < 11; i++) {
-        //   for (var ii = 1; ii < 5; ii++) {
-        //     var html = `<p> ${data.Group[i].roomUser[ii].id} </p>
-        //                 <div class="col-12 comment-visible">
-        //                   <div class="card">
-        //                     <div class="card-header">
-        //                         <div class="row">
-        //                             <p>${data.Group[i].roomUser[ii].name}</p>
-        //                         </div>
-        //                         <div class="col-6 text-center">${data.Group[i].roomUser[ii].card_1}</div>
-        //                         <div class="col-6 text-center">${data.Group[i].roomUser[ii].card_2}</div>
-        //                     </div>
-        //                   </div>
-        //                 </div>
-        //               @endif
-        //             `;
-        //   $("#inRoomUsers").append(html);
-        //   }
-        // }
-        // if (document.getElementById('roomUser_')) {
-        //   document.getElementById('isCountCard').textContent ='残り' + data.isCountCards + '枚 +' + data.isCountKillCards + '枚';
-        // }
-        //roomUser_{{ $key }}
+        // console.log(data.inRoomUsers_4);
+        // console.log(data.inRoomUsers_4.length);
+        let countUsers = data.inRoomUsers_4.length;
+        $("#inRoomUsers").find(".user-visible").remove();
+
+        switch (countUsers) {
+          case 1:
+            for (var i = 0; i < countUsers; i++) {
+              countCard1 = data.inRoomUsers_4[i].card_1;
+              countCard2 = data.inRoomUsers_4[i].card_2;
+              // console.log(countCard1);
+              // console.log(countCard2);
+              if ( (null !== countCard1) && (null !== countCard2) ) {
+                var html = `
+                            <div class="col-12 user-visible">
+                              <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4 text-center">?</div>
+                                        <div class="col-4 text-center">?</div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        `;
+              }else if ( (null === countCard1) && (null === countCard2) ) {
+                var html = `
+                            <div class="col-12 user-visible">
+                              <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                      <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        `;
+              } else {
+                var html = `
+                            <div class="col-12 user-visible">
+                              <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4 text-center">?</div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        `;
+              }
+            $("#inRoomUsers").append(html);
+            }
+            break;
+
+          case 2:
+            for (var i = 0; i < countUsers; i++) {
+              countCard1 = data.inRoomUsers_4[i].card_1;
+              countCard2 = data.inRoomUsers_4[i].card_2;
+              // console.log(countCard1);
+              // console.log(countCard2);
+              if ( (null !== countCard1) && (null !== countCard2) ) {
+                var html = `
+                            <div class="col-12 user-visible">
+                              <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4 text-center">?</div>
+                                        <div class="col-4 text-center">?</div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        `;
+              }else if ( (null === countCard1) && (null === countCard2) ) {
+                var html = `
+                            <div class="col-12 user-visible">
+                              <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                      <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        `;
+              } else {
+                var html = `
+                            <div class="col-12 user-visible">
+                              <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4 text-center">?</div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        `;
+              }
+            $("#inRoomUsers").append(html);
+            }
+            break;
+
+          case 3:
+            for (var i = 0; i < countUsers; i++) {
+              countCard1 = data.inRoomUsers_4[i].card_1;
+              countCard2 = data.inRoomUsers_4[i].card_2;
+              // console.log(countCard1);
+              // console.log(countCard2);
+              if ( (null !== countCard1) && (null !== countCard2) ) {
+                var html = `
+                            <div class="col-12 user-visible">
+                              <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4 text-center">?</div>
+                                        <div class="col-4 text-center">?</div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        `;
+              }else if ( (null === countCard1) && (null === countCard2) ) {
+                var html = `
+                            <div class="col-12 user-visible">
+                              <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                      <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        `;
+              } else {
+                var html = `
+                            <div class="col-12 user-visible">
+                              <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4 text-center">?</div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        `;
+              }
+            $("#inRoomUsers").append(html);
+            }
+            break;
+
+          case 4:
+            for (var i = 0; i < countUsers; i++) {
+              countCard1 = data.inRoomUsers_4[i].card_1;
+              countCard2 = data.inRoomUsers_4[i].card_2;
+              // console.log(countCard1);
+              // console.log(countCard2);
+              if ( (null !== countCard1) && (null !== countCard2) ) {
+                var html = `
+                            <div class="col-12 user-visible">
+                              <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4 text-center">?</div>
+                                        <div class="col-4 text-center">?</div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        `;
+              }else if ( (null === countCard1) && (null === countCard2) ) {
+                var html = `
+                            <div class="col-12 user-visible">
+                              <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                      <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        `;
+              } else {
+                var html = `
+                            <div class="col-12 user-visible">
+                              <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4 text-center">?</div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        `;
+              }
+            $("#inRoomUsers").append(html);
+            }
+            break;
+        }
       },
       error: () => {
           
