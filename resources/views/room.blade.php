@@ -98,13 +98,19 @@
       <div class="row">
         <div class="col-6 text-center">
           <button class="btn btn-success w-50" onclick="style.display ='none';location.href='{{ route('discardLeft')}}'">左を使用</button>
+          @for ( $i = 1;$i < 11;$i++ )
+            @if ( $i == Auth::user()->card_1 )
+              <img src="{{ asset("/xenoCards/xenoCard_$i.png") }}">
+            @endif
+          @endfor
+          
         </div>
         <div class="col-6 text-center">
           <button class="btn btn-success w-50" onclick="style.display ='none';location.href='{{ route('discardRight')}}'">右を使用</button>
         </div>
       </div>
     </div>
-    
+
     <div class="col-3">遊び方</div>
 
   </div>
