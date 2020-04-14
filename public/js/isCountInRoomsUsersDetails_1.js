@@ -7,16 +7,16 @@ function inRoomUsers() {
       url: "result/ajaxInRoomUsersDetails",
       dataType: "json",
       success: data => {
-        // console.log(data.inRoomUsers_4);
-        // console.log(data.inRoomUsers_4.length);
-        let countUsers = data.inRoomUsers_4.length;
+        // console.log(data.inRoomUsersDetails_1);
+        // console.log(data.inRoomUsersDetails_1.length);
+        let countUsers = data.inRoomUsersDetails_1.length;
         $("#inRoomUsers").find(".user-visible").remove();
 
         switch (countUsers) {
           case 1:
             for (var i = 0; i < countUsers; i++) {
-              countCard1 = data.inRoomUsers_4[i].card_1;
-              countCard2 = data.inRoomUsers_4[i].card_2;
+              countCard1 = data.inRoomUsersDetails_1[i].card_1;
+              countCard2 = data.inRoomUsersDetails_1[i].card_2;
               // console.log(countCard1);
               // console.log(countCard2);
               if ( (null !== countCard1) && (null !== countCard2) ) {
@@ -25,7 +25,7 @@ function inRoomUsers() {
                               <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
                                         <div class="col-4 text-center">?</div>
                                         <div class="col-4 text-center">?</div>
                                     </div>
@@ -39,7 +39,7 @@ function inRoomUsers() {
                               <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                      <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                      <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
                                     </div>
                                 </div>
                               </div>
@@ -51,7 +51,7 @@ function inRoomUsers() {
                               <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
                                         <div class="col-4 text-center">?</div>
                                     </div>
                                 </div>
@@ -65,8 +65,8 @@ function inRoomUsers() {
 
           case 2:
             for (var i = 0; i < countUsers; i++) {
-              countCard1 = data.inRoomUsers_4[i].card_1;
-              countCard2 = data.inRoomUsers_4[i].card_2;
+              countCard1 = data.inRoomUsersDetails_1[i].card_1;
+              countCard2 = data.inRoomUsersDetails_1[i].card_2;
               // console.log(countCard1);
               // console.log(countCard2);
               if ( (null !== countCard1) && (null !== countCard2) ) {
@@ -75,7 +75,7 @@ function inRoomUsers() {
                               <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
                                         <div class="col-4 text-center">?</div>
                                         <div class="col-4 text-center">?</div>
                                     </div>
@@ -89,7 +89,7 @@ function inRoomUsers() {
                               <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                      <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                      <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
                                     </div>
                                 </div>
                               </div>
@@ -101,7 +101,7 @@ function inRoomUsers() {
                               <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
                                         <div class="col-4 text-center">?</div>
                                     </div>
                                 </div>
@@ -115,8 +115,8 @@ function inRoomUsers() {
 
           case 3:
             for (var i = 0; i < countUsers; i++) {
-              countCard1 = data.inRoomUsers_4[i].card_1;
-              countCard2 = data.inRoomUsers_4[i].card_2;
+              countCard1 = data.inRoomUsersDetails_1[i].card_1;
+              countCard2 = data.inRoomUsersDetails_1[i].card_2;
               // console.log(countCard1);
               // console.log(countCard2);
               if ( (null !== countCard1) && (null !== countCard2) ) {
@@ -125,7 +125,7 @@ function inRoomUsers() {
                               <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
                                         <div class="col-4 text-center">?</div>
                                         <div class="col-4 text-center">?</div>
                                     </div>
@@ -139,7 +139,7 @@ function inRoomUsers() {
                               <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                      <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                      <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
                                     </div>
                                 </div>
                               </div>
@@ -151,7 +151,7 @@ function inRoomUsers() {
                               <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
                                         <div class="col-4 text-center">?</div>
                                     </div>
                                 </div>
@@ -165,8 +165,8 @@ function inRoomUsers() {
 
           case 4:
             for (var i = 0; i < countUsers; i++) {
-              countCard1 = data.inRoomUsers_4[i].card_1;
-              countCard2 = data.inRoomUsers_4[i].card_2;
+              countCard1 = data.inRoomUsersDetails_1[i].card_1;
+              countCard2 = data.inRoomUsersDetails_1[i].card_2;
               // console.log(countCard1);
               // console.log(countCard2);
               if ( (null !== countCard1) && (null !== countCard2) ) {
@@ -175,7 +175,7 @@ function inRoomUsers() {
                               <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
                                         <div class="col-4 text-center">?</div>
                                         <div class="col-4 text-center">?</div>
                                     </div>
@@ -189,7 +189,7 @@ function inRoomUsers() {
                               <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                      <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                      <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
                                     </div>
                                 </div>
                               </div>
@@ -201,7 +201,7 @@ function inRoomUsers() {
                               <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                        <div class="col-4">${data.inRoomUsers_4[i].name}</div>
+                                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
                                         <div class="col-4 text-center">?</div>
                                     </div>
                                 </div>

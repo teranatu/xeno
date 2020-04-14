@@ -30,3 +30,4 @@ Route::resource('groups', 'GroupController')->only(['index', 'store']);
 
 Route::get('/result/ajax', 'JsonController@isCount');
 Route::get('/result/ajaxInRoomUsersDetails', 'JsonController@isCountInRoomUsersDetails');
+Route::get('/result/ajaxInRoomUsers', 'JsonController@isCountInRoomUsers');

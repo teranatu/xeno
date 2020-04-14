@@ -35,28 +35,48 @@ class JsonController extends Controller
             }
         }
         $json = [
-                "isCountCards" => $isCountCards,
-                "isCountUsersInRooms" => $isCountUsersInRooms,
-                "isCountKillCards" => $isCountKillCards,
-                "usedCard" => $usedCard,
-                "Deadcard_1" => $Deadcard_1,
-                "Deadcard_2" => $Deadcard_2,
-                "Deadcard_3" => $Deadcard_3,
-                "Deadcard_4" => $Deadcard_4,
-                "Deadcard_5" => $Deadcard_5,
-                "Deadcard_6" => $Deadcard_6,
-                "Deadcard_7" => $Deadcard_7,
-                "Deadcard_8" => $Deadcard_8,
-                "Deadcard_9" => $Deadcard_9,
-                "Deadcard_10" => $Deadcard_10,
-                ];
+            "isCountCards" => $isCountCards,
+            "isCountUsersInRooms" => $isCountUsersInRooms,
+            "isCountKillCards" => $isCountKillCards,
+            "usedCard" => $usedCard,
+            "Deadcard_1" => $Deadcard_1,
+            "Deadcard_2" => $Deadcard_2,
+            "Deadcard_3" => $Deadcard_3,
+            "Deadcard_4" => $Deadcard_4,
+            "Deadcard_5" => $Deadcard_5,
+            "Deadcard_6" => $Deadcard_6,
+            "Deadcard_7" => $Deadcard_7,
+            "Deadcard_8" => $Deadcard_8,
+            "Deadcard_9" => $Deadcard_9,
+            "Deadcard_10" => $Deadcard_10,
+        ];
         return response()->json($json);
     }
 
     public function isCountInRoomUsersDetails()
     {
         for ($i=1; $i < 11 ; $i++) {
-            ${'inRoomUsers_'.$i} = User::where('group_id',$i)->get();
+            ${'inRoomUsersDetails_'.$i} = User::where('group_id',$i)->get();
+        }
+        $json = [
+            "inRoomUsersDetails_1" => $inRoomUsersDetails_1,
+            "inRoomUsersDetails_2" => $inRoomUsersDetails_2,
+            "inRoomUsersDetails_3" => $inRoomUsersDetails_3,
+            "inRoomUsersDetails_4" => $inRoomUsersDetails_4,
+            "inRoomUsersDetails_5" => $inRoomUsersDetails_5,
+            "inRoomUsersDetails_6" => $inRoomUsersDetails_6,
+            "inRoomUsersDetails_7" => $inRoomUsersDetails_7,
+            "inRoomUsersDetails_8" => $inRoomUsersDetails_8,
+            "inRoomUsersDetails_9" => $inRoomUsersDetails_9,
+            "inRoomUsersDetails_10" => $inRoomUsersDetails_10,
+        ];
+    return response()->json($json);
+    }
+
+    public function isCountInRoomUsers()
+    {
+        for ($i=1; $i < 11 ; $i++) {
+            ${'inRoomUsers_'.$i} = count( User::where('group_id',$i)->get() );
         }
         $json = [
             "inRoomUsers_1" => $inRoomUsers_1,
@@ -69,9 +89,7 @@ class JsonController extends Controller
             "inRoomUsers_8" => $inRoomUsers_8,
             "inRoomUsers_9" => $inRoomUsers_9,
             "inRoomUsers_10" => $inRoomUsers_10,
-    ];
-        
- 
+        ];
     return response()->json($json);
     }
 }

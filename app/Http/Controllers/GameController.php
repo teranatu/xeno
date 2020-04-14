@@ -41,15 +41,15 @@ class GameController extends Controller
         $user = User::find(Auth::id());
         if (isset($user->card_1) && isset($user->card_2)) {
             return redirect()->route('groups.index')->with('message','カードを使用してください');
-        } 
-        if (isset($user->card_1) && !isset($user->card_2)) {
+        } elseif (isset($user->card_1) && !isset($user->card_2)) {
             $user->card_2 = $drawCard->card_number;
             $user->save();
             $drawCard->delete();
+        }elseif (!isset($user->card_1) && isset($user->card_2)) {
+            $user->card_1 = $drawCard->card_number;
+            $user->save();
+            $drawCard->delete();
         }
-        $user->card_1 = $drawCard->card_number;
-        $user->save();
-        $drawCard->delete();
         return redirect()->route('groups.index');
     }
 

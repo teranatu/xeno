@@ -42,7 +42,7 @@ function deadCard() {
       url: "result/ajax/",
       dataType: "json",
       success: data => {
-        var DDC = [
+        var dDC = [
           data.Deadcard_1,data.Deadcard_2,
           data.Deadcard_3,data.Deadcard_4,
           data.Deadcard_5,data.Deadcard_6,
@@ -51,9 +51,9 @@ function deadCard() {
         ]
         for (let index = 1; index < 11; index++) {
           let DeadCard = 'Deadcard_' + index;
-          let ABC = DDC[index-1];
+          let ddc = dDC[index-1];
           if (document.getElementById(DeadCard)) {
-            document.getElementById(DeadCard).textContent = index + ':' + ABC + '枚';
+            document.getElementById(DeadCard).textContent = index + ':' + ddc + '枚';
           } 
         }
       },
