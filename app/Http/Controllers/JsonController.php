@@ -16,7 +16,6 @@ class JsonController extends Controller
     {
         $isCountCards = count(Card::all());
         $isCountKillCards = count(Killcard::all());
-        $isCountUsersInRooms = count(User::where('group_id', '1')->get());
         if ( null !== ( Deadcard::all()->sortByDesc('id')->first() ) ){
             $usedcard = Deadcard::all()->sortByDesc('id')->first();
             $usedCard = $usedcard->card_number;
@@ -36,7 +35,6 @@ class JsonController extends Controller
         }
         $json = [
             "isCountCards" => $isCountCards,
-            "isCountUsersInRooms" => $isCountUsersInRooms,
             "isCountKillCards" => $isCountKillCards,
             "usedCard" => $usedCard,
             "Deadcard_1" => $Deadcard_1,

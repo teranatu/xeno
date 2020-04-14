@@ -2,15 +2,19 @@
 
 @section('content')
 
-  <div class="row">
+  <div style="height: 300px" class="ml-2 row">
     <div class="col-3">
+      <div class="text-left">
+        <div class="btn btn-danger col-4">ユーザー</div>
+        <div class="btn ">所持カード</div>
+        <div class="btn "></div>
+      </div>
       <div id="inRoomUsers"class="row">
- 
       </div>
     </div>
-    <div class="col-6">
+    <div style="height: 300px" class="col-6">
     </div>
-    <div class="col-3">
+    <div style="height: 300px" class="col-3">
     </div>
   </div>
 
