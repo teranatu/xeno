@@ -9,11 +9,8 @@ function inRoomUsers() {
       success: data => {
         // console.log(data.inRoomUsersDetails_1);
         // console.log(data.inRoomUsersDetails_1.length);
-        
-
         let countUsers = data.inRoomUsersDetails_1.length;
         $("#inRoomUsers").find(".user-visible").remove();
-
         switch (countUsers) {
           case 1:
             for (var i = 0; i < countUsers; i++) {
@@ -23,45 +20,39 @@ function inRoomUsers() {
               // console.log(countCard2);
               if ( (null !== countCard1) && (null !== countCard2) ) {
                 var html = `
-                <div class="col-12 user-visible">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
-                        <div class="col-2 text-center">&#x1f0cf;</div>
-                        <div class="col-2 text-center">&#x1f0cf;</div>
-                        <div class="col-4 text-center"></div>
-                      </div>
+                <div class="col-12 mt-2 user-visible">
+                  <div class="card h-100">
+                    <div class="row">
+                      <div class="col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
+                      <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
+                      <div class="col-4 d-flex align-items-center"></div>
                     </div>
                   </div>
                 </div>
                 `;
               }else if ( (null === countCard1) && (null === countCard2) ) {
                 var html = `
-                <div class="col-12 user-visible">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
-                        <div class="col-2 text-center"></div>
-                        <div class="col-2 text-center"></div>
-                        <div class="col-4 text-center"></div>
-                      </div>
+                <div class="col-12 mt-2 user-visible">
+                  <div class="card h-100">
+                    <div class="row">
+                      <div class="col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 d-flex align-items-center"></div>
+                      <div class="col-2 d-flex align-items-center"></div>
+                      <div class="col-4 d-flex align-items-center"></div>
                     </div>
                   </div>
                 </div>
                 `;
               } else {
                 var html = `
-                <div class="col-12 user-visible">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
-                        <div class="col-2 text-center">&#x1f0cf;</div>
-                        <div class="col-2 text-center"></div>
-                        <div class="col-4 text-center"></div>
-                      </div>
+                <div class="col-12 mt-2 user-visible">
+                  <div class="card h-100">
+                    <div class="row">
+                      <div class="col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
+                      <div class="col-2 d-flex align-items-center"></div>
+                      <div class="col-4 d-flex align-items-center"></div>
                     </div>
                   </div>
                 </div>
@@ -79,45 +70,39 @@ function inRoomUsers() {
               // console.log(countCard2);
               if ( (null !== countCard1) && (null !== countCard2) ) {
                 var html = `
-                <div class="col-12 user-visible">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
-                        <div class="col-2 text-center">&#x1f0cf;</div>
-                        <div class="col-2 text-center">&#x1f0cf;</div>
-                        <div class="col-4 text-center"></div>
-                      </div>
+                <div class="col-12 mt-2 user-visible">
+                  <div class="card h-100">
+                    <div class="row d-flex align-items-center">
+                      <div class="col-4 ">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 ">&#x1f0cf;</div>
+                      <div class="col-2 ">&#x1f0cf;</div>
+                      <div class="col-4 "></div>
                     </div>
                   </div>
                 </div>
                 `;
               } else if ( (null === countCard1) && (null === countCard2) ) {
                 var html = `
-                <div class="col-12 user-visible">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
-                        <div class="col-2 text-center"></div>
-                        <div class="col-2 text-center"></div>
-                        <div class="col-4 text-center"></div>
-                      </div>
+                <div class="col-12 mt-2 user-visible">
+                  <div class="card h-100">
+                    <div class="row d-flex align-items-center">
+                      <div class="col-4 ">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2  "></div>
+                      <div class="col-2  "></div>
+                      <div class="col-4  "></div>
                     </div>
                   </div>
                 </div>
                 `;
               } else {
                 var html = `
-                <div class="col-12 user-visible">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
-                        <div class="col-2 text-center">&#x1f0cf;</div>
-                        <div class="col-2 text-center"></div>
-                        <div class="col-4 text-center"></div>
-                      </div>
+                <div class="col-12 mt-2 user-visible">
+                  <div class="card h-100">
+                    <div class="row d-flex align-items-center">
+                      <div class="col-4 ">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 ">&#x1f0cf;</div>
+                      <div class="col-2 "></div>
+                      <div class="col-4 "></div>
                     </div>
                   </div>
                 </div>
@@ -135,45 +120,39 @@ function inRoomUsers() {
               // console.log(countCard2);
               if ( (null !== countCard1) && (null !== countCard2) ) {
                 var html = `
-                <div class="col-12 user-visible">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
-                        <div class="col-2 text-center">&#x1f0cf;</div>
-                        <div class="col-2 text-center">&#x1f0cf;</div>
-                        <div class="col-4 text-center"></div>
-                      </div>
+                <div class="col-12 mt-2 user-visible">
+                  <div class="card h-100">
+                    <div class="row d-flex align-items-center">
+                      <div class="col-4 ">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 ">&#x1f0cf;</div>
+                      <div class="col-2 ">&#x1f0cf;</div>
+                      <div class="col-4 "></div>
                     </div>
                   </div>
                 </div>
                 `;
               }else if ( (null === countCard1) && (null === countCard2) ) {
                 var html = `
-                <div class="col-12 user-visible">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
-                        <div class="col-2 text-center"></div>
-                        <div class="col-2 text-center"></div>
-                        <div class="col-4 text-center"></div>
-                      </div>
+                <div class="col-12 mt-2 user-visible">
+                  <div class="card h-100">
+                    <div class="row d-flex align-items-center">
+                      <div class="col-4 ">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 "></div>
+                      <div class="col-2 "></div>
+                      <div class="col-4 "></div>
                     </div>
                   </div>
                 </div>
                 `;
               } else {
                 var html = `
-                <div class="col-12 user-visible">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
-                        <div class="col-2 text-center">&#x1f0cf;</div>
-                        <div class="col-2 text-center"></div>
-                        <div class="col-4 text-center"></div>
-                      </div>
+                <div class="col-12 mt-2 user-visible">
+                  <div class="card h-100">
+                    <div class="row d-flex align-items-center">
+                      <div class="col-4 ">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 ">&#x1f0cf;</div>
+                      <div class="col-2 "></div>
+                      <div class="col-4 "></div>
                     </div>
                   </div>
                 </div>
@@ -191,45 +170,39 @@ function inRoomUsers() {
               // console.log(countCard2);
               if ( (null !== countCard1) && (null !== countCard2) ) {
                 var html = `
-                <div class="col-12 user-visible">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
-                        <div class="col-2 text-center">&#x1f0cf;</div>
-                        <div class="col-2 text-center">&#x1f0cf;</div>
-                        <div class="col-4 text-center"></div>
-                      </div>
+                <div class="col-12 mt-2 user-visible">
+                  <div class="card h-100">
+                    <div class="row h-100">
+                      <div class="pl-30px col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
+                      <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
+                      <div class="col-4 d-flex align-items-center"></div>
                     </div>
                   </div>
                 </div>
                 `;
               }else if ( (null === countCard1) && (null === countCard2) ) {
                 var html = `
-                <div class="col-12 user-visible">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
-                        <div class="col-2 text-center"></div>
-                        <div class="col-2 text-center"></div>
-                        <div class="col-4 text-center"></div>
-                      </div>
+                <div class="col-12 mt-2 user-visible">
+                  <div class="card h-100">
+                    <div class="row h-100">
+                      <div class="pl-30px col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 d-flex align-items-center"></div>
+                      <div class="col-2 d-flex align-items-center"></div>
+                      <div class="col-4 d-flex align-items-center"></div>
                     </div>
                   </div>
                 </div>
                 `;
               } else {
                 var html = `
-                <div class="col-12 user-visible">
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="row">
-                        <div class="col-4">${data.inRoomUsersDetails_1[i].name}</div>
-                        <div class="col-2 text-center">&#x1f0cf;</div>
-                        <div class="col-2 text-center"></div>
-                        <div class="col-4 text-center"></div>
-                      </div>
+                <div class="col-12 mt-2 user-visible">
+                  <div class="card h-100">
+                    <div class="row h-100">
+                      <div class="pl-30px col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
+                      <div class="col-2 d-flex align-items-center"></div>
+                      <div class="col-4 d-flex align-items-center"></div>
                     </div>
                   </div>
                 </div>
@@ -245,5 +218,5 @@ function inRoomUsers() {
       }
   });
 
-  setTimeout("inRoomUsers()", 2000);
+  setTimeout("inRoomUsers()", 10000000);
 }
