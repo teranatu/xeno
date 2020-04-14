@@ -26,10 +26,21 @@ function usedCard() {
       url: "result/ajax/",
       dataType: "json",
       success: data => {
+        $("#usedCardLatest").find(".usedCardLatest-visible").remove();
         // console.log(data.usedCard);
+        let usedCardLatest = data.usedCard;
+        for (let i = 1; i < 11; i++) {
+          if (usedCardLatest == i) {
+            var html =`
+              <img class="usedCardLatest-visible w-38 mb-3 mt-3" src="http://localhost:8000/xenoCards/xenoCard_${usedCardLatest}.png">
+            `
+          }
+        }
         if (document.getElementById('usedCard')) {
           document.getElementById('usedCard').textContent = 'フィールド：' + data.usedCard ;
         } 
+
+      $("#usedCardLatest").append(html);
       },
       error: () => {
       }
