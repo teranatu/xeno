@@ -45,11 +45,11 @@ class GameController extends Controller
             $user->card_2 = $drawCard->card_number;
             $user->save();
             $drawCard->delete();
-        } if (!isset($user->card_1) && isset($user->card_2)) {
-            $user->card_1 = $drawCard->card_number;
-            $user->save();
-            $drawCard->delete();
+            return redirect()->route('groups.index');
         }
+        $user->card_1 = $drawCard->card_number;
+        $user->save();
+        $drawCard->delete();
         return redirect()->route('groups.index');
     }
 
