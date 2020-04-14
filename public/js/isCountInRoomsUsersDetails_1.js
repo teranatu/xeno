@@ -22,8 +22,8 @@ function inRoomUsers() {
                 var html = `
                 <div class="col-12 mt-2 user-visible">
                   <div class="card h-100">
-                    <div class="row">
-                      <div class="col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                    <div class="row h-100">
+                      <div class="pl-30px col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
                       <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
                       <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
                       <div class="col-4 d-flex align-items-center"></div>
@@ -35,8 +35,8 @@ function inRoomUsers() {
                 var html = `
                 <div class="col-12 mt-2 user-visible">
                   <div class="card h-100">
-                    <div class="row">
-                      <div class="col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                    <div class="row h-100">
+                      <div class="pl-30px col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
                       <div class="col-2 d-flex align-items-center"></div>
                       <div class="col-2 d-flex align-items-center"></div>
                       <div class="col-4 d-flex align-items-center"></div>
@@ -48,8 +48,8 @@ function inRoomUsers() {
                 var html = `
                 <div class="col-12 mt-2 user-visible">
                   <div class="card h-100">
-                    <div class="row">
-                      <div class="col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                    <div class="row h-100">
+                      <div class="pl-30px col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
                       <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
                       <div class="col-2 d-flex align-items-center"></div>
                       <div class="col-4 d-flex align-items-center"></div>
@@ -72,11 +72,11 @@ function inRoomUsers() {
                 var html = `
                 <div class="col-12 mt-2 user-visible">
                   <div class="card h-100">
-                    <div class="row d-flex align-items-center">
-                      <div class="col-4 ">${data.inRoomUsersDetails_1[i].name}</div>
-                      <div class="col-2 ">&#x1f0cf;</div>
-                      <div class="col-2 ">&#x1f0cf;</div>
-                      <div class="col-4 "></div>
+                    <div class="row h-100">
+                      <div class="pl-30px col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
+                      <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
+                      <div class="col-4 d-flex align-items-center"></div>
                     </div>
                   </div>
                 </div>
@@ -85,11 +85,11 @@ function inRoomUsers() {
                 var html = `
                 <div class="col-12 mt-2 user-visible">
                   <div class="card h-100">
-                    <div class="row d-flex align-items-center">
-                      <div class="col-4 ">${data.inRoomUsersDetails_1[i].name}</div>
-                      <div class="col-2  "></div>
-                      <div class="col-2  "></div>
-                      <div class="col-4  "></div>
+                    <div class="row h-100">
+                      <div class="pl-30px col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 d-flex align-items-center"></div>
+                      <div class="col-2 d-flex align-items-center"></div>
+                      <div class="col-4 d-flex align-items-center"></div>
                     </div>
                   </div>
                 </div>
@@ -98,11 +98,11 @@ function inRoomUsers() {
                 var html = `
                 <div class="col-12 mt-2 user-visible">
                   <div class="card h-100">
-                    <div class="row d-flex align-items-center">
-                      <div class="col-4 ">${data.inRoomUsersDetails_1[i].name}</div>
-                      <div class="col-2 ">&#x1f0cf;</div>
-                      <div class="col-2 "></div>
-                      <div class="col-4 "></div>
+                    <div class="row h-100">
+                      <div class="pl-30px col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
+                      <div class="col-2 d-flex align-items-center"></div>
+                      <div class="col-4 d-flex align-items-center"></div>
                     </div>
                   </div>
                 </div>
@@ -122,11 +122,11 @@ function inRoomUsers() {
                 var html = `
                 <div class="col-12 mt-2 user-visible">
                   <div class="card h-100">
-                    <div class="row d-flex align-items-center">
-                      <div class="col-4 ">${data.inRoomUsersDetails_1[i].name}</div>
-                      <div class="col-2 ">&#x1f0cf;</div>
-                      <div class="col-2 ">&#x1f0cf;</div>
-                      <div class="col-4 "></div>
+                    <div class="row h-100">
+                      <div class="pl-30px col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
+                      <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
+                      <div class="col-4 d-flex align-items-center"></div>
                     </div>
                   </div>
                 </div>
@@ -135,11 +135,11 @@ function inRoomUsers() {
                 var html = `
                 <div class="col-12 mt-2 user-visible">
                   <div class="card h-100">
-                    <div class="row d-flex align-items-center">
-                      <div class="col-4 ">${data.inRoomUsersDetails_1[i].name}</div>
-                      <div class="col-2 "></div>
-                      <div class="col-2 "></div>
-                      <div class="col-4 "></div>
+                    <div class="row h-100">
+                      <div class="pl-30px col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 d-flex align-items-center"></div>
+                      <div class="col-2 d-flex align-items-center"></div>
+                      <div class="col-4 d-flex align-items-center"></div>
                     </div>
                   </div>
                 </div>
@@ -148,11 +148,11 @@ function inRoomUsers() {
                 var html = `
                 <div class="col-12 mt-2 user-visible">
                   <div class="card h-100">
-                    <div class="row d-flex align-items-center">
-                      <div class="col-4 ">${data.inRoomUsersDetails_1[i].name}</div>
-                      <div class="col-2 ">&#x1f0cf;</div>
-                      <div class="col-2 "></div>
-                      <div class="col-4 "></div>
+                    <div class="row h-100">
+                      <div class="pl-30px col-4 d-flex align-items-center">${data.inRoomUsersDetails_1[i].name}</div>
+                      <div class="col-2 d-flex align-items-center">&#x1f0cf;</div>
+                      <div class="col-2 d-flex align-items-center"></div>
+                      <div class="col-4 d-flex align-items-center"></div>
                     </div>
                   </div>
                 </div>
