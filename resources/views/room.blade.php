@@ -110,23 +110,32 @@
     
     <div class="col-6">
       <div class="row">
-        <div class="col-6 text-center">
+
+        <div class="col-4 text-right">
           <button class="btn btn-success w-50" onclick="style.visibility ='hidden';location.href='{{ route('discardLeft')}}'">左を使用</button>
+        </div>
+        <div class="col-4 text-center">
+          <button class="btn btn-success w-50" onclick="style.visibility ='hidden';location.href='{{ route('cardShuffle')}}'">シャッフル</button>
+        </div>
+        <div class="col-4 text-left">
+          <button class="btn btn-success w-50" onclick="style.visbility ='hidden';location.href='{{ route('discardRight')}}'">右を使用</button>
+        </div>
+
+        <div class="col-6 text-center">
           @for ( $i = 1;$i < 11;$i++ )
             @if ( $i == Auth::user()->card_1 )
               <img class="w-75 mt-4" src="{{ asset("/xenoCards/xenoCard_$i.png") }}">
             @endif
           @endfor
-          
         </div>
         <div class="col-6 text-center">
-          <button class="btn btn-success w-50" onclick="style.visbility ='hidden';location.href='{{ route('discardRight')}}'">右を使用</button>
           @for ( $i = 1;$i < 11;$i++ )
             @if ( $i == Auth::user()->card_2 )
               <img class="w-75 mt-4" src="{{ asset("/xenoCards/xenoCard_$i.png") }}">
             @endif
           @endfor
         </div>
+
       </div>
     </div>
 

@@ -88,6 +88,18 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
+    public function  cardShuffle() {
+        $user = User::find(Auth::id());
+        $userCard_1 = $user->card_1;
+        if ( (null !== $user->card_1) && (null !== $user->card_2) ) {
+            $user->card_1 = $user->card_2;
+            $user->card_2 = $userCard_1;
+            $user->save();
+            return redirect()->route('groups.index');
+        }
+        return redirect()->route('groups.index')->with('message', 'シャッフルできるのはカードが2枚の時だけです。');
+    }
+
     public function selectCard()
     {
         $user = User::find(Auth::id());

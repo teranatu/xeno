@@ -218,5 +218,5 @@ function inRoomUsers() {
       }
   });
 
-  setTimeout("inRoomUsers()", 10000000);
+  setTimeout("inRoomUsers()", 1000);
 }

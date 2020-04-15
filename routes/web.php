@@ -26,6 +26,7 @@ Route::get('groupsselectcard','GameController@selectCard')->name('selectCard');
 Route::post('groupsselectedcard','GameController@selectedCard')->name('selectedCard');
 Route::get('groupsexchangecard','GameController@exchangeCard')->name('exchangeCard');
 Route::post('groupsexchangedCard','GameController@exchangedCard')->name('exchangedCard');
+Route::get('groupsexchangedCard', 'GameController@cardShuffle')->name('cardShuffle');
 Route::resource('groups', 'GroupController')->only(['index', 'store']);
 
 Route::get('/result/ajax', 'JsonController@isCount');
