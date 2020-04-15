@@ -66,29 +66,30 @@ class GameController extends Controller
         return redirect()->route('groups.index')->with('message',"転生札を引くためにはカードを全て捨ててください");
     }
 
-    public function discardLeft()
+    public function discard(Request $request)
     {
-        $user = User::find(Auth::id());
-        $deadcard = new Deadcard;
-        $deadcard->card_number = $user->card_1;
-        $deadcard->save();
-        $user->card_1 = null;
-        $user->save();
-        return redirect()->route('groups.index');
+        $user = Auth::user();
+        if($request->discard === 'left') {
+            $user = User::find(Auth::id());
+            $deadcard = new Deadcard;
+            $deadcard->card_number = $user->card_1;
+            $deadcard->save();
+            $user->card_1 = null;
+            $user->save();
+            return redirect()->route('groups.index');
+        } elseif ($request->discard === 'right') {
+            $deadcards = new Deadcard;
+            $deadcards->card_number = $user->card_2;
+            $deadcards->save();
+            $user->card_2 = null;
+            $user->save();
+            return redirect()->route('groups.index');
+        }
+        return redirect()->route('groups.index')->with('message', '捨てるカードがありません');
     }
 
-    public function discardRight()
+    public function  cardShuffle()
     {
-        $user = User::find(Auth::id());
-        $deadcards = new Deadcard;
-        $deadcards->card_number = $user->card_2;
-        $deadcards->save();
-        $user->card_2 = null;
-        $user->save();
-        return redirect()->route('groups.index');
-    }
-
-    public function  cardShuffle() {
         $user = User::find(Auth::id());
         $userCard_1 = $user->card_1;
         if ( (null !== $user->card_1) && (null !== $user->card_2) ) {

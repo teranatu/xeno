@@ -112,13 +112,21 @@
       <div class="row">
 
         <div class="col-4 text-right">
-          <button class="btn btn-success w-50" onclick="style.visibility ='hidden';location.href='{{ route('discardLeft')}}'">左を使用</button>
+          <button class="btn btn-success w-50" onclick="style.visibility ='hidden';document.getElementById('discardLeft').submit()">左を使用</button>
+          <form id="discardLeft" action="{{ route('discard')}}" method="POST" style="display: none;">
+            @csrf
+            <input type="hidden" name="discard" value="left">
+          </form>
         </div>
         <div class="col-4 text-center">
           <button class="btn btn-success w-50" onclick="style.visibility ='hidden';location.href='{{ route('cardShuffle')}}'">シャッフル</button>
         </div>
         <div class="col-4 text-left">
-          <button class="btn btn-success w-50" onclick="style.visbility ='hidden';location.href='{{ route('discardRight')}}'">右を使用</button>
+          <button class="btn btn-success w-50" onclick="style.visbility ='hidden';document.getElementById('discardRight').submit()">右を使用</button>
+          <form id="discardRight" action="{{ route('discard')}}" method="POST" style="display: none;">
+            @csrf
+            <input type="hidden" name="discard" value="right">
+          </form>
         </div>
 
         <div class="col-6 text-center">
