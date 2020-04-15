@@ -13,7 +13,7 @@ use Auth;
 
 class GameController extends Controller
 {
-    public function initialization() //初期化&カード分配=>データベース保存
+    public function initialization() //初期化&カード分配=>データベース保存*複数ルーム対応
     {
         $groups = Group::with('users','cards','deadcards','killcard')->get();
         foreach ($groups as $key => $inRoomsUsers)
@@ -66,9 +66,9 @@ class GameController extends Controller
     }
 
     public function drawCard()
-    {
-        $drawCard = Card::first();
-        $user = User::find(Auth::id());
+    {   
+        $user = User::where('id',Auth::id())->with('group.cards')->first();
+        $drawCard = $user->group->cards->first();
         if (isset($user->card_1) && isset($user->card_2)) {
             return redirect()->route('groups.index')->with('message','カードを使用してください');
         } if (isset($user->card_1) && !isset($user->card_2)) {

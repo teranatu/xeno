@@ -55,13 +55,50 @@ class GroupController extends Controller
                 if ( User::where('group_id', $i)->count() === 4 ) {
                     return redirect('/home')->with('message',"'部屋'{{ $i }}'は満員です'");
                 }
-                $group = new Group;
-                $group->user_id = Auth::id();
-                $group->save();
-                $user = User::where('id', Auth::id())->first();
-                $user->group_id = $request->group;
-                $user->update();
-                return redirect()->route('groups.index');
+                if ( User::where('group_id', $i)->count() === 3 ) {
+                    $group = new Group;
+                    $group->user_id = Auth::id();
+                    $group->room_id = $groupNumber;
+                    $group->room_user_id = 4;
+                    $group->save();
+                    $user = User::where('id', Auth::id())->first();
+                    $user->group_id = $request->group;
+                    $user->update();
+                    return redirect()->route('groups.index');
+                }
+                if ( User::where('group_id', $i)->count() === 2 ) {
+                    $group = new Group;
+                    $group->user_id = Auth::id();
+                    $group->room_id = $groupNumber;
+                    $group->room_user_id = 3;
+                    $group->save();
+                    $user = User::where('id', Auth::id())->first();
+                    $user->group_id = $request->group;
+                    $user->update();
+                    return redirect()->route('groups.index');
+                }
+                if ( User::where('group_id', $i)->count() === 1 ) {
+                    $group = new Group;
+                    $group->user_id = Auth::id();
+                    $group->room_id = $groupNumber;
+                    $group->room_user_id = 2;
+                    $group->save();
+                    $user = User::where('id', Auth::id())->first();
+                    $user->group_id = $request->group;
+                    $user->update();
+                    return redirect()->route('groups.index');
+                }
+                if ( User::where('group_id', $i)->count() === 0 ) {
+                    $group = new Group;
+                    $group->user_id = Auth::id();
+                    $group->room_id = $groupNumber;
+                    $group->room_user_id = 1;
+                    $group->save();
+                    $user = User::where('id', Auth::id())->first();
+                    $user->group_id = $request->group;
+                    $user->update();
+                    return redirect()->route('groups.index');
+                }
             }
         }
     }
