@@ -8,29 +8,59 @@ use App\User;
 use App\Card;
 use App\Killcard;
 use App\Deadcard;
+use App\Group;
 use Auth;
 
 class GameController extends Controller
 {
     public function initialization() //初期化&カード分配=>データベース保存
     {
-        Card::truncate(); Killcard::truncate(); Deadcard::truncate();
-        $cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,10];
-        shuffle($cards);
-        $users = User::where( 'group_id' , '1' )->get();
-        foreach ( $users as $key => $user ) {
-            if( $user->card_2 ) { $user->card_2 = null; }
-            $user->card_1 = array_shift($cards);
-            $user->update();
-        }
-        $killcard = array_pop($cards);
-        $storekillcard = new Killcard;
-        $storekillcard->card_number = $killcard;
-        $storekillcard->save();
-        foreach ($cards as $card) {
-            $storecard = new card;
-            $storecard->card_number = $card;
-            $storecard->save();
+        $groups = Group::with('users','cards','deadcards','killcard')->get();
+        foreach ($groups as $key => $inRoomsUsers)
+        {
+            if ($key == (Auth::user()->group_id - 1))
+            {
+                $inRoomsUsersCards = $inRoomsUsers->cards;
+                if( 0 !== count($inRoomsUsersCards) )
+                {
+                    foreach ($inRoomsUsersCards as $inRoomsUsersCard) {
+                        $inRoomsUsersCard->delete();
+                    }
+                }
+                $inRoomsUsersDeadCards = $inRoomsUsers->deadcards;
+                if (0 !== count($inRoomsUsersDeadCards))
+                {
+                    foreach ($inRoomsUsersDeadCards as $inRoomsUsersDeadCard) {
+                        $inRoomsUsersDeadCard->delete();
+                    }
+                }
+                if (null !== $inRoomsUsers->killcard)
+                {
+                    $inRoomsUsers->killcard->delete();
+                }
+
+                $users = $inRoomsUsers->users;
+                $cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,10];
+                shuffle($cards);
+
+                foreach ( $users as $key => $user ) {
+                    if( $user->card_2 ) { $user->card_2 = null; }
+                    $user->card_1 = array_shift($cards);
+                    $user->update();
+                }
+                    $killcard = array_pop($cards);
+                    $storekillcard = new Killcard;
+                    $storekillcard->card_number = $killcard;
+                    $storekillcard->group_id = Auth::user()->group_id;
+                    $storekillcard->save();
+
+                foreach ($cards as $card) {
+                $storecard = new card;
+                    $storecard->card_number = $card;
+                    $storecard->group_id = Auth::user()->group_id;
+                    $storecard->save();
+                }
+            }
         }
         return redirect()->route('groups.index');
     }

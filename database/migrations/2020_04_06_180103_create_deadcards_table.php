@@ -16,7 +16,7 @@ class CreateDeadcardsTable extends Migration
         Schema::create('deadcards', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('card_number')->nullable();
-            $table->bigInteger('Group_id')->nullable();
+            $table->bigInteger('group_id')->nullable();
             $table->timestamps();
         });
     }

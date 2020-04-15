@@ -16,7 +16,7 @@ class CreateKillcardsTable extends Migration
         Schema::create('killcards', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('card_number')->nullable();
-            $table->bigInteger('Group_id')->nullable();
+            $table->bigInteger('group_id')->nullable();
             $table->timestamps();
         });
     }

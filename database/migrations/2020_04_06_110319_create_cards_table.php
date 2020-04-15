@@ -16,7 +16,7 @@ class CreateCardsTable extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('card_number')->nullable();
-            $table->bigInteger('Group_id')->nullable();
+            $table->bigInteger('group_id')->nullable();
             $table->boolean('select_card')->default(0);
             $table->timestamps();
         });
