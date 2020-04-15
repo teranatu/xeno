@@ -96,13 +96,14 @@ class GameController extends Controller
         return redirect()->route('groups.index')->with('message',"転生札を引くためにはカードを全て捨ててください");
     }
 
-    public function discard(Request $request)
+    public function discard(Request $request) //カードを捨てる *複数ルーム対応済
     {
         $user = Auth::user();
         if($request->discard === 'left') {
             $user = User::find(Auth::id());
             $deadcard = new Deadcard;
             $deadcard->card_number = $user->card_1;
+            $deadcard->group_id = $user->group_id;
             $deadcard->save();
             $user->card_1 = null;
             $user->save();
@@ -110,6 +111,7 @@ class GameController extends Controller
         } elseif ($request->discard === 'right') {
             $deadcards = new Deadcard;
             $deadcards->card_number = $user->card_2;
+            $deadcards->group_id = $user->group_id;
             $deadcards->save();
             $user->card_2 = null;
             $user->save();
@@ -118,7 +120,7 @@ class GameController extends Controller
         return redirect()->route('groups.index')->with('message', '捨てるカードがありません');
     }
 
-    public function  cardShuffle()
+    public function cardShuffle() //カードをシャッフルする *複数ルーム対応済
     {
         $user = User::find(Auth::id());
         $userCard_1 = $user->card_1;
@@ -131,7 +133,27 @@ class GameController extends Controller
         return redirect()->route('groups.index')->with('message', 'シャッフルできるのはカードが2枚の時だけです。');
     }
 
-    public function selectCard()
+    public function seeThroughCard()// カード効果4透視(対象表示)
+    {
+
+    }
+
+    public function seeThroughedCard()// カード効果4透視(リクエスト処理)
+    {
+
+    }
+
+    public function plagueCard()// カード効果5疫病(対象表示)
+    {
+
+    }
+
+    public function plaguedCard()// カード効果4透視(リクエスト処理)
+    {
+
+    }
+
+    public function selectCard() //カード効果7選択(対象表示)
     {
         $user = User::find(Auth::id());
         if ((isset($user->card_1) && !isset($user->card_2))||(!isset($user->card_1) && isset($user->card_2))) {
@@ -148,7 +170,7 @@ class GameController extends Controller
         return redirect()->route('groups.index')->with('message',"手札を1枚にしてね。不正ダメ、絶対");
     }
 
-    public function selectedCard(Request $request)
+    public function selectedCard(Request $request) //カード効果7選択(リクエスト処理)
     {
         $selectedCardNumber = $request->selectedCard;
         $selectedCard = Card::where('select_card','1')->where('card_number',$selectedCardNumber)->first();
@@ -183,7 +205,7 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function exchangeCard ()
+    public function exchangeCard () //カード効果8交換(対象表示)
     {
         $exchangeusers = User::where('group_id', '1')->get();
         foreach ($exchangeusers as $exchangeuser) {
@@ -193,7 +215,7 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
     
-    public function exchangedCard(Request $request)
+    public function exchangedCard(Request $request) //カード効果8交換(リクエスト処理)
     {
         $targetUser = User::where('name',$request->targetName)->first();
         $targetUserHasCardNumber_1 = $targetUser->card_1;
@@ -235,6 +257,16 @@ class GameController extends Controller
             $authUser->save();
         }
         return redirect()->route('groups.index');
+    }
+
+    public function publicExecutionCard() //カード効果1&9公開処刑(対象表示)
+    {
+
+    }
+
+    public function publicExecutionedCard() //カード効果1&9公開処刑(リクエスト処理)
+    {
+
     }
 
 }
