@@ -13,7 +13,7 @@ use Auth;
 
 class GameController extends Controller
 {
-    public function initialization() //初期化&カード分配=>データベース保存*複数ルーム対応
+    public function initialization() //初期化&カード分配=>保存 *複数ルーム対応済
     {
         $groups = Group::with('users','cards','deadcards','killcard')->get();
         foreach ($groups as $key => $inRoomsUsers)
@@ -65,10 +65,10 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function drawCard()
+    public function drawCard() //カードを引く=>保存 *複数ルーム対応済
     {   
         $user = User::where('id',Auth::id())->with('group.cards')->first();
-        $drawCard = $user->group->cards->first();
+        $drawCard = $user->group->cards->where('group_id',Auth::user()->group_id)->first();
         if (isset($user->card_1) && isset($user->card_2)) {
             return redirect()->route('groups.index')->with('message','カードを使用してください');
         } if (isset($user->card_1) && !isset($user->card_2)) {
@@ -83,10 +83,10 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function drawKillCard()
+    public function drawKillCard() //転生札を引く *複数ルーム対応済
     {
-        $drawKillCard = Killcard::first();
-        $user = User::find(Auth::id());
+        $user = User::where('id',Auth::id())->with('group.killcard')->first();
+        $drawKillCard = $user->group->killcard->where('group_id',Auth::user()->group_id)->first();
         if (!isset($user->card_1) && !isset($user->card_2)) {
             $user->card_1 = $drawKillCard->card_number;
             $user->save();
