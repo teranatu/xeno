@@ -166,6 +166,10 @@ class GameController extends Controller
 
     public function seeThroughedconfirmedCard(Request $request)// カード効果3透視(リクエスト処理)
     {
+        $authUser = Auth::user();
+        $authUser->seethroughedcard = null;
+        $authUser->save();
+        return redirect()->route('groups.index');
 
     }
 
