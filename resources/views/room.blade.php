@@ -59,51 +59,61 @@
     <div class="col-3">
       <div class="row">
         <div class="col-12">
-          <button class="btn btn-danger col-12 pt-2 pb-2" onclick="style.visibility ='hidden';location.href='{{ route('initialization')}}'">初期化</button>
+          <button class="btn btn-danger col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('initialization')}}'">初期化</button>
         </div>
         <div class="col-12">
-          <button class="btn btn-success col-12 mt-2 pt-2 pb-2" onclick="style.visibility ='hidden';location.href='{{ route('selectCard')}}'">選択(7)効果使用</button>
-          <button class="btn btn-success col-12 mt-2 pt-2 pb-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard')}}'">交換(8)効果使用</button>
-        </div>
-        <div class="col-12">
+          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard')}}'">公開処刑(1&9)効果使用</button>
+          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard')}}'">透視(4)効果使用</button>
+          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard')}}'">疫病(5)効果使用</button>
+          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('selectCard')}}'">選択(7)効果使用</button>
+          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard')}}'">交換(8)効果使用</button>
+        
+          <div style="height: 140px;" class="card d-flex align-items-center">
+          <div class="row text-center mt-4 pt-2">
           @foreach($users as $user)
-          @if (isset($selectcard_1) && ($user->select_user == Auth::id()))
-          <div class="col-4">
-            <form method="POST" action="{{ route('selectedCard')}}">
-              @csrf
-              <button class="btn btn-primary pt-2 pb-2" type="submit">1枚目：{{ $selectcard_1 }}</button>
-              <input type="hidden" name="selectedCard" value="{{ $selectcard_1 }}">
-            </form>
-          </div>
-          @endif
+            @if (isset($selectcard_1) && ($user->select_user == Auth::id()))
+            <div class="col-4">
+              <button class="btn btn-success pt-4 pb-4" onclick="style.visibility ='hidden';document.getElementById('selectcard_1').submit()">1枚目:{{ $selectcard_1 }}</button>
+            </div>
+              <form id="selectcard_1" class="navbar-expand" method="POST" action="{{ route('selectedCard')}}" >
+                @csrf
+                <input type="hidden" name="selectedCard" value="{{ $selectcard_1 }}">
+              </form>
+            @endif
+
             @if (isset($selectcard_2) && ($user->select_user == Auth::id()))
-          <div class="col-4">
-            <form method="POST" action="{{ route('selectedCard')}}">
-              @csrf
-              <button class="btn btn-primary pt-2 pb-2" type="submit">2枚目：{{ $selectcard_2 }}</button>
-              <input type="hidden" name="selectedCard" value="{{ $selectcard_2 }}">
-            </form>
-          </div>
-          @endif
+            <div class="col-4">
+              <button class="btn btn-success pt-4 pb-4" onclick="style.visibility ='hidden';document.getElementById('selectcard_2').submit()">2枚目:{{ $selectcard_2 }}</button>
+            </div>
+                <form id="selectcard_2" class="navbar-expand" method="POST" action="{{ route('selectedCard')}}">
+                  @csrf
+                  <input type="hidden" name="selectedCard" value="{{ $selectcard_2 }}">
+                </form>
+            @endif
+
             @if (isset($selectcard_3) && ($user->select_user == Auth::id()))
-          <div class="col-4">
-            <form method="POST" action="{{ route('selectedCard')}}">
-              @csrf
-              <button class="btn btn-primary pt-2 pb-2" type="submit">3枚目：{{ $selectcard_3 }}</button>
-              <input type="hidden" name="selectedCard" value="{{ $selectcard_3 }}">
-            </form>
-          </div>
-          @endif
-          @if ((($user->id != Auth::id())) && ($user->exchange_user == Auth::id()))
-          <div class="col-4">
-            <form method="POST" action="{{ route('exchangedCard')}}">
-              @csrf
-              <button class="btn btn-primary pt-2 pb-2" type="submit">{{ $user->name }}</button>
-              <input type="hidden" name="targetName" value="{{ $user->name }}">
-            </form>
-          </div>
-          @endif
+              <div class="col-4">
+              <button class="btn btn-success pt-4 pb-4" onclick="style.visibility ='hidden';document.getElementById('selectcard_3').submit()">3枚目:{{ $selectcard_3 }}</button>
+              </div>
+              <form id="selectcard_3" method="POST" class="navbar-expand" action="{{ route('selectedCard')}}">
+                @csrf
+                <input type="hidden" name="selectedCard" value="{{ $selectcard_3 }}">
+              </form>
+            @endif
+
+            @if ((($user->id != Auth::id())) && ($user->exchange_user == Auth::id()))
+              <div class="col-4">
+              <button class="btn btn-success" onclick="style.visibility ='hidden';document.getElementById('{{ $user->name }}').submit()">{{ $user->name }}</button>
+              <form id="{{ $user->name }}" method="POST" class="navbar-expand" action="{{ route('exchangedCard')}}">
+                @csrf
+                <input type="hidden" name="targetName" value="{{ $user->name }}">
+              </form>
+              </div>
+            @endif
+
           @endforeach
+          </div>
+          </div>
         </div>
       </div>
     </div>
@@ -150,9 +160,4 @@
     <div class="col-3">遊び方</div>
 
   </div>
-
-
-
-
-
 @endsection

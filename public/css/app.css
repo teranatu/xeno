@@ -10899,6 +10899,10 @@ a.text-dark:focus {
   width: 30% !important;
 }
 
+.w-33 {
+  width: 33.33333333% !important;
+}
+
 .w-35 {
   width: 35% !important;
 }
@@ -10937,4 +10941,8 @@ a.text-dark:focus {
  
 .pl-30px {
   padding-left: 30px;
+}
+
+.pl-15px {
+  padding-left: 15px;
 }

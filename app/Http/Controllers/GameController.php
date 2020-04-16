@@ -135,7 +135,7 @@ class GameController extends Controller
 
     public function seeThroughCard()// カード効果4透視(対象表示)
     {
-
+        
     }
 
     public function seeThroughedCard()// カード効果4透視(リクエスト処理)
@@ -145,10 +145,10 @@ class GameController extends Controller
 
     public function plagueCard()// カード効果5疫病(対象表示)
     {
-
+        
     }
 
-    public function plaguedCard()// カード効果4透視(リクエスト処理)
+    public function plaguedCard()// カード効果5疫病(リクエスト処理)
     {
 
     }
@@ -234,6 +234,13 @@ class GameController extends Controller
             $targetUser->card_1 = $authUserHasCardNumber_1;
             $targetUser->save();
             $authUser->save();
+
+            $exchangeusers = User::where('group_id', '1')->get();
+            foreach ($exchangeusers as $exchangeuser) {
+                $exchangeuser->exchange_user = null;
+                $exchangeuser->update();
+            }
+
         } 
         if ($authUserHasCardGudgment_2 === $targetUserHasCardGudgment_1)
         {
@@ -241,6 +248,12 @@ class GameController extends Controller
             $targetUser->card_1 = $authUserHasCardNumber_2;
             $targetUser->save();
             $authUser->save();
+            
+            $exchangeusers = User::where('group_id', '1')->get();
+            foreach ($exchangeusers as $exchangeuser) {
+                $exchangeuser->exchange_user = null;
+                $exchangeuser->update();
+            }
         } 
         if ($authUserHasCardGudgment_1 === $targetUserHasCardGudgment_2)
         {
@@ -248,6 +261,12 @@ class GameController extends Controller
             $targetUser->card_2 = $authUserHasCardNumber_1;
             $targetUser->save();
             $authUser->save();
+
+            $exchangeusers = User::where('group_id', '1')->get();
+            foreach ($exchangeusers as $exchangeuser) {
+                $exchangeuser->exchange_user = null;
+                $exchangeuser->update();
+            }
         } 
         if ($authUserHasCardGudgment_2 === $targetUserHasCardGudgment_2)
         {
@@ -255,6 +274,12 @@ class GameController extends Controller
             $targetUser->card_2 = $authUserHasCardNumber_2;
             $targetUser->save();
             $authUser->save();
+
+            $exchangeusers = User::where('group_id', '1')->get();
+            foreach ($exchangeusers as $exchangeuser) {
+                $exchangeuser->exchange_user = null;
+                $exchangeuser->update();
+            }
         }
         return redirect()->route('groups.index');
     }
