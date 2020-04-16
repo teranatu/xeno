@@ -148,7 +148,12 @@ class GameController extends Controller
         
     }
 
-    public function plaguedCard()// カード効果5疫病(リクエスト処理)
+    public function plaguedCard()// カード効果5疫病(リクエスト処理、return leftorright)
+    {
+
+    }
+
+    public function plaguedLeftOrRightCard()// カード効果5疫病(リクエスト処理、)
     {
 
     }
@@ -284,12 +289,12 @@ class GameController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function publicExecutionCard() //カード効果1&9公開処刑(対象表示)
+    public function publicExecuteCard() //カード効果1&9公開処刑(対象表示)
     {
 
     }
 
-    public function publicExecutionedCard() //カード効果1&9公開処刑(リクエスト処理)
+    public function publicExecutedCard() //カード効果1&9公開処刑(リクエスト処理)
     {
 
     }
