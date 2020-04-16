@@ -75,6 +75,7 @@
 
           @foreach($users as $user)
             @include('ifcardeffect.plagueCard') <!-- 疫病対象ユーザー選択ボタン -->
+            @include('ifcardeffect.plaguedCard') <!-- 疫病対象選択ボタン -->
             @include('ifcardeffect.seethroughCard') <!-- 透視対象ユーザー選択ボタン -->
             @include('ifcardeffect.selectCard') <!-- 選択対象カード選択ボタン -->
             @include('ifcardeffect.exchangeCard') <!-- 交換対象ユーザー選択ボタン -->

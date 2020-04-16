@@ -33,7 +33,7 @@ class GroupController extends Controller
             $seeThroughedCard = Auth::user()->seethroughedcard;
             return view('room',compact('users','seeThroughedCard'));
         }
-        //条件③疫病にするユーザーを選択していた場合
+        //条件
         return view('room',compact('users'));
     }
 
