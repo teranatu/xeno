@@ -138,7 +138,12 @@ class GameController extends Controller
         $user = User::find(Auth::id());
     }
 
-    public function seeThroughedCard()// カード効果3透視(リクエスト処理)
+    public function seeThroughedCard()// カード効果3透視(リクエスト処理 return 確認)
+    {
+
+    }
+
+    public function seeThroughedconfirmedCard()// カード効果3透視(リクエスト処理)
     {
 
     }
@@ -148,12 +153,12 @@ class GameController extends Controller
         
     }
 
-    public function plaguedCard()// カード効果5疫病(リクエスト処理、return leftorright)
+    public function plaguedCard()// カード効果5疫病(リクエスト処理 return 右か左か)
     {
 
     }
 
-    public function plaguedLeftOrRightCard()// カード効果5疫病(リクエスト処理、)
+    public function plaguedLeftOrRightCard()// カード効果5疫病(リクエスト処理)
     {
 
     }

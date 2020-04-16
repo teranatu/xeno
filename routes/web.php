@@ -25,6 +25,9 @@ Route::get('groupsdrawKillCard','GameController@drawKillCard')->name('drawKillCa
 Route::post('groupsdiscard','GameController@discard')->name('discard');
 Route::get('groupsexchangedCard', 'GameController@cardShuffle')->name('cardShuffle');
 //3
+Route::get('groupsseeThroughCard','GameController@seeThroughCard')->name('seeThroughCard');
+Route::post('groupsseeThroughedCard','GameController@seeThroughedCard')->name('seeThroughedCard');
+Route::post('groupsseeThroughedconfirmedCard','GameController@seeThroughedconfirmedCard')->name('seeThroughedconfirmedCard');
 //5
 Route::get('groupsplagueCard','GameController@plagueCard')->name('plagueCard');
 Route::post('groupsplaguedCard','GameController@plaguedCard')->name('plaguedCard');
