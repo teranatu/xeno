@@ -63,7 +63,7 @@
         </div>
         <div class="col-12">
           <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard')}}'">公開処刑(1&9)効果使用</button>
-          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard')}}'">透視(4)効果使用</button>
+          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard')}}'">透視(3)効果使用</button>
           <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard')}}'">疫病(5)効果使用</button>
           <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('selectCard')}}'">選択(7)効果使用</button>
           <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard')}}'">交換(8)効果使用</button>

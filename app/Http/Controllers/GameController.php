@@ -133,12 +133,12 @@ class GameController extends Controller
         return redirect()->route('groups.index')->with('message', 'シャッフルできるのはカードが2枚の時だけです。');
     }
 
-    public function seeThroughCard()// カード効果4透視(対象表示)
+    public function seeThroughCard()// カード効果3透視(対象表示)
     {
-        
+        $user = User::find(Auth::id());
     }
 
-    public function seeThroughedCard()// カード効果4透視(リクエスト処理)
+    public function seeThroughedCard()// カード効果3透視(リクエスト処理)
     {
 
     }

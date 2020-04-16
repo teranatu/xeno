@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->bigInteger('card_2')->nullable();
             $table->bigInteger('select_user')->nullable();
             $table->bigInteger('exchange_user')->nullable();
+            $table->bigInteger('seethrough_user')->nullable();
+            $table->bigInteger('plague_user')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
