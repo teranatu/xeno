@@ -26,14 +26,11 @@ function isCountCard() {
       } if ( (isCountCards !== 0) && (isCountKillCards === 0) ) {
         $("#cardDeck").find(".cardDeck-visible").remove();
         var html =`
-        <img class="cardDeck-visible w-50 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/.png">
+        <img class="cardDeck-visible w-50 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoRebirthCardDeck/.png">
         `
         $("#cardDeck").append(html);
       } if ( (isCountCards === 0) && (isCountKillCards === 0) ) {
         $("#cardDeck").find(".cardDeck-visible").remove();
-        var html =`
-        <img class="cardDeck-visible w-50 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/.png">
-        `
         $("#cardDeck").append(html);
       }
     }, 
