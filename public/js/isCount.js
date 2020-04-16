@@ -14,7 +14,29 @@ function isCountCard() {
       if (document.getElementById('isCountCard')) {
         document.getElementById('isCountCard').textContent ='残り' + data.isCountCards + '枚 +' + data.isCountKillCards + '枚';
       } 
-    },
+
+      let isCountCards = data.isCountCards;
+      let isCountKillCards = data.isCountKillCards;
+      if ( (isCountCards === 0) && (isCountKillCards !== 0) ) {
+        $("#cardDeck").find(".cardDeck-visible").remove();
+        var html =`
+        <img class="cardDeck-visible w-50 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoNoCardDeck/.png">
+        `
+        $("#cardDeck").append(html);
+      } if ( (isCountCards !== 0) && (isCountKillCards === 0) ) {
+        $("#cardDeck").find(".cardDeck-visible").remove();
+        var html =`
+        <img class="cardDeck-visible w-50 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/.png">
+        `
+        $("#cardDeck").append(html);
+      } if ( (isCountCards === 0) && (isCountKillCards === 0) ) {
+        $("#cardDeck").find(".cardDeck-visible").remove();
+        var html =`
+        <img class="cardDeck-visible w-50 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/.png">
+        `
+        $("#cardDeck").append(html);
+      }
+    }, 
     error: () => {
     }
   });
