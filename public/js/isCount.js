@@ -32,7 +32,7 @@ function usedCard() {
         for (let i = 1; i < 11; i++) {
           if (usedCardLatest == i) {
             var html =`
-              <img class="usedCardLatest-visible w-38 mb-3 mt-3" src="http://localhost:8000/xenoCards/xenoCard_${usedCardLatest}.png">
+              <img class="usedCardLatest-visible w-38 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${usedCardLatest}.png">
             `
           }
         }

@@ -175,12 +175,31 @@ class GameController extends Controller
 
     public function plagueCard()// カード効果5疫病(対象表示)
     {
-        
+        $plagueusers = User::where('group_id', '1')->get();
+        foreach ($plagueusers as $plagueuser) {
+            $plagueuser->plague_user = Auth::id();
+            $plagueuser->update();
+        }
+        return redirect()->route('groups.index');
     }
 
-    public function plaguedCard()// カード効果5疫病(リクエスト処理 return 右か左か)
+    public function plaguedCard(Request $request)// カード効果5疫病(リクエスト処理 return 右か左か)
     {
-
+        $targetuser = User::where('group_id', '1')->where('name', $request->targetName)->with('group.cards')->first();
+        $drawCard = $targetuser->group->cards->first();
+        $targetuser->plaguetarget = Auth::id();
+        if ( isset($targetuser->card_1) && isset($targetuser->card_2) ) {
+            return redirect()->route('groups.index')->with('message','カードを使用してください');
+        } if ( isset($targetuser->card_1) && !isset($targetuser->card_2) ) {
+            $targetuser->card_2 = $drawCard->card_number;
+            $targetuser->save();
+            $drawCard->delete();
+            return redirect()->route('groups.index');
+        }
+        $targetuser->card_1 = $drawCard->card_number;
+        $targetuser->save();
+        $drawCard->delete();
+        return redirect()->route('groups.index');
     }
 
     public function plaguedLeftOrRightCard()// カード効果5疫病(リクエスト処理)
