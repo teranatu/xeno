@@ -13,111 +13,102 @@ use Auth;
 
 class GameController extends Controller
 {
-    public function initialization() //初期化&カード分配=>保存 *複数ルーム対応済
+    public function initialization(Group $group) //初期化&カード分配=>保存 *複数ルーム対応済
     {
-        $groups = Group::with('users','cards','deadcards','killcard')->get();
-        foreach ($groups as $key => $inRoomsUsers)
-        {
-            if ($key == (Auth::user()->group_id - 1))
-            {
-                $inRoomsUsersCards = $inRoomsUsers->cards;
-                if( 0 !== count($inRoomsUsersCards) )
-                {
-                    foreach ($inRoomsUsersCards as $inRoomsUsersCard) {
-                        $inRoomsUsersCard->delete();
-                    }
-                }
-                $inRoomsUsersDeadCards = $inRoomsUsers->deadcards;
-                if (0 !== count($inRoomsUsersDeadCards))
-                {
-                    foreach ($inRoomsUsersDeadCards as $inRoomsUsersDeadCard) {
-                        $inRoomsUsersDeadCard->delete();
-                    }
-                }
-                if (null !== $inRoomsUsers->killcard)
-                {
-                    $inRoomsUsers->killcard->delete();
-                }
+        $group = Group::GroupWithUsersCardsDeadCardsKillCard($group)->first();
+        $groupUsers = $group->users;
+        $groupCards = $group->cards;
+        $groupDeadCards = $group->deadcards;
 
-                $users = $inRoomsUsers->users;
-                $cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,10];
-                shuffle($cards);
-
-                foreach ( $users as $key => $user ) {
-                    if( $user->card_2 ) { $user->card_2 = null; }
-                    $user->card_1 = array_shift($cards);
-                    $user->update();
-                }
-                    $killcard = array_pop($cards);
-                    $storekillcard = new Killcard;
-                    $storekillcard->card_number = $killcard;
-                    $storekillcard->group_id = Auth::user()->group_id;
-                    $storekillcard->save();
-
-                foreach ($cards as $card) {
-                $storecard = new card;
-                    $storecard->card_number = $card;
-                    $storecard->group_id = Auth::user()->group_id;
-                    $storecard->save();
-                }
+        if( 0 !== count($groupCards) ) {
+            foreach ($groupCards as $groupCard) {
+                $groupCard->delete();
             }
+        } if (0 !== count($groupDeadCards)) {
+            foreach ($groupDeadCards as $groupDeadCard) {
+                $groupDeadCard->delete();
+            }
+        } if (null !== $group->killcard) { $group->killcard->delete(); }
+        $cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,10];
+        shuffle($cards);
+        foreach ( $groupUsers as $groupUser ) {
+            if( $groupUser->card_2 ) { $groupUser->card_2 = null; }
+            $groupUser->card_1 = array_shift($cards);
+            $groupUser->update();
         }
-        return redirect()->route('groups.index');
+        $killcard = array_pop($cards);
+        $storekillcard = new Killcard;
+        $storekillcard->card_number = $killcard;
+        $storekillcard->group_id = Auth::user()->group_id;
+        $storekillcard->save();
+        foreach ($cards as $card) {
+            $storecard = new card;
+            $storecard->card_number = $card;
+            $storecard->group_id = Auth::user()->group_id;
+            $storecard->save();
+        }
+        return redirect()->route('groups.show', [ $group->group_id ])->with('message', '初期化が完了しました。');
     }
 
-    public function drawCard() //カードを引く=>保存 *複数ルーム対応済
+    public function drawCard(Group $group) //カードを引く=>保存 *複数ルーム対応済
     {   
-        $user = User::where('id',Auth::id())->with('group.cards')->first();
-        $drawCard = $user->group->cards->where('group_id',Auth::user()->group_id)->first();
-        if (isset($user->card_1) && isset($user->card_2)) {
-            return redirect()->route('groups.index')->with('message','カードを使用してください');
-        } if (isset($user->card_1) && !isset($user->card_2)) {
-            $user->card_2 = $drawCard->card_number;
-            $user->save();
+        $group = Group::GroupWithUsersCardsDeadCardsKillCard($group)->first();
+        $drawUser = $group->users->where( 'id', Auth::id() )->first();
+        $drawCard = $group->cards->first();
+
+        if (isset($drawUser->card_1) && isset($drawUser->card_2)) {
+            return redirect()->route('groups.show', [ $group->group_id ])->with('message', '手札が２枚です。捨ててください。');
+        } if (isset($drawUser->card_1) && !isset($drawUser->card_2)) {
+            $drawUser->card_2 = $drawCard->card_number;
+            $drawUser->save();
             $drawCard->delete();
-            return redirect()->route('groups.index');
+            return redirect()->route('groups.show', [ $group->group_id ])->with('message', 'カードをひきました。');
         }
-        $user->card_1 = $drawCard->card_number;
-        $user->save();
+        $drawUser->card_1 = $drawCard->card_number;
+        $drawUser->save();
         $drawCard->delete();
-        return redirect()->route('groups.index');
+        return redirect()->route('groups.show', [ $group->group_id ])->with('message', 'カードをひきました。');
     }
 
-    public function drawKillCard() //転生札を引く *複数ルーム対応済
+    public function drawKillCard(Group $group) //転生札を引く *複数ルーム対応済
     {
-        $user = User::where('id',Auth::id())->with('group.killcard')->first();
-        $drawKillCard = $user->group->killcard->where('group_id',Auth::user()->group_id)->first();
-        if (!isset($user->card_1) && !isset($user->card_2)) {
-            $user->card_1 = $drawKillCard->card_number;
-            $user->save();
+        $group = Group::GroupWithUsersCardsDeadCardsKillCard($group)->first();
+        $drawUser = $group->users->where( 'id', Auth::id() )->first();
+        $drawKillCard = $group->KillCard->first();
+
+        if ( !isset($drawUser->card_1) && !isset($drawUser->card_2) ) {
+            $drawUser->card_1 = $drawKillCard->card_number;
+            $drawUser->save();
             $drawKillCard->delete();
-            return redirect()->route('groups.index');
+            return redirect()->route('groups.show');
         }
-        return redirect()->route('groups.index')->with('message',"転生札を引くためにはカードを全て捨ててください");
+        return redirect()->route('groups.show', [ $group->group_id ])->with('message',"転生札を引くためにはカードを全て捨ててください");
     }
 
-    public function discard(Request $request) //カードを捨てる *複数ルーム対応済
+    public function discard(Request $request,Group $group) //カードを捨てる *複数ルーム対応済
     {
-        $user = Auth::user();
-        if($request->discard === 'left') {
-            $user = User::find(Auth::id());
-            $deadcard = new Deadcard;
-            $deadcard->card_number = $user->card_1;
-            $deadcard->group_id = $user->group_id;
-            $deadcard->save();
-            $user->card_1 = null;
-            $user->save();
-            return redirect()->route('groups.index');
-        } elseif ($request->discard === 'right') {
-            $deadcards = new Deadcard;
-            $deadcards->card_number = $user->card_2;
-            $deadcards->group_id = $user->group_id;
-            $deadcards->save();
-            $user->card_2 = null;
-            $user->save();
-            return redirect()->route('groups.index');
+        $discardUser = Auth::user();
+        if ( ($discardUser->card_1 === null) && ($discardUser->card_2 === null) ) {
+            return redirect()->route('groups.show', [ $group->group_id ])->with('message', '捨てるカードがありません');
         }
-        return redirect()->route('groups.index')->with('message', '捨てるカードがありません');
+        if ( ($request->discard === 'left') && ($discardUser->card_1 !== null) ) {
+            $discardUser = User::find(Auth::id());
+            $deadcard = new Deadcard;
+            $deadcard->card_number = $discardUser->card_1;
+            $deadcard->group_id = $discardUser->group_id;
+            $deadcard->save();
+            $discardUser->card_1 = null;
+            $discardUser->save();
+            return redirect()->route('groups.show', [ $group->group_id ]);
+        } if ( ($request->discard === 'right') && ($discardUser->card_2 !== null) ) {
+            $deadcards = new Deadcard;
+            $deadcards->card_number = $discardUser->card_2;
+            $deadcards->group_id = $discardUser->group_id;
+            $deadcards->save();
+            $discardUser->card_2 = null;
+            $discardUser->save();
+            return redirect()->route('groups.show', [ $group->group_id ]);
+        }
     }
 
     public function cardShuffle() //カードをシャッフルする *複数ルーム対応済
@@ -128,9 +119,9 @@ class GameController extends Controller
             $user->card_1 = $user->card_2;
             $user->card_2 = $userCard_1;
             $user->save();
-            return redirect()->route('groups.index');
+            return redirect()->route('groups.show');
         }
-        return redirect()->route('groups.index')->with('message', 'シャッフルできるのはカードが2枚の時だけです。');
+        return redirect()->route('groups.show')->with('message', 'シャッフルできるのはカードが2枚の時だけです。');
     }
 
     public function seeThroughCard()// カード効果3透視(対象表示)
@@ -140,7 +131,7 @@ class GameController extends Controller
             $seethroughuser->seethrough_user = Auth::id();
             $seethroughuser->update();
         }
-        return redirect()->route('groups.index');
+        return redirect()->route('groups.show');
     }
 
     public function seeThroughedCard(Request $request)// カード効果3透視(リクエスト処理 return確認)
@@ -161,7 +152,7 @@ class GameController extends Controller
             $seethroughuser->seethrough_user = null;
             $seethroughuser->save();
         }
-        return redirect()->route('groups.index');
+        return redirect()->route('groups.show');
     }
 
     public function seeThroughedconfirmedCard(Request $request)// カード効果3透視(リクエスト処理)
@@ -169,7 +160,7 @@ class GameController extends Controller
         $authUser = Auth::user();
         $authUser->seethroughedcard = null;
         $authUser->save();
-        return redirect()->route('groups.index');
+        return redirect()->route('groups.show');
 
     }
 
@@ -180,7 +171,7 @@ class GameController extends Controller
             $plagueuser->plague_user = Auth::id();
             $plagueuser->update();
         }
-        return redirect()->route('groups.index');
+        return redirect()->route('groups.show');
     }
 
     public function plaguedCard(Request $request)// カード効果5疫病(リクエスト処理 return 右か左か)
@@ -194,17 +185,17 @@ class GameController extends Controller
         }
         $targetuser->plaguetarget = Auth::id();
         if ( isset($targetuser->card_1) && isset($targetuser->card_2) ) {
-            return redirect()->route('groups.index')->with('message','カードを使用してください');
+            return redirect()->route('groups.show')->with('message','カードを使用してください');
         } if ( isset($targetuser->card_1) && !isset($targetuser->card_2) ) {
             $targetuser->card_2 = $drawCard->card_number;
             $targetuser->save();
             $drawCard->delete();
-            return redirect()->route('groups.index');
+            return redirect()->route('groups.show');
         }
         $targetuser->card_1 = $drawCard->card_number;
         $targetuser->save();
         $drawCard->delete();
-        return redirect()->route('groups.index');
+        return redirect()->route('groups.show');
     }
 
     public function plaguedLeftOrRightCard(Request $request)// カード効果5疫病(リクエスト処理)
@@ -226,7 +217,7 @@ class GameController extends Controller
             $targetuser->plaguetarget = null;
             $targetuser->save();
         }
-        return redirect()->route('groups.index');
+        return redirect()->route('groups.show');
     }
 
     public function selectCard() //カード効果7選択(対象表示)
@@ -241,9 +232,9 @@ class GameController extends Controller
             $select_user = Auth::user();
             $select_user->select_user  = Auth::id();
             $select_user->update();
-            return redirect()->route('groups.index');
+            return redirect()->route('groups.show');
         }
-        return redirect()->route('groups.index')->with('message',"手札を1枚にしてね。不正ダメ、絶対");
+        return redirect()->route('groups.show')->with('message',"手札を1枚にしてね。不正ダメ、絶対");
     }
 
     public function selectedCard(Request $request) //カード効果7選択(リクエスト処理)
@@ -252,7 +243,7 @@ class GameController extends Controller
         $selectedCard = Card::where('select_card','1')->where('card_number',$selectedCardNumber)->first();
         $user = User::find(Auth::id());
         if(isset($user->card_1) && isset($user->card_2) || !isset($user->card_1) && !isset($user->card_2)) {
-            return redirect()->route('groups.index')->with('message',"手札を1枚にしてね。不正ダメ、絶対");
+            return redirect()->route('groups.show')->with('message',"手札を1枚にしてね。不正ダメ、絶対");
         } elseif (isset($user->card_1) && !isset($user->card_2)) {
             $user->card_2 = $selectedCard->card_number;
         } elseif (!isset($user->card_1) && isset($user->card_2)) {
@@ -278,7 +269,7 @@ class GameController extends Controller
             $allCard->update();
         }
 
-        return redirect()->route('groups.index');
+        return redirect()->route('groups.show');
     }
 
     public function exchangeCard () //カード効果8交換(対象表示)
@@ -288,7 +279,7 @@ class GameController extends Controller
             $exchangeuser->exchange_user = Auth::id();
             $exchangeuser->update();
         }
-        return redirect()->route('groups.index');
+        return redirect()->route('groups.show');
     }
     
     public function exchangedCard(Request $request) //カード効果8交換(リクエスト処理)
@@ -357,7 +348,7 @@ class GameController extends Controller
                 $exchangeuser->update();
             }
         }
-        return redirect()->route('groups.index');
+        return redirect()->route('groups.show');
     }
 
     public function publicExecuteCard() //カード効果1&9公開処刑(対象表示)

@@ -28,10 +28,10 @@
 
             </div>
             <div class="col-3 text-center">
-              <button class="btn btn-primary pt-2 pb-2 w-80" onclick="style.visibility ='hidden';location.href='{{ route('drawCard')}}'">1枚引く</button>
+              <button class="btn btn-primary pt-2 pb-2 w-80" onclick="style.visibility ='hidden';location.href='{{ route('drawCard',[$group])}}'">1枚引く</button>
             </div>
             <div class="col-3 text-center">
-              <button class="btn btn-primary pt-2 pb-2 w-80" onclick="style.visibility ='hidden';location.href='{{ route('drawKillCard')}}'">転生札を引く</button>
+              <button class="btn btn-primary pt-2 pb-2 w-80" onclick="style.visibility ='hidden';location.href='{{ route('drawKillCard',[$group])}}'">転生札を引く</button>
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@
     <div class="col-3">
       <div class="row">
         <div class="col-12">
-          <button class="btn btn-danger col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('initialization')}}'">初期化</button>
+          <button class="btn btn-danger col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('initialization',[$group])}}'">初期化</button>
         </div>
         <div class="col-12">
           <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard')}}'">公開処刑(1&9)効果使用</button>
@@ -72,14 +72,15 @@
           <div class="row text-center mt-4 pt-2">
 
           @include('ifcardeffect.seethroughedCard') <!-- 透視カード取得 -->
-
-          @foreach($users as $user)
-            @include('ifcardeffect.plagueCard') <!-- 疫病対象ユーザー選択ボタン -->
-            @include('ifcardeffect.plaguedCard') <!-- 疫病対象選択ボタン -->
-            @include('ifcardeffect.seethroughCard') <!-- 透視対象ユーザー選択ボタン -->
-            @include('ifcardeffect.selectCard') <!-- 選択対象カード選択ボタン -->
-            @include('ifcardeffect.exchangeCard') <!-- 交換対象ユーザー選択ボタン -->
-          @endforeach
+          @if (isset($users))
+            @foreach ($users as $user)
+              @include('ifcardeffect.plagueCard') <!-- 疫病対象ユーザー選択ボタン -->
+              @include('ifcardeffect.plaguedCard') <!-- 疫病対象選択ボタン -->
+              @include('ifcardeffect.seethroughCard') <!-- 透視対象ユーザー選択ボタン -->
+              @include('ifcardeffect.selectCard') <!-- 選択対象カード選択ボタン -->
+              @include('ifcardeffect.exchangeCard') <!-- 交換対象ユーザー選択ボタン -->
+            @endforeach
+          @endif
           </div>
           </div>
         </div>
@@ -91,7 +92,7 @@
 
         <div class="col-4 text-right">
           <button class="btn btn-success w-50" onclick="style.visibility ='hidden';document.getElementById('discardLeft').submit()">左を使用</button>
-          <form id="discardLeft" action="{{ route('discard')}}" method="POST" style="display: none;">
+          <form id="discardLeft" action="{{ route('discard',[$group])}}" method="POST" style="display: none;">
             @csrf
             <input type="hidden" name="discard" value="left">
           </form>
@@ -101,7 +102,7 @@
         </div>
         <div class="col-4 text-left">
           <button class="btn btn-success w-50" onclick="style.visbility ='hidden';document.getElementById('discardRight').submit()">右を使用</button>
-          <form id="discardRight" action="{{ route('discard')}}" method="POST" style="display: none;">
+          <form id="discardRight" action="{{ route('discard',[$group])}}" method="POST" style="display: none;">
             @csrf
             <input type="hidden" name="discard" value="right">
           </form>

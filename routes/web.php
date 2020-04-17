@@ -12,18 +12,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {return view('welcome');});
-
+Route::get('/', function () {return view('home');})->middleware('auth');
+//auth管理
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('groups', 'GroupController')->only(['index', 'store']);
-
-Route::get('groupshost','GameController@initialization')->name('initialization');
-Route::get('groupsdrawCard','GameController@drawCard')->name('drawCard');
-Route::get('groupsdrawKillCard','GameController@drawKillCard')->name('drawKillCard');
-Route::post('groupsdiscard','GameController@discard')->name('discard');
+//グループコントローラー
+Route::resource('groups', 'GroupController')->only(['index', 'store', 'show']);
+//カード取得関連コントローラー
+Route::get('groups/{group}/initialization','GameController@initialization')->name('initialization');
+Route::get('groups/{group}/drawCard','GameController@drawCard')->name('drawCard');
+Route::get('groups/{group}/drawKillCard','GameController@drawKillCard')->name('drawKillCard');
+Route::post('groups/{group}/discard','GameController@discard')->name('discard');
 Route::get('groupsexchangedCard', 'GameController@cardShuffle')->name('cardShuffle');
+//カード効果関連コントローラー
 //3
 Route::get('groupsseeThroughCard','GameController@seeThroughCard')->name('seeThroughCard');
 Route::post('groupsseeThroughedCard','GameController@seeThroughedCard')->name('seeThroughedCard');
@@ -40,8 +40,7 @@ Route::post('groupsselectedcard','GameController@selectedCard')->name('selectedC
 Route::get('groupsexchangecard','GameController@exchangeCard')->name('exchangeCard');
 Route::post('groupsexchangedCard','GameController@exchangedCard')->name('exchangedCard');
 
-
-
+//非同期処理用コントローラー
 Route::get('/result/ajax', 'JsonController@isCount');
 Route::get('/result/ajaxInRoomUsersDetails', 'JsonController@isCountInRoomUsersDetails');
 Route::get('/result/ajaxInRoomUsers', 'JsonController@isCountInRoomUsers');
