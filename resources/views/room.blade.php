@@ -98,7 +98,7 @@
           </form>
         </div>
         <div class="col-4 text-center">
-          <button class="btn btn-success w-50" onclick="style.visibility ='hidden';location.href='{{ route('cardShuffle')}}'">シャッフル</button>
+          <button class="btn btn-success w-50" onclick="style.visibility ='hidden';location.href='{{ route('cardShuffle',[$group])}}'">シャッフル</button>
         </div>
         <div class="col-4 text-left">
           <button class="btn btn-success w-50" onclick="style.visbility ='hidden';document.getElementById('discardRight').submit()">右を使用</button>

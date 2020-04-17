@@ -22,7 +22,7 @@ Route::get('groups/{group}/initialization','GameController@initialization')->nam
 Route::get('groups/{group}/drawCard','GameController@drawCard')->name('drawCard');
 Route::get('groups/{group}/drawKillCard','GameController@drawKillCard')->name('drawKillCard');
 Route::post('groups/{group}/discard','GameController@discard')->name('discard');
-Route::get('groupsexchangedCard', 'GameController@cardShuffle')->name('cardShuffle');
+Route::get('groups/{group}/cardShuffle', 'GameController@cardShuffle')->name('cardShuffle');
 //カード効果関連コントローラー
 //3
 Route::get('groupsseeThroughCard','GameController@seeThroughCard')->name('seeThroughCard');

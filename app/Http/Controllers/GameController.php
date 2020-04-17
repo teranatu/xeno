@@ -80,7 +80,7 @@ class GameController extends Controller
             $drawUser->card_1 = $drawKillCard->card_number;
             $drawUser->save();
             $drawKillCard->delete();
-            return redirect()->route('groups.show');
+            return redirect()->route('groups.show', [ $group->group_id ])->with('message',"転生札を引きました。");
         }
         return redirect()->route('groups.show', [ $group->group_id ])->with('message',"転生札を引くためにはカードを全て捨ててください");
     }
@@ -99,7 +99,7 @@ class GameController extends Controller
             $deadcard->save();
             $discardUser->card_1 = null;
             $discardUser->save();
-            return redirect()->route('groups.show', [ $group->group_id ]);
+            return redirect()->route('groups.show', [ $group->group_id ])->with('message', '左のカードを捨てました。');
         } if ( ($request->discard === 'right') && ($discardUser->card_2 !== null) ) {
             $deadcards = new Deadcard;
             $deadcards->card_number = $discardUser->card_2;
@@ -107,11 +107,11 @@ class GameController extends Controller
             $deadcards->save();
             $discardUser->card_2 = null;
             $discardUser->save();
-            return redirect()->route('groups.show', [ $group->group_id ]);
+            return redirect()->route('groups.show', [ $group->group_id ])->with('message', '右のカードを捨てました。');
         }
     }
 
-    public function cardShuffle() //カードをシャッフルする *複数ルーム対応済
+    public function cardShuffle(Group $group) //カードをシャッフルする *複数ルーム対応済
     {
         $user = User::find(Auth::id());
         $userCard_1 = $user->card_1;
@@ -119,9 +119,9 @@ class GameController extends Controller
             $user->card_1 = $user->card_2;
             $user->card_2 = $userCard_1;
             $user->save();
-            return redirect()->route('groups.show');
+            return redirect()->route('groups.show', [ $group->group_id ])->with('message', 'シャッフルが完了しました。');
         }
-        return redirect()->route('groups.show')->with('message', 'シャッフルできるのはカードが2枚の時だけです。');
+        return redirect()->route('groups.show', [ $group->group_id ])->with('message', 'シャッフルできるのはカードが2枚の時だけです。');
     }
 
     public function seeThroughCard()// カード効果3透視(対象表示)
