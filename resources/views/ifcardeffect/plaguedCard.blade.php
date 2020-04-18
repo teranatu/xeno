@@ -8,7 +8,7 @@
     <button class="btn btn-success" onclick="style.visibility ='hidden';document.getElementById('plaguedLeftCard').submit()">左を捨てさせる</button>
   </div>
   
-  <form id="plaguedLeftCard" method="POST" class="navbar-expand" action="{{ route('plaguedLeftOrRightCard')}}">
+  <form id="plaguedLeftCard" method="POST" class="navbar-expand" action="{{ route('plaguedLeftOrRightCard', [$group])}}">
     @csrf
     <input type="hidden" name="plagued" value="left">
   </form>
@@ -17,7 +17,7 @@
     <button class="btn btn-success" onclick="style.visibility ='hidden';document.getElementById('plaguedRightCard').submit()">右を捨てさせる</button>
   </div>
   
-  <form id="plaguedRightCard" method="POST" class="navbar-expand" action="{{ route('plaguedLeftOrRightCard')}}">
+  <form id="plaguedRightCard" method="POST" class="navbar-expand" action="{{ route('plaguedLeftOrRightCard', [$group])}}">
     @csrf
     <input type="hidden" name="plagued" value="right">
   </form>

@@ -125,62 +125,6 @@ class GameController extends Controller
         return redirect()->route('groups.show', [ $group->id ])->with('message', 'シャッフルできるのはカードが2枚の時だけです。');
     }
 
-    public function plagueCard()// カード効果5疫病(対象表示)
-    {
-        $plagueusers = User::where('group_id', '1')->get();
-        foreach ($plagueusers as $plagueuser) {
-            $plagueuser->plague_user = Auth::id();
-            $plagueuser->update();
-        }
-        return redirect()->route('groups.show');
-    }
-
-    public function plaguedCard(Request $request)// カード効果5疫病(リクエスト処理 return 右か左か)
-    {
-        $targetuser = User::where('group_id', '1')->where('name', $request->targetName)->with('group.cards')->first();
-        $drawCard = $targetuser->group->cards->first();
-        $users = User::where('group_id', '1')->get();
-        foreach ($users as $user) {
-            $user->plague_user = null;
-            $user->save();
-        }
-        $targetuser->plaguetarget = Auth::id();
-        if ( isset($targetuser->card_1) && isset($targetuser->card_2) ) {
-            return redirect()->route('groups.show')->with('message','カードを使用してください');
-        } if ( isset($targetuser->card_1) && !isset($targetuser->card_2) ) {
-            $targetuser->card_2 = $drawCard->card_number;
-            $targetuser->save();
-            $drawCard->delete();
-            return redirect()->route('groups.show');
-        }
-        $targetuser->card_1 = $drawCard->card_number;
-        $targetuser->save();
-        $drawCard->delete();
-        return redirect()->route('groups.show');
-    }
-
-    public function plaguedLeftOrRightCard(Request $request)// カード効果5疫病(リクエスト処理)
-    {
-        $targetuser = User::where('group_id', '1')->where('plaguetarget', Auth::id())->with('group.cards')->first();
-        if( $request->plagued === 'left' ) {
-            $deadcard = new Deadcard;
-            $deadcard->card_number = $targetuser->card_1;
-            $deadcard->save();
-            $targetuser->card_1 = null;
-            $targetuser->plaguetarget = null;
-            $targetuser->save();
-        }
-        if ( $request->plagued === 'right' ) {
-            $deadcard = new Deadcard;
-            $deadcard->card_number = $targetuser->card_2;
-            $deadcard->save();
-            $targetuser->card_2 = null;
-            $targetuser->plaguetarget = null;
-            $targetuser->save();
-        }
-        return redirect()->route('groups.show');
-    }
-
     public function selectCard() //カード効果7選択(対象表示)
     {
         $user = User::find(Auth::id());
