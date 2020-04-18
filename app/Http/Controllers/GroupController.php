@@ -101,9 +101,6 @@ class GroupController extends Controller
             return view('room',compact('users','seeThroughedCard', 'group'));
         }
         //条件③メッセージがあればそれにリダイレクト。
-        if (isset($message)) {
-            return view('room',compact('users', 'group'))->with('message', 'カードを使用してください');
-        }
         
         return view('room',compact('users', 'group'));
     }

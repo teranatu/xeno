@@ -25,4 +25,7 @@ class Group extends Model
     public function scopeGroupWithUsersCardsDeadCardsKillCard($query,$group) {
         $query->where('id',$group->id)->with('users','cards','deadcards','killcard');
     }
+    public function scopeGroupWithUsers($query,$group) {
+        $query->where('id',$group->id)->with('users');
+    }
 }

@@ -25,9 +25,9 @@ Route::post('groups/{group}/discard','GameController@discard')->name('discard');
 Route::get('groups/{group}/cardShuffle', 'GameController@cardShuffle')->name('cardShuffle');
 //カード効果関連コントローラー
 //3
-Route::get('groupsseeThroughCard','SeethroughcardController@seeThroughCard')->name('seeThroughCard');
-Route::post('groupsseeThroughedCard','SeethroughcardController@seeThroughedCard')->name('seeThroughedCard');
-Route::post('groupsseeThroughedconfirmedCard','SeethroughcardController@seeThroughedconfirmedCard')->name('seeThroughedconfirmedCard');
+Route::get('groups/{group}/seeThroughCard','SeethroughcardController@seeThroughCard')->name('seeThroughCard');
+Route::post('groups/{group}/seeThroughedCard','SeethroughcardController@seeThroughedCard')->name('seeThroughedCard');
+Route::post('groups/{group}/seeThroughedconfirmedCard','SeethroughcardController@seeThroughedconfirmedCard')->name('seeThroughedconfirmedCard');
 //5
 Route::get('groupsplagueCard','GameController@plagueCard')->name('plagueCard');
 Route::post('groupsplaguedCard','GameController@plaguedCard')->name('plaguedCard');

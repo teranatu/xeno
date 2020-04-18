@@ -3,46 +3,50 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Card;
+use App\Group;
+use Auth;
 
 class SeethroughcardController extends Controller
 {
-    public function seeThroughCard()// カード効果3透視(対象表示)
+    public function seeThroughCard(Group $group)// カード効果3透視(対象表示)
     {
-        $seethroughusers = User::where('group_id', '1')->get();
-        foreach ($seethroughusers as $seethroughuser) {
-            $seethroughuser->seethrough_user = Auth::id();
-            $seethroughuser->update();
+        $groupWitnUsers = Group::GroupWithUsers($group)->first();
+        foreach ($groupWitnUsers->users as $groupWitnUser) {
+            $groupWitnUser->seethrough_user = Auth::id();
+            $groupWitnUser->update();
         }
-        return redirect()->route('groups.show');
+        return redirect()->route('groups.show', [$group->id]);
     }
 
-    public function seeThroughedCard(Request $request)// カード効果3透視(リクエスト処理 return確認)
+    public function seeThroughedCard(Group $group,Request $request)// カード効果3透視(リクエスト処理 return確認)
     {
-        $seethroughusers = User::where('group_id', '1')->get();
-        $authuser = $seethroughusers->where('id', Auth::id() )->first();
+        $groupWitnUsers = Group::GroupWithUsers($group)->first();
+        $groupAuthUser = $groupWitnUsers->users->where('id', Auth::id() )->first();
 
-        foreach ($seethroughusers as $seethroughuser) {
+        foreach ($groupWitnUsers->users as $seethroughuser) {
             if ($seethroughuser->name === $request->targetName) {
                 if ( (null !== $seethroughuser->card_1) && (null === $seethroughuser->card_2) ) {
-                    $authuser->seethroughedcard = $seethroughuser->card_1;
-                    $authuser->save();
+                    $groupAuthUser->seethroughedcard = $seethroughuser->card_1;
+                    $groupAuthUser->save();
                 }if ( (null === $seethroughuser->card_1) && (null !== $seethroughuser->card_2) ) {
-                    $authuser->seethroughedcard = $seethroughuser->card_2;
-                    $authuser->save();
+                    $groupAuthUser->seethroughedcard = $seethroughuser->card_2;
+                    $groupAuthUser->save();
                 }
             }
             $seethroughuser->seethrough_user = null;
             $seethroughuser->save();
         }
-        return redirect()->route('groups.show');
+        return redirect()->route('groups.show', [$group->id]);
     }
 
-    public function seeThroughedconfirmedCard(Request $request)// カード効果3透視(リクエスト処理)
+    public function seeThroughedconfirmedCard(Group $group,Request $request)// カード効果3透視(リクエスト処理)
     {
         $authUser = Auth::user();
         $authUser->seethroughedcard = null;
         $authUser->save();
-        return redirect()->route('groups.show');
+        return redirect()->route('groups.show', [$group->id]);
 
     }
 }
