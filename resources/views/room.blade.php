@@ -62,11 +62,11 @@
           <button class="btn btn-danger col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('initialization',[$group])}}'">初期化</button>
         </div>
         <div class="col-12">
-          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard')}}'">公開処刑(1&9)効果使用</button>
+          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard',[$group])}}'">公開処刑(1&9)効果使用</button>
           <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('seeThroughCard',[$group])}}'">透視(3)効果使用</button>
           <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('plagueCard',[$group])}}'">疫病(5)効果使用</button>
-          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('selectCard')}}'">選択(7)効果使用</button>
-          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard')}}'">交換(8)効果使用</button>
+          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('selectCard',[$group])}}'">選択(7)効果使用</button>
+          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard',[$group])}}'">交換(8)効果使用</button>
         
           <div style="height: 140px;" class="card d-flex align-items-center">
           <div class="row text-center mt-4 pt-2">

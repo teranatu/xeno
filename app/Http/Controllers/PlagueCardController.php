@@ -9,7 +9,7 @@ use App\DeadCard;
 use App\Group;
 use Auth;
 
-class PlagueCardController extends Controller
+class PlaguecardController extends Controller
 {
     public function plagueCard(Group $group)// カード効果5疫病(対象表示)
     {

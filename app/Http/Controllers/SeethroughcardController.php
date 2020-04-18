@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Card;
+use App\DeadCard;
 use App\Group;
 use Auth;
 
-class SeethroughcardController extends Controller
+class SeethroughCardController extends Controller
 {
     public function seeThroughCard(Group $group)// カード効果3透視(対象表示)
     {

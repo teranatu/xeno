@@ -31,9 +31,9 @@ Route::get('groups/{group}/cardShuffle', 'GameController@cardShuffle')->name('ca
 
 //カード効果関連コントローラー
 //3
-Route::get('groups/{group}/seeThroughCard','SeethroughcardController@seeThroughCard')->name('seeThroughCard');
-Route::post('groups/{group}/seeThroughedCard','SeethroughcardController@seeThroughedCard')->name('seeThroughedCard');
-Route::post('groups/{group}/seeThroughedconfirmedCard','SeethroughcardController@seeThroughedconfirmedCard')->name('seeThroughedconfirmedCard');
+Route::get('groups/{group}/seeThroughCard','SeethroughCardController@seeThroughCard')->name('seeThroughCard');
+Route::post('groups/{group}/seeThroughedCard','SeethroughCardController@seeThroughedCard')->name('seeThroughedCard');
+Route::post('groups/{group}/seeThroughedconfirmedCard','SeethroughCardController@seeThroughedconfirmedCard')->name('seeThroughedconfirmedCard');
 
 //5
 Route::get('groups/{group}/plagueCard','PlagueCardController@plagueCard')->name('plagueCard');
@@ -42,12 +42,12 @@ Route::post('groups/{group}/plaguedLeftOrRightCard','PlagueCardController@plague
 //6
 
 //7
-Route::get('groupsselectcard','GameController@selectCard')->name('selectCard');
-Route::post('groupsselectedcard','GameController@selectedCard')->name('selectedCard');
+Route::get('groups/{group}/selectcard','selectCardController@selectCard')->name('selectCard');
+Route::post('groups/{group}/selectedcard','selectCardController@selectedCard')->name('selectedCard');
 
 //8
-Route::get('groupsexchangecard','GameController@exchangeCard')->name('exchangeCard');
-Route::post('groupsexchangedCard','GameController@exchangedCard')->name('exchangedCard');
+Route::get('groups/{group}/exchangecard','ExchangeCardController@exchangeCard')->name('exchangeCard');
+Route::post('groups/{group}/exchangedCard','ExchangeCardController@exchangedCard')->name('exchangedCard');
 
 //非同期処理用コントローラー
 Route::get('/groups/result/ajax', 'JsonController@isCount');
