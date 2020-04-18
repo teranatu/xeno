@@ -42,8 +42,8 @@ Route::post('groups/{group}/plaguedLeftOrRightCard','PlagueCardController@plague
 //6
 
 //7
-Route::get('groups/{group}/selectcard','selectCardController@selectCard')->name('selectCard');
-Route::post('groups/{group}/selectedcard','selectCardController@selectedCard')->name('selectedCard');
+Route::get('groups/{group}/selectcard','SelectCardController@selectCard')->name('selectCard');
+Route::post('groups/{group}/selectedcard','SelectCardController@selectedCard')->name('selectedCard');
 
 //8
 Route::get('groups/{group}/exchangecard','ExchangeCardController@exchangeCard')->name('exchangeCard');

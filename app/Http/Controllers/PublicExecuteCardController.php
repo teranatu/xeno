@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Card;
+use App\DeadCard;
+use App\Group;
+use Auth;
 
 class PublicExecuteCardController extends Controller
 {

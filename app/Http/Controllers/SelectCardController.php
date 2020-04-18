@@ -3,33 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Card;
+use App\DeadCard;
+use App\Group;
+use Auth;
 
-class SelectedCardController extends Controller
+class SelectCardController extends Controller
 {
-    public function selectCard() //カード効果7選択(対象表示)
+    public function selectCard(Group $group) //カード効果7選択(対象表示)
     {
-        $user = User::find(Auth::id());
-        if ((isset($user->card_1) && !isset($user->card_2))||(!isset($user->card_1) && isset($user->card_2))) {
-            $selectcards = Card::take(3)->get();
+        $group = Group::GroupWithUsersCardsDeadCardsKillCard($group)->first();
+        $authuser = $group->users->where('id', Auth::id())->first();
+        $selectcards = $group->cards->take(3);
+
+        if ( (isset($authuser->card_1) && !isset($authuser->card_2)) || ( !isset($authuser->card_1) && isset($authuser->card_2)) ) {
             foreach ($selectcards as $selectcard ) {
                 $selectcard->select_card = 1;
                 $selectcard->save();
             }
-            $select_user = Auth::user();
-            $select_user->select_user  = Auth::id();
-            $select_user->update();
-            return redirect()->route('groups.show');
+            $authuser->select_user = Auth::id();
+            $authuser->update();
+            return redirect()->route('groups.show', [$group->id])->with('message',"3枚のうちから1枚を選んでください");
         }
-        return redirect()->route('groups.show')->with('message',"手札を1枚にしてね。不正ダメ、絶対");
+        return redirect()->route('groups.show', [$group->id])->with('message',"手札を1枚にしてね。不正ダメ、絶対");
     }
 
-    public function selectedCard(Request $request) //カード効果7選択(リクエスト処理)
+    public function selectedCard(Group $group,Request $request) //カード効果7選択(リクエスト処理)
     {
         $selectedCardNumber = $request->selectedCard;
         $selectedCard = Card::where('select_card','1')->where('card_number',$selectedCardNumber)->first();
         $user = User::find(Auth::id());
         if(isset($user->card_1) && isset($user->card_2) || !isset($user->card_1) && !isset($user->card_2)) {
-            return redirect()->route('groups.show')->with('message',"手札を1枚にしてね。不正ダメ、絶対");
+            return redirect()->route('groups.show', [$group->id])->with('message',"手札を1枚にしてね。不正ダメ、絶対");
         } elseif (isset($user->card_1) && !isset($user->card_2)) {
             $user->card_2 = $selectedCard->card_number;
         } elseif (!isset($user->card_1) && isset($user->card_2)) {
@@ -55,6 +61,6 @@ class SelectedCardController extends Controller
             $allCard->update();
         }
 
-        return redirect()->route('groups.show');
+        return redirect()->route('groups.show', [$group->id]);
     }
 }

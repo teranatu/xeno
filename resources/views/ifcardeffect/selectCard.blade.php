@@ -8,7 +8,7 @@
     <button class="btn btn-success pt-4 pb-4" onclick="style.visibility ='hidden';document.getElementById('selectcard_1').submit()">1枚目:{{ $selectcard_1 }}</button>
   </div>
 
-  <form id="selectcard_1" class="navbar-expand" method="POST" action="{{ route('selectedCard')}}" >
+  <form id="selectcard_1" class="navbar-expand" method="POST" action="{{ route('selectedCard',[$group])}}" >
     @csrf
     <input type="hidden" name="selectedCard" value="{{ $selectcard_1 }}">
   </form>
@@ -19,7 +19,7 @@
     <button class="btn btn-success pt-4 pb-4" onclick="style.visibility ='hidden';document.getElementById('selectcard_2').submit()">2枚目:{{ $selectcard_2 }}</button>
   </div>
   
-  <form id="selectcard_2" class="navbar-expand" method="POST" action="{{ route('selectedCard')}}">
+  <form id="selectcard_2" class="navbar-expand" method="POST" action="{{ route('selectedCard',[$group])}}">
     @csrf
     <input type="hidden" name="selectedCard" value="{{ $selectcard_2 }}">
   </form>
@@ -30,7 +30,7 @@
   <button class="btn btn-success pt-4 pb-4" onclick="style.visibility ='hidden';document.getElementById('selectcard_3').submit()">3枚目:{{ $selectcard_3 }}</button>
   </div>
   
-  <form id="selectcard_3" method="POST" class="navbar-expand" action="{{ route('selectedCard')}}">
+  <form id="selectcard_3" method="POST" class="navbar-expand" action="{{ route('selectedCard',[$group])}}">
     @csrf
     <input type="hidden" name="selectedCard" value="{{ $selectcard_3 }}">
   </form>
