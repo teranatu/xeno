@@ -25,9 +25,9 @@ Route::post('groups/{group}/discard','GameController@discard')->name('discard');
 Route::get('groups/{group}/cardShuffle', 'GameController@cardShuffle')->name('cardShuffle');
 //カード効果関連コントローラー
 //3
-Route::get('groupsseeThroughCard','GameController@seeThroughCard')->name('seeThroughCard');
-Route::post('groupsseeThroughedCard','GameController@seeThroughedCard')->name('seeThroughedCard');
-Route::post('groupsseeThroughedconfirmedCard','GameController@seeThroughedconfirmedCard')->name('seeThroughedconfirmedCard');
+Route::get('groupsseeThroughCard','SeethroughcardController@seeThroughCard')->name('seeThroughCard');
+Route::post('groupsseeThroughedCard','SeethroughcardController@seeThroughedCard')->name('seeThroughedCard');
+Route::post('groupsseeThroughedconfirmedCard','SeethroughcardController@seeThroughedconfirmedCard')->name('seeThroughedconfirmedCard');
 //5
 Route::get('groupsplagueCard','GameController@plagueCard')->name('plagueCard');
 Route::post('groupsplaguedCard','GameController@plaguedCard')->name('plaguedCard');
@@ -41,6 +41,6 @@ Route::get('groupsexchangecard','GameController@exchangeCard')->name('exchangeCa
 Route::post('groupsexchangedCard','GameController@exchangedCard')->name('exchangedCard');
 
 //非同期処理用コントローラー
-Route::get('/result/ajax', 'JsonController@isCount');
-Route::get('/result/ajaxInRoomUsersDetails', 'JsonController@isCountInRoomUsersDetails');
-Route::get('/result/ajaxInRoomUsers', 'JsonController@isCountInRoomUsers');
+Route::get('/groups/result/ajax', 'JsonController@isCount');
+Route::get('/groups/result/ajaxInRoomUsersDetails', 'JsonController@isCountInRoomUsersDetails');
+Route::get('/groups/result/ajaxInRoomUsers', 'JsonController@isCountInRoomUsers');

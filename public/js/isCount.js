@@ -9,8 +9,8 @@ function isCountCard() {
     url: "result/ajax/",
     dataType: "json",
     success: data => {
-      // console.log(data.isCountCards);
-      // console.log(data.isCountKillCards);
+      console.log(data.isCountCards);
+      console.log(data.isCountKillCards);
       if (document.getElementById('isCountCard')) {
         document.getElementById('isCountCard').textContent ='残り' + data.isCountCards + '枚 +' + data.isCountKillCards + '枚';
       } 

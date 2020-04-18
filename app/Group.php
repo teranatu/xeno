@@ -23,6 +23,6 @@ class Group extends Model
         return $this->hasMany('App\User');
     }
     public function scopeGroupWithUsersCardsDeadCardsKillCard($query,$group) {
-        $query->where('group_id',$group->group_id)->with('users','cards','deadcards','killcard');
+        $query->where('id',$group->id)->with('users','cards','deadcards','killcard');
     }
 }

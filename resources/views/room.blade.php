@@ -54,9 +54,9 @@
 
   </div>
 
-  <div style="height: 300px" class="ml-2 pr-2 mt-4 row">
+  <div class="ml-2 pr-2 mt-4 row">
 
-    <div class="col-3">
+    <div  style="height: 400px" class="col-3">
       <div class="row">
         <div class="col-12">
           <button class="btn btn-danger col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('initialization',[$group])}}'">初期化</button>
@@ -87,7 +87,7 @@
       </div>
     </div>
     
-    <div class="col-6">
+    <div style="height: 400px" class="col-6">
       <div class="row">
 
         <div class="col-4 text-right">
@@ -111,14 +111,14 @@
         <div class="col-6 text-center">
           @for ( $i = 1;$i < 11;$i++ )
             @if ( $i == Auth::user()->card_1 )
-              <img class="w-75 mt-4" src="{{ asset("/xenoCards/xenoCard_$i.png") }}">
+              <img class="w-60 mt-4" src="{{ asset("/xenoCards/xenoCard_$i.png") }}">
             @endif
           @endfor
         </div>
         <div class="col-6 text-center">
           @for ( $i = 1;$i < 11;$i++ )
             @if ( $i == Auth::user()->card_2 )
-              <img class="w-75 mt-4" src="{{ asset("/xenoCards/xenoCard_$i.png") }}">
+              <img class="w-60 mt-4" src="{{ asset("/xenoCards/xenoCard_$i.png") }}">
             @endif
           @endfor
         </div>
@@ -126,7 +126,7 @@
       </div>
     </div>
 
-    <div class="col-3">遊び方</div>
+    <div  style="height: 400px" class="col-3">遊び方</div>
 
   </div>
 @endsection
