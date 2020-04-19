@@ -12,4 +12,4 @@
     @csrf
     <input type="hidden" name="targetName" value="{{ $user->name }}">
   </form>
-@endifhhgg
+@endif
