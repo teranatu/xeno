@@ -15,9 +15,9 @@ class PlaguecardController extends Controller
     {
         $groupWitnUsers = Group::GroupWithUsers($group)->first();
 
-        foreach ($groupWitnUsers->users as $plagueuser) {
-            $plagueuser->plague_user = Auth::id();
-            $plagueuser->update();
+        foreach ($groupWitnUsers->users as $user) {
+            $user->plague_user = Auth::id();
+            $user->update();
         }
         return redirect()->route('groups.show', [$group->id]);
     }

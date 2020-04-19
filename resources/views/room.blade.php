@@ -62,7 +62,7 @@
           <button class="btn btn-danger col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('initialization',[$group])}}'">初期化</button>
         </div>
         <div class="col-12">
-          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('exchangeCard',[$group])}}'">公開処刑(1&9)効果使用</button>
+          <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('publicExecuteCard',[$group])}}'">公開処刑(1&9)効果使用</button>
           <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('seeThroughCard',[$group])}}'">透視(3)効果使用</button>
           <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('plagueCard',[$group])}}'">疫病(5)効果使用</button>
           <button class="btn btn-success col-12 mt-2" onclick="style.visibility ='hidden';location.href='{{ route('selectCard',[$group])}}'">選択(7)効果使用</button>
@@ -72,10 +72,13 @@
           <div class="row text-center mt-4 pt-2">
 
           @include('ifcardeffect.seethroughedCard') <!-- 透視カード取得 -->
+          
           @if (isset($users))
             @foreach ($users as $user)
+              @include('ifcardeffect.publicexecuteCard') <!-- 公開処刑対象ユーザー選択ボタン -->
+              @include('ifcardeffect.publicexecutedCard') <!-- 公開処刑対象カード選択ボタン -->
               @include('ifcardeffect.plagueCard') <!-- 疫病対象ユーザー選択ボタン -->
-              @include('ifcardeffect.plaguedCard') <!-- 疫病対象選択ボタン -->
+              @include('ifcardeffect.plaguedCard') <!-- 疫病対象カード選択ボタン -->
               @include('ifcardeffect.seethroughCard') <!-- 透視対象ユーザー選択ボタン -->
               @include('ifcardeffect.selectCard') <!-- 選択対象カード選択ボタン -->
               @include('ifcardeffect.exchangeCard') <!-- 交換対象ユーザー選択ボタン -->

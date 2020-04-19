@@ -30,22 +30,27 @@ Route::get('groups/{group}/cardShuffle', 'GameController@cardShuffle')->name('ca
 
 
 //カード効果関連コントローラー
-//3
+//1&9_公開処刑
+Route::get('Groups/{group}/publicExecuteCard','PublicExecuteCardController@publicExecuteCard')->name('publicExecuteCard');
+Route::post('Groups/{group}/publicExecutedCard','PublicExecuteCardController@publicExecutedCard')->name('publicExecutedCard');
+Route::post('Groups/{group}/publicExecutedCardConfirmed','PublicExecuteCardController@publicExecutedCardConfirmed')->name('publicExecutedCardConfirmed');
+
+//3_透視
 Route::get('groups/{group}/seeThroughCard','SeethroughCardController@seeThroughCard')->name('seeThroughCard');
 Route::post('groups/{group}/seeThroughedCard','SeethroughCardController@seeThroughedCard')->name('seeThroughedCard');
 Route::post('groups/{group}/seeThroughedconfirmedCard','SeethroughCardController@seeThroughedconfirmedCard')->name('seeThroughedconfirmedCard');
 
-//5
+//5_疫病
 Route::get('groups/{group}/plagueCard','PlagueCardController@plagueCard')->name('plagueCard');
 Route::post('groups/{group}/plaguedCard','PlagueCardController@plaguedCard')->name('plaguedCard');
 Route::post('groups/{group}/plaguedLeftOrRightCard','PlagueCardController@plaguedLeftOrRightCard')->name('plaguedLeftOrRightCard');
-//6
+//6_対決
 
-//7
+//7_選択
 Route::get('groups/{group}/selectcard','SelectCardController@selectCard')->name('selectCard');
 Route::post('groups/{group}/selectedcard','SelectCardController@selectedCard')->name('selectedCard');
 
-//8
+//8_交換
 Route::get('groups/{group}/exchangecard','ExchangeCardController@exchangeCard')->name('exchangeCard');
 Route::post('groups/{group}/exchangedCard','ExchangeCardController@exchangedCard')->name('exchangedCard');
 

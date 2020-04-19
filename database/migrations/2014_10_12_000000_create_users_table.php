@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('card_2')->nullable();
             $table->bigInteger('seethroughedcard')->nullable();
             $table->bigInteger('plaguetarget')->nullable();
+            $table->bigInteger('publicexcutetarget')->nullable();
             $table->bigInteger('publicexcute_user')->nullable();
             $table->bigInteger('investigate_user')->nullable();
             $table->bigInteger('seethrough_user')->nullable();

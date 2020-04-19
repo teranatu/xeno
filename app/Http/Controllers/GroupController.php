@@ -95,7 +95,7 @@ class GroupController extends Controller
             }
             return view('room',compact('users','selectcard_1','selectcard_2','selectcard_3','group'));
         }
-        //条件②透視するユーザーを選択していた場合
+        //条件②透視されたカードが存在していた場合
         if ( null !== (Auth::user()->seethroughedcard) ) {
             $seeThroughedCard = Auth::user()->seethroughedcard;
             return view('room',compact('users','seeThroughedCard', 'group'));
