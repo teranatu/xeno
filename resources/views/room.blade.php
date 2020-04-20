@@ -22,7 +22,7 @@
             <div id="isCountCard" class="col-6 pt-2 pb-2 text-center">0</div>
             <div id="usedCard" class=" col-6 pt-2 pb-2 text-center">フィールド：? </div>
             <div  id="cardDeck" class="col-6 text-center">
-              <img class="w-50 mb-3 mt-3 cardDeck-visible" src="{{ asset("/xenoCards/xenoCardDeck.png") }}">
+              <img class="w-50 mb-3 mt-3 cardDeck-visible" src="{{ asset("/xenoCards/xenoNoCard.png") }}">
             </div>
             <div id="usedCardLatest" class="col-6 text-center">
 

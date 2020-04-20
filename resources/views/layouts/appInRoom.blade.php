@@ -32,6 +32,7 @@
     </div>
 
     @if(Auth::check())
+        <div  id="Group{{ $group }}" class="navbar"></div>
         <script src="{{ asset('js/isCount.js') }}"></script>
     @for ($i = 1; $i < 11; $i++)
         @if ( Auth::user()->group_id == $i )

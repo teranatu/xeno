@@ -47,7 +47,7 @@ class JsonController extends Controller
             ${'isCountGroup_'.$key.'_deadCards'}[] = ${'Group_'.$key.'_deadCard_'.$i};
             }
 
-            $isCountGroupDeadCards[][] = ${'isCountGroup_'.$key.'_deadCards'}; 
+            $isCountGroupDeadCards[] = ${'isCountGroup_'.$key.'_deadCards'}; 
         }
         $json = [
             "isCountGroupCards" => $isCountGroupCards,
@@ -64,7 +64,7 @@ class JsonController extends Controller
         for ($i=1; $i < 11 ; $i++) {
             ${'inRoomUsersDetails_'.$i} = User::where('group_id',$i)->get();
         }
-        
+
         $json = [
             "inRoomUsersDetails_1" => $inRoomUsersDetails_1,
             "inRoomUsersDetails_2" => $inRoomUsersDetails_2,

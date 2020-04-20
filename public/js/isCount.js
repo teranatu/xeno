@@ -6,32 +6,38 @@ $(function() {
 
 function isCountCard() {
   $.ajax({
-    url: "result/ajax/",
+    url: "result/ajax",
     dataType: "json",
     success: data => {
-      console.log(data.isCountCards);
-      console.log(data.isCountKillCards);
-      if (document.getElementById('isCountCard')) {
-        document.getElementById('isCountCard').textContent ='残り' + data.isCountCards + '枚 +' + data.isCountKillCards + '枚';
-      } 
-
-      let isCountCards = data.isCountCards;
-      let isCountKillCards = data.isCountKillCards;
-      if ( (isCountCards !== 0) && (isCountKillCards === 0) ) {
-        $("#cardDeck").find(".cardDeck-visible").remove();
-        var html =`
-        <img class="cardDeck-visible w-50 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/xenoNoCardDeck.png">
-        `
-        $("#cardDeck").append(html);
-      } if ( (isCountCards === 0) && (isCountKillCards !== 0) ) {
-        $("#cardDeck").find(".cardDeck-visible").remove();
-        var html =`
-        <img class="cardDeck-visible w-50 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/xenoRebirthCardDeck.png">
-        `
-        $("#cardDeck").append(html);
-      } if ( (isCountCards === 0) && (isCountKillCards === 0) ) {
-        $("#cardDeck").find(".cardDeck-visible").remove();
-        $("#cardDeck").append(html);
+      // console.log(data.isCountGroupKillCard[0]);
+      // console.log(data.isCountGroupCards[0]);
+      for (let i = 1; i < 11; i++) {
+        if ( document.getElementById(`Group${i}`) ) {
+          if (document.getElementById('isCountCard')) {
+            document.getElementById('isCountCard').textContent ='残り' + data.isCountGroupCards[i-1] + '枚 +' + data.isCountGroupKillCard[i-1] + '枚';
+          }
+          var isCountGroupCards = data.isCountGroupCards[i-1];
+          var isCountGroupKillCard = data.isCountGroupKillCard[i-1];
+          if ( (isCountGroupCards !== 0) && (isCountGroupKillCard === 0) ) {
+            $("#cardDeck").find(".cardDeck-visible").remove();
+            var html =`
+            <img class="cardDeck-visible w-50 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/xenoNoCardDeck.png">
+            `
+            $("#cardDeck").append(html);
+          } if ( (isCountGroupCards === 0) && (isCountGroupKillCard !== 0) ) {
+            $("#cardDeck").find(".cardDeck-visible").remove();
+            var html =`
+            <img class="cardDeck-visible w-50 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/xenoRebirthCardDeck.png">
+            `
+            $("#cardDeck").append(html);
+          } if ( (isCountGroupCards !== 0) && (isCountGroupKillCard !== 0) ) {
+            $("#cardDeck").find(".cardDeck-visible").remove();
+            var html =`
+            <img class="cardDeck-visible w-50 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/xenoCardDeck.png">
+            `
+            $("#cardDeck").append(html);
+          }
+        }
       }
     }, 
     error: () => {
@@ -46,20 +52,19 @@ function usedCard() {
       dataType: "json",
       success: data => {
         $("#usedCardLatest").find(".usedCardLatest-visible").remove();
-        // console.log(data.usedCard);
-        let usedCardLatest = data.usedCard;
         for (let i = 1; i < 11; i++) {
-          if (usedCardLatest == i) {
+          if ( document.getElementById(`Group${i}`) ) {
+            console.log(data.isCountGroupUsedCard[i-1]);
             var html =`
-              <img class="usedCardLatest-visible w-38 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${usedCardLatest}.png">
+              <img class="usedCardLatest-visible w-38 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.isCountGroupUsedCard[i-1]}.png">
             `
+            if (document.getElementById('usedCard')) {
+              document.getElementById('usedCard').textContent = 'フィールド：' + data.isCountGroupUsedCard[i-1] ;
+            }
+            $("#usedCardLatest").append(html);
           }
         }
-        if (document.getElementById('usedCard')) {
-          document.getElementById('usedCard').textContent = 'フィールド：' + data.usedCard ;
-        } 
 
-      $("#usedCardLatest").append(html);
       },
       error: () => {
       }
@@ -72,19 +77,17 @@ function deadCard() {
       url: "result/ajax/",
       dataType: "json",
       success: data => {
-        var dDC = [
-          data.Deadcard_1,data.Deadcard_2,
-          data.Deadcard_3,data.Deadcard_4,
-          data.Deadcard_5,data.Deadcard_6,
-          data.Deadcard_7,data.Deadcard_8,
-          data.Deadcard_9,data.Deadcard_10,
-        ]
-        for (let index = 1; index < 11; index++) {
-          let DeadCard = 'Deadcard_' + index;
-          let ddc = dDC[index-1];
-          if (document.getElementById(DeadCard)) {
-            document.getElementById(DeadCard).textContent = index + ':' + ddc + '枚';
-          } 
+        console.log(data.isCountGroupDeadCards)
+        for (let i = 1; i < 11; i++) {
+          if ( document.getElementById(`Group${i}`) ) {
+            for (let ii = 1; ii < 11; ii++) {
+              console.log(data.isCountGroupDeadCards[i-1][ii-1])
+              let DeadCard = 'Deadcard_' + ii;
+                if (document.getElementById(DeadCard)) {
+                  document.getElementById(DeadCard).textContent = ii + ':' + data.isCountGroupDeadCards[i-1][ii-1] + '枚';
+                } 
+            }
+          }
         }
       },
       error: () => {
