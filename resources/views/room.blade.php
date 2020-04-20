@@ -111,17 +111,17 @@
           </form>
         </div>
 
-        <div class="col-6 text-center">
+        <div id ="cardLeft" class="col-6 text-center">
           @for ( $i = 1;$i < 11;$i++ )
             @if ( $i == Auth::user()->card_1 )
-              <img class="w-60 mt-4" src="{{ asset("/xenoCards/xenoCard_$i.png") }}">
+              <img class="userid-visible w-60 mt-4" src="{{ asset("/xenoCards/xenoCard_$i.png") }}">
             @endif
           @endfor
         </div>
-        <div class="col-6 text-center">
+        <div id="cardRight" class="col-6 text-center">
           @for ( $i = 1;$i < 11;$i++ )
             @if ( $i == Auth::user()->card_2 )
-              <img class="w-60 mt-4" src="{{ asset("/xenoCards/xenoCard_$i.png") }}">
+              <img class="userid-visible w-60 mt-4" src="{{ asset("/xenoCards/xenoCard_$i.png") }}">
             @endif
           @endfor
         </div>
