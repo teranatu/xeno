@@ -20,6 +20,8 @@ class CreateGroupsTable extends Migration
             $table->bigInteger('group_user_id_2')->nullable();
             $table->bigInteger('group_user_id_3')->nullable();
             $table->bigInteger('group_user_id_4')->nullable();
+            $table->bigInteger('publicexecutecard_1')->nullable();
+            $table->bigInteger('publicexecutecard_2')->nullable();
             $table->timestamps();
         });
     }

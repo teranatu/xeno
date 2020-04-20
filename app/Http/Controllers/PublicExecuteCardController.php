@@ -45,6 +45,10 @@ class PublicExecuteCardController extends Controller
         $targetuser->card_1 = $drawCard->card_number;
         $targetuser->save();
         $drawCard->delete();
+
+        $group->publicexecutedcard_1 = $targetuser->card_1;
+        $group->publicexecutedcard_2 = $targetuser->card_2;
+        $group->save();
         return redirect()->route('groups.show', [$group->id]);
     }
 }

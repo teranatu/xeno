@@ -14,24 +14,40 @@ class JsonController extends Controller
 {
     public function isCount()
     {
-        $isCountCards = count(Card::all());
-        $isCountKillCards = count(Killcard::all());
-        if ( null !== ( Deadcard::all()->sortByDesc('id')->first() ) ){
-            $usedcard = Deadcard::all()->sortByDesc('id')->first();
-            $usedCard = $usedcard->card_number;
-        }if ( null === ( Deadcard::all()->sortByDesc('id')->first() ) ) {
-            $usedCard = null;
-        }
-        for ($i=1; $i < 11; $i++) { ${'Deadcard_'.$i} = 0; }
-        $Deadcards = Deadcard::all();
-        if (count($Deadcards)) {
-            foreach ($Deadcards as $Deadcard) {
-                for ($i=1; $i < 11 ; $i++) { 
-                    if($i == $Deadcard->card_number) {
-                        ${'Deadcard_'.$i}++ ;
-                    }
-                }
+        $groups = Group::with('users','cards','deadcards','killcard')->get();
+        $isCountGroupUsedCard = [];
+        $isCountGroupKillCard = [];
+        $isCountGroupCards = [];
+        $isCountGroupDeadCards = [];
+        
+        foreach ($groups as $key => $group) {
+            $key = ($key + 1);
+            ${'isCountGroup_'.$key.'_cards'} = count($group->cards);
+            $isCountGroupCards[] = ${'isCountGroup_'.$key.'_cards'};
+
+            if ( is_null($group->killcard) ) { ${'isCountGroup_'.$key.'_killCard'} = 0; }
+            if ( !is_null($group->killcard) ) { ${'isCountGroup_'.$key.'_killCard'} = 1; }
+            $isCountGroupKillCard[] = ${'isCountGroup_'.$key.'_killCard'};
+
+            if ( null !==  $group->deadcards->sortByDesc('id')->first() ) {
+                ${'isCountGroup_'.$key.'_usedCard'} = $group->deadcards->sortByDesc('id')->first()->card_number;
+            } else {
+                ${'isCountGroup_'.$key.'_usedCard'} = null;
             }
+            $isCountGroupUsedCard[] = ${'isCountGroup_'.$key.'_usedCard'};
+
+            ${'isCountGroup_'.$key.'_deadCards'} = [];
+            for ($i=1; $i < 11; $i++) { ${'Group_'.$key.'_deadCard_'.$i} = 0; }
+                foreach ($group->deadcards as $deadcard) {
+                    for ($i=1; $i < 11 ; $i++) {
+                        if($i == $deadcard->card_number) { ${'Group_'.$key.'_deadCard_'.$i}++ ; }
+                    }
+            }
+            for ($i=1; $i < 11; $i++) { 
+            ${'isCountGroup_'.$key.'_deadCards'}[] = ${'Group_'.$key.'_deadCard_'.$i};
+            }
+
+            $isCountGroupDeadCards[][] = ${'isCountGroup_'.$key.'_deadCards'}; 
         }
         $json = [
             "isCountCards" => $isCountCards,
