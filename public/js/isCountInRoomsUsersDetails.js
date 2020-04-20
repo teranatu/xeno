@@ -1,6 +1,5 @@
 $(function() {
   inRoomUsers();
-  inRoomUsers();
 });
 
 function inRoomUsers() {
@@ -8,13 +7,13 @@ function inRoomUsers() {
       url: "result/ajaxInRoomUsersDetails",
       dataType: "json",
       success: data => {
-        // console.log(data.inRoomUsersDetails[0][0].card_1);
+        // console.log(data.inRoomUsersDetails[0][1].card_1);
         $("#inRoomUsers").find(".user-visible").remove();
         for (let i = 1; i < 11; i++) {
           if ( document.getElementById(`Group${i}`) ) {
             for (let count = 1; count < 5; count++) {
               let countUsers = data.inRoomUsersDetails[i-1][count-1];
-              if (null !== countUsers) {
+              if (undefined !== countUsers) {
                   countCard1 = data.inRoomUsersDetails[i-1][count-1].card_1;
                   countCard2 = data.inRoomUsersDetails[i-1][count-1].card_2;
                   if ( (null !== countCard1) && (null !== countCard2) ) {
@@ -62,23 +61,6 @@ function inRoomUsers() {
             }
           }
         }
-      },
-      error: () => {
-          
-      }
-  });
-
-  setTimeout("inRoomUsers()", 2000);
-}
-
-function inRoomUsers() {
-  $.ajax({
-      url: "result/ajaxInRoomUsersDetails",
-      dataType: "json",
-      success: data => {
-        // console.log(data.inRoomUsersDetails[0][0].card_1);
-        $("#inRoomUsers").find(".user-visible").remove();
-        
       },
       error: () => {
           
