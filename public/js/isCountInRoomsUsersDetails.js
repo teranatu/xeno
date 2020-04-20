@@ -82,10 +82,10 @@ function publicexcuteUser() {
             for (let ii = 1; ii < 5; ii++) {
               if ( document.getElementById(`Group_number${ii}`) ) {
                 html1 = `
-                <img class="user-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomUsersDetails[i-1][ii-1].card_1}.png">
+                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomUsersDetails[i-1][ii-1].card_1}.png">
                 `;
                 html2 = `
-                <img class="user-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomUsersDetails[i-1][ii-1].card_2}.png">
+                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomUsersDetails[i-1][ii-1].card_2}.png">
                 `;
                 $("#cardLeft").append(html1);
                 $("#cardRight").append(html2);
@@ -98,5 +98,5 @@ function publicexcuteUser() {
       }
   });
 
-  setTimeout("inRoomUsers()", 2000);
+  setTimeout("publicexcuteUser()", 2000);
 }

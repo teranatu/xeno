@@ -55,6 +55,7 @@ class PlaguecardController extends Controller
 
         if( $request->plagued === 'left' ) {
             $deadcard = new Deadcard;
+            $deadcard->group_id = $group->id;
             $deadcard->card_number = $targetuser->card_1;
             $deadcard->save();
             $targetuser->card_1 = null;
@@ -63,6 +64,7 @@ class PlaguecardController extends Controller
         }
         if ( $request->plagued === 'right' ) {
             $deadcard = new Deadcard;
+            $deadcard->group_id = $group->id;
             $deadcard->card_number = $targetuser->card_2;
             $deadcard->save();
             $targetuser->card_2 = null;
