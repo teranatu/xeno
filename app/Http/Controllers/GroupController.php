@@ -83,26 +83,27 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($group)
+    public function show(Group $group)
     {
         $selectcards = Card::where( 'select_card','1' )->get();
         $users = User::where( 'group_id', Auth::user()->group_id )->get();
-
+        $groupdetails = $group;
+        $group = $group->id;
         //条件①選択されたカードがある時カードを受け渡す
         if( (0 !== count($selectcards)) && (2 !== count($selectcards)) ) { 
             foreach ($selectcards as $key => $selectcard ) {
                 ${'selectcard_'.($key+1)} = $selectcard->card_number;
             }
-            return view('room',compact('users','selectcard_1','selectcard_2','selectcard_3','group'));
+            return view('room',compact('users','selectcard_1','selectcard_2','selectcard_3','group','groupdetails'));
         }
         //条件②透視されたカードが存在していた場合
         if ( null !== (Auth::user()->seethroughedcard) ) {
             $seeThroughedCard = Auth::user()->seethroughedcard;
-            return view('room',compact('users','seeThroughedCard', 'group'));
+            return view('room',compact('users','seeThroughedCard', 'group','groupdetails'));
         }
         //条件③メッセージがあればそれにリダイレクト。
         
-        return view('room',compact('users', 'group'));
+        return view('room',compact('users', 'group','groupdetails'));
     }
 
     /**

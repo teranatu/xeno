@@ -54,7 +54,6 @@ function usedCard() {
         $("#usedCardLatest").find(".usedCardLatest-visible").remove();
         for (let i = 1; i < 11; i++) {
           if ( document.getElementById(`Group${i}`) ) {
-            console.log(data.isCountGroupUsedCard[i-1]);
             var html =`
               <img class="usedCardLatest-visible w-38 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.isCountGroupUsedCard[i-1]}.png">
             `
@@ -77,11 +76,9 @@ function deadCard() {
       url: "result/ajax/",
       dataType: "json",
       success: data => {
-        console.log(data.isCountGroupDeadCards)
         for (let i = 1; i < 11; i++) {
           if ( document.getElementById(`Group${i}`) ) {
             for (let ii = 1; ii < 11; ii++) {
-              console.log(data.isCountGroupDeadCards[i-1][ii-1])
               let DeadCard = 'Deadcard_' + ii;
                 if (document.getElementById(DeadCard)) {
                   document.getElementById(DeadCard).textContent = ii + ':' + data.isCountGroupDeadCards[i-1][ii-1] + '枚';

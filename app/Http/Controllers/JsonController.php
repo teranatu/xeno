@@ -61,21 +61,14 @@ class JsonController extends Controller
 
     public function isCountInRoomUsersDetails() // グループ毎のユーザー情報
     {
+        $inRoomUsersDetails = [];
+        
         for ($i=1; $i < 11 ; $i++) {
             ${'inRoomUsersDetails_'.$i} = User::where('group_id',$i)->get();
+            $inRoomUsersDetails[] = ${'inRoomUsersDetails_'.$i};
         }
-
         $json = [
-            "inRoomUsersDetails_1" => $inRoomUsersDetails_1,
-            "inRoomUsersDetails_2" => $inRoomUsersDetails_2,
-            "inRoomUsersDetails_3" => $inRoomUsersDetails_3,
-            "inRoomUsersDetails_4" => $inRoomUsersDetails_4,
-            "inRoomUsersDetails_5" => $inRoomUsersDetails_5,
-            "inRoomUsersDetails_6" => $inRoomUsersDetails_6,
-            "inRoomUsersDetails_7" => $inRoomUsersDetails_7,
-            "inRoomUsersDetails_8" => $inRoomUsersDetails_8,
-            "inRoomUsersDetails_9" => $inRoomUsersDetails_9,
-            "inRoomUsersDetails_10" => $inRoomUsersDetails_10,
+            "inRoomUsersDetails" => $inRoomUsersDetails,
         ];
     return response()->json($json);
     }

@@ -33,12 +33,20 @@
 
     @if(Auth::check())
         <div  id="Group{{ $group }}" class="navbar"></div>
-        <script src="{{ asset('js/isCount.js') }}"></script>
-    @for ($i = 1; $i < 11; $i++)
-        @if ( Auth::user()->group_id == $i )
-        <script src="{{ asset("js/isCountInRoomsUsersDetails_$i.js") }}"></script>
+        @if( $groupdetails->group_user_id_1 == Auth::id() )
+            <div id="Group_number1" class="navbar" ></div>
         @endif
-    @endfor
+        @if( $groupdetails->group_user_id_2 == Auth::id() )
+            <div id="Group_number2" class="navbar" ></div>
+        @endif
+        @if( $groupdetails->group_user_id_3 == Auth::id() )
+            <div id="Group_number3" class="navbar" ></div>
+        @endif
+        @if( $groupdetails->group_user_id_4 == Auth::id() )
+            <div id="Group_number4" class="navbar" ></div>
+        @endif
+            <script src="{{ asset('js/isCount.js') }}"></script>
+            <script src="{{ asset('js/isCountInRoomsUsersDetails.js') }}"></script>
     @endif
 
 </body>
