@@ -4,7 +4,7 @@ $(function() {
 
 function isCountUsersInRooms() {
   $.ajax({
-    url: "result/ajaxInRoomUsers",
+    url: "groups/result/ajaxInRoomUsers",
     dataType: "json",
     success: data => {
       // console.log(data.isCountCards);

@@ -12,7 +12,7 @@ use Auth;
 
 class JsonController extends Controller
 {
-    public function isCount()
+    public function isCount() // グループ毎のカード情報
     {
         $groups = Group::with('users','cards','deadcards','killcard')->get();
         $isCountGroupUsedCard = [];
@@ -50,28 +50,21 @@ class JsonController extends Controller
             $isCountGroupDeadCards[][] = ${'isCountGroup_'.$key.'_deadCards'}; 
         }
         $json = [
-            "isCountCards" => $isCountCards,
-            "isCountKillCards" => $isCountKillCards,
-            "usedCard" => $usedCard,
-            "Deadcard_1" => $Deadcard_1,
-            "Deadcard_2" => $Deadcard_2,
-            "Deadcard_3" => $Deadcard_3,
-            "Deadcard_4" => $Deadcard_4,
-            "Deadcard_5" => $Deadcard_5,
-            "Deadcard_6" => $Deadcard_6,
-            "Deadcard_7" => $Deadcard_7,
-            "Deadcard_8" => $Deadcard_8,
-            "Deadcard_9" => $Deadcard_9,
-            "Deadcard_10" => $Deadcard_10,
+            "isCountGroupCards" => $isCountGroupCards,
+            "isCountGroupKillCard" => $isCountGroupKillCard,
+            "isCountGroupUsedCard" => $isCountGroupUsedCard,
+            "isCountGroupDeadCards" => $isCountGroupDeadCards,
+            
         ];
         return response()->json($json);
     }
 
-    public function isCountInRoomUsersDetails()
+    public function isCountInRoomUsersDetails() // グループ毎のユーザー情報
     {
         for ($i=1; $i < 11 ; $i++) {
             ${'inRoomUsersDetails_'.$i} = User::where('group_id',$i)->get();
         }
+        
         $json = [
             "inRoomUsersDetails_1" => $inRoomUsersDetails_1,
             "inRoomUsersDetails_2" => $inRoomUsersDetails_2,
@@ -87,7 +80,7 @@ class JsonController extends Controller
     return response()->json($json);
     }
 
-    public function isCountInRoomUsers()
+    public function isCountInRoomUsers() // ルームを使用しているユーザー情報
     {
         for ($i=1; $i < 11 ; $i++) {
             ${'inRoomUsers_'.$i} = count( User::where('group_id',$i)->get() );
