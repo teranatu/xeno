@@ -74,8 +74,7 @@ class GameController extends Controller
     {
         $group = Group::GroupWithUsersCardsDeadCardsKillCard($group)->first();
         $drawUser = $group->users->where( 'id', Auth::id() )->first();
-        $drawKillCard = $group->KillCard->first();
-
+        $drawKillCard = $group->KillCard->where('group_id', $group->id)->first();
         if ( !isset($drawUser->card_1) && !isset($drawUser->card_2) ) {
             $drawUser->card_1 = $drawKillCard->card_number;
             $drawUser->save();
