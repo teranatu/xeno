@@ -69,7 +69,7 @@ class JsonController extends Controller
             ${'inRoomUsersDetails_'.$i} = User::where('group_id',$i)->get();
             $inRoomUsersDetails[] = ${'inRoomUsersDetails_'.$i};
             $group = Group::where('id', $i)->first();
-
+            dd($group);
             if (null === $group->publicexecutecard_1) {
                 ${'inRoomUserPublicExecute_'.$i}[] = null;
             } if (null === $group->publicexecutecard_2) {
