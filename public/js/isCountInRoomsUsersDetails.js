@@ -112,10 +112,10 @@ function publicexcuteUser() {
         for (let i = 1; i < 11; i++) {
           if ( document.getElementById(`Group${i}`) ) {
             html1 = `
-            <img class="publicexecutecard_1 w-50 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomPublicexectute[i-1][0]}.png">
+            <img class="publicexecutecard_1 w-50 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomPublicexectute[i-1].publicexecutecard_1}.png">
             `;
             html2 = `
-            <img class="publicexecutecard_2 w-50 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomPublicexectute[i-1][1]}.png">
+            <img class="publicexecutecard_2 w-50 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomPublicexectute[i-1].publicexecutecard_2}.png">
             `;
             $("#inRoomPublicexectute").append(html1);
             $("#inRoomPublicexectute").append(html2);
