@@ -70,8 +70,16 @@ class JsonController extends Controller
             $inRoomUsersDetails[] = ${'inRoomUsersDetails_'.$i};
             $group = Group::where('id', $i)->first();
 
-            ${'inRoomUserPublicExecute_'.$i}[] = $group->publicexecutecard_1;
-            ${'inRoomUserPublicExecute_'.$i}[] = $group->publicexecutecard_2;
+            if (null === $group->publicexecutecard_1) {
+                ${'inRoomUserPublicExecute_'.$i}[] = null;
+            } if (null === $group->publicexecutecard_2) {
+                ${'inRoomUserPublicExecute_'.$i}[] = null;
+            }
+            if (null !== $group->publicexecutecard_1) {
+                ${'inRoomUserPublicExecute_'.$i}[] = $group->publicexecutecard_;
+            } if (null !== $group->publicexecutecard_2) {
+                ${'inRoomUserPublicExecute_'.$i}[] = $group->publicexecutecard_;
+            }
             $inRoomPublicexectute[] = ${'inRoomUserPublicExecute_'.$i};
 
         }
