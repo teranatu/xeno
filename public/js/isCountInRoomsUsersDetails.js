@@ -1,5 +1,6 @@
 $(function() {
   inRoomUsers();
+  hasUserCards();
   publicexcuteUser();
 });
 
@@ -70,7 +71,7 @@ function inRoomUsers() {
   setTimeout("inRoomUsers()", 2000);
 }
 
-function publicexcuteUser() {
+function hasUserCards() {
   $.ajax({
       url: "result/ajaxInRoomUsersDetails",
       dataType: "json",
@@ -91,6 +92,33 @@ function publicexcuteUser() {
                 $("#cardRight").append(html2);
               }
             }
+          }
+        }
+      },
+      error: () => {
+      }
+  });
+
+  setTimeout("hasUserCards()", 2000);
+}
+
+function publicexcuteUser() {
+  $.ajax({
+      url: "result/ajaxInRoomUsersDetails",
+      dataType: "json",
+      success: data => {
+        $("#inRoomPublicexectute").find(".publicexecutecard_1").remove();
+        $("#inRoomPublicexectute").find(".publicexecutecard_2").remove();
+        for (let i = 1; i < 11; i++) {
+          if ( document.getElementById(`Group${i}`) ) {
+            html1 = `
+            <img class="publicexecutecard_1 w-50 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomPublicexectute[i-1][0]}.png">
+            `;
+            html2 = `
+            <img class="publicexecutecard_2 w-50 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomPublicexectute[i-1][1]}.png">
+            `;
+            $("#inRoomPublicexectute").append(html1);
+            $("#inRoomPublicexectute").append(html2);
           }
         }
       },

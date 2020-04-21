@@ -33,7 +33,7 @@ Route::get('groups/{group}/cardShuffle', 'GameController@cardShuffle')->name('ca
 //1&9_公開処刑
 Route::get('Groups/{group}/publicExecuteCard','PublicExecuteCardController@publicExecuteCard')->name('publicExecuteCard');
 Route::post('Groups/{group}/publicExecutedCard','PublicExecuteCardController@publicExecutedCard')->name('publicExecutedCard');
-Route::post('Groups/{group}/publicExecutedCardConfirmed','PublicExecuteCardController@publicExecutedCardConfirmed')->name('publicExecutedCardConfirmed');
+Route::post('Groups/{group}/publicExecutedLeftOrRightCard','PublicExecuteCardController@publicExecutedLeftOrRightCard')->name('publicExecutedLeftOrRightCard');
 
 //3_透視
 Route::get('groups/{group}/seeThroughCard','SeethroughCardController@seeThroughCard')->name('seeThroughCard');

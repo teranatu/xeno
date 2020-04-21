@@ -129,7 +129,13 @@
       </div>
     </div>
 
-    <div  style="height: 400px" class="col-3">遊び方</div>
+    <div  style="height: 400px" class="col-3">
+      <p>公開処刑されたカード</p>
+      <div id="inRoomPublicexectute" class="row">
+        <div class="col-6 publicexecutecard_1">null</div>
+        <div class="col-6 publicexecutecard_2">null</div>
+      </div>
+    </div>
 
   </div>
 @endsection
