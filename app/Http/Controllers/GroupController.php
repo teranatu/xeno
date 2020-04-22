@@ -45,9 +45,9 @@ class GroupController extends Controller
         $groups = Group::all();
         $groupsInOrNot = $groups
         ->where('group_user_id_1', Auth::id())
-        ->orwhere('group_user_id_2', Auth::id())
-        ->orwhere('group_user_id_3', Auth::id())
-        ->orwhere('group_user_id_4', Auth::id())
+        ->orWhere('group_user_id_2', Auth::id())
+        ->orWhere('group_user_id_3', Auth::id())
+        ->orWhere('group_user_id_4', Auth::id())
         ->first();
         if ( !isset($groupsInOrNot) ) {
 
