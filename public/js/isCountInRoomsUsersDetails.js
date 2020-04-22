@@ -11,8 +11,8 @@ function inRoomUsers() {
       success: data => {
         // console.log(data.inRoomUsersDetails[0][1].card_1);
         $("#inRoomUsers").find(".user-visible").remove();
-        for (let i = 1; i < 11; i++) {
-          if ( document.getElementById(`Group${i}`) ) {
+        for (let i = 1,ii =1; i < 11; i++,ii+=10) {
+          if ( document.getElementById(`Group${ii}`) ) {
             for (let count = 1; count < 5; count++) {
               let countUsers = data.inRoomUsersDetails[i-1][count-1];
               if (undefined !== countUsers) {
@@ -78,15 +78,15 @@ function hasUserCards() {
       success: data => {
         $("#cardLeft").find(".userid-visible").remove();
         $("#cardRight").find(".userid-visible").remove();
-        for (let i = 1; i < 11; i++) {
-          if ( document.getElementById(`Group${i}`) ) {
-            for (let ii = 1; ii < 5; ii++) {
-              if ( document.getElementById(`Group_number${ii}`) ) {
+        for (let i = 1,ii =1; i < 11; i++,ii+=10) {
+          if ( document.getElementById(`Group${ii}`) ) {
+            for (let iii = 1; iii < 5; iii++) {
+              if ( document.getElementById(`Group_number${iii}`) ) {
                 html1 = `
-                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomUsersDetails[i-1][ii-1].card_1}.png">
+                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomUsersDetails[i-1][iii-1].card_1}.png">
                 `;
                 html2 = `
-                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomUsersDetails[i-1][ii-1].card_2}.png">
+                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomUsersDetails[i-1][iii-1].card_2}.png">
                 `;
                 $("#cardLeft").append(html1);
                 $("#cardRight").append(html2);

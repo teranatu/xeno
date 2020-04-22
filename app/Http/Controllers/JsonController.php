@@ -64,10 +64,10 @@ class JsonController extends Controller
         $inRoomUsersDetails = [];
         $inRoomPublicexectute = [];
 
-        for ($i=1; $i < 11 ; $i++) {
-            ${'inRoomUsersDetails_'.$i} = User::where('group_id',$i)->get();
+        for ($i=1,$ii=1; $i < 11 ; $i++,$ii += 10) {
+            ${'inRoomUsersDetails_'.$i} = User::where('group_id',$ii)->get();
             $inRoomUsersDetails[] = ${'inRoomUsersDetails_'.$i};
-            ${'group_'.$i} = Group::where('id', $i)->first();
+            ${'group_'.$i} = Group::where('id', $ii)->first();
             
             $inRoomPublicexectute[] = ${'group_'.$i};
 
@@ -81,8 +81,8 @@ class JsonController extends Controller
 
     public function isCountInRoomUsers() // ルームを使用しているユーザー情報
     {
-        for ($i=1; $i < 11 ; $i++) {
-            ${'inRoomUsers_'.$i} = count( User::where('group_id',$i)->get() );
+        for ($i=1,$ii=1; $i < 11 ; $i++,$ii += 10) {
+            ${'inRoomUsers_'.$i} = count( User::where('group_id',$ii)->get() );
         }
         $json = [
             "inRoomUsers_1" => $inRoomUsers_1,
