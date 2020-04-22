@@ -49,25 +49,25 @@ class GroupController extends Controller
         ->get();
         if ( 0 === count($groupsInOrNot)) {
 
-            if ( null === $group->group_user_id_1 ) {
+            if ( isset($group->group_user_id_1) ) {
                 $group->group_user_id_1 = Auth::id();
                 $group->save();
                 $user->group_id = $request->group;
                 $user->update();
                 return redirect()->route('groups.show', [$group->id] );
-            } if ( null === $group->group_user_id_2 ) {
+            } if ( isset($group->group_user_id_2) ) {
                 $group->group_user_id_2 = Auth::id();
                 $group->save();
                 $user->group_id = $request->group;
                 $user->update();
                 return redirect()->route('groups.show', [$group->id] );
-            } if ( null === $group->group_user_id_3 ) {
+            } if ( isset($group->group_user_id_3) ) {
                 $group->group_user_id_3 = Auth::id();
                 $group->save();
                 $user->group_id = $request->group;
                 $user->update();
                 return redirect()->route('groups.show', [$group->id] );
-            } if ( null === $group->group_user_id_4 ) {
+            } if ( isset($group->group_user_id_4) ) {
                 $group->group_user_id_4 = Auth::id();
                 $group->save();
                 $user->group_id = $request->group;
