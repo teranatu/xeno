@@ -42,8 +42,7 @@ class GroupController extends Controller
         $groupNumber = (int)$request->group;
         $group = Group::where('id', $groupNumber)->first();
         $user = User::where('id', Auth::id())->first();
-        $groupsInOrNot = Group::all()
-        ->where('group_user_id_1', Auth::id())
+        $groupsInOrNot = Group::where('group_user_id_1', Auth::id())
         ->orWhere('group_user_id_2', Auth::id())
         ->orWhere('group_user_id_3', Auth::id())
         ->orWhere('group_user_id_4', Auth::id())
