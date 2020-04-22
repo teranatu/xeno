@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">部屋リスト</div>
                     <div class="card-body row">
-                    @for($i=1,$ii=1; $i < 111; $i += 10,$ii++)
+                    @for($i=1,$ii=1; $i < 101; $i += 10,$ii++)
                         <div class="col-3">
                             <form method="POST" action="{{ route('groups.store') }}">
                                 @csrf
