@@ -109,8 +109,8 @@ function publicexcuteUser() {
       success: data => {
         $("#inRoomPublicexectute").find(".publicexecutecard_1").remove();
         $("#inRoomPublicexectute").find(".publicexecutecard_2").remove();
-        for (let i = 1; i < 11; i++) {
-          if ( document.getElementById(`Group${i}`) ) {
+        for (let i = 1,ii =1; i < 11; i++,ii+=10) {
+          if ( document.getElementById(`Group${ii}`) ) {
             html1 = `
             <img class="publicexecutecard_1 w-50 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomPublicexectute[i-1].publicexecutecard_1}.png">
             `;
