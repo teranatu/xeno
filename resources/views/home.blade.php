@@ -7,11 +7,11 @@
             <div class="card">
                 <div class="card-header">部屋リスト</div>
                     <div class="card-body row">
-                    @for($i=1; $i < 11; $i += 10)
+                    @for($i=1,$ii=1; $i < 111; $i += 10,$ii++)
                         <div class="col-3">
                             <form method="POST" action="{{ route('groups.store') }}">
                                 @csrf
-                                <button class="btn btn-primary" type="submit">部屋{{ $i }}</button>
+                                <button class="btn btn-primary" type="submit">部屋{{ $ii }}</button>
                                 <input type="hidden" name="group" value={{ $i }}>
                             </form>
                             <p id="inRoomUsers_{{ $i }}" class="d-inline">0/4人</p>
