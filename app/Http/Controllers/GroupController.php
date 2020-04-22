@@ -41,39 +41,46 @@ class GroupController extends Controller
     {
         $groupNumber = (int)$request->group;
         $group = Group::where('id', $groupNumber)->first();
-        $countUser1 = $group->group_user_id_1;
-        $countUser2 = $group->group_user_id_2;
-        $countUser3 = $group->group_user_id_3;
-        $countUser4 = $group->group_user_id_4;
         $user = User::where('id', Auth::id())->first();
+        $groups = Group::all();
+        $groupsInOrNot = $groups
+        ->where('group_user_id_1', Auth::id())
+        ->orwhere('group_user_id_2', Auth::id())
+        ->orwhere('group_user_id_3', Auth::id())
+        ->orwhere('group_user_id_4', Auth::id())
+        ->first();
+        if ( !isset($groupsInOrNot) ) {
 
-        if ( null === $countUser1 ) {
-            $group->group_user_id_1 = Auth::id();
-            $group->save();
-            $user->group_id = $request->group;
-            $user->update();
-            return redirect()->route('groups.show', [$group->id] );
-        } elseif ( null === $countUser2 ) {
-            $group->group_user_id_2 = Auth::id();
-            $group->save();
-            $user->group_id = $request->group;
-            $user->update();
-            return redirect()->route('groups.show', [$group->id] );
-        } elseif ( null === $countUser3 ) {
-            $group->group_user_id_3 = Auth::id();
-            $group->save();
-            $user->group_id = $request->group;
-            $user->update();
-            return redirect()->route('groups.show', [$group->id] );
-        } elseif ( null === $countUser4 ) {
-            $group->group_user_id_4 = Auth::id();
-            $group->save();
-            $user->group_id = $request->group;
-            $user->update();
-            return redirect()->route('groups.show', [$group->id] );
-        } else {
-            return redirect('groups')->with('message',"部屋{{ $groupNumber }}は満員です");
+            if ( null === $group->group_user_id_1 ) {
+                $group->group_user_id_1 = Auth::id();
+                $group->save();
+                $user->group_id = $request->group;
+                $user->update();
+                return redirect()->route('groups.show', [$group->id] );
+            } if ( null === $group->group_user_id_2 ) {
+                $group->group_user_id_2 = Auth::id();
+                $group->save();
+                $user->group_id = $request->group;
+                $user->update();
+                return redirect()->route('groups.show', [$group->id] );
+            } if ( null === $group->group_user_id_3 ) {
+                $group->group_user_id_3 = Auth::id();
+                $group->save();
+                $user->group_id = $request->group;
+                $user->update();
+                return redirect()->route('groups.show', [$group->id] );
+            } if ( null === $group->group_user_id_4 ) {
+                $group->group_user_id_4 = Auth::id();
+                $group->save();
+                $user->group_id = $request->group;
+                $user->update();
+                return redirect()->route('groups.show', [$group->id] );
+            } else {
+                return redirect('groups')->with('message',"部屋{{ $groupNumber }}は満員です");
+            }
+
         }
+        return redirect()->route('groups.show', [$group->id] );
     }
 
 
