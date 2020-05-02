@@ -64,8 +64,9 @@ class JsonController extends Controller
         $inRoomUsersDetails = [];
         $inRoomPublicexectute = [];
 
+        dd(User::where('group_id',1)->get());
         for ($i=1,$ii=1; $i < 11 ; $i++,$ii += 10) {
-            ${'inRoomUsersDetails_'.$i} = User::where('group_id',$ii)->get();
+            ${'inRoomUsersDetails_'.$i} = User::where('group_id',$ii)->orderBy('group_number', 'asc')->get();
             $inRoomUsersDetails[] = ${'inRoomUsersDetails_'.$i};
             ${'group_'.$i} = Group::where('id', $ii)->first();
             
