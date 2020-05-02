@@ -23,5 +23,5 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('js/isCountUsersInRooms.js') }}"></script>
+
 @endsection
