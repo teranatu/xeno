@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->bigInteger('group_id')->nullable();
+            $table->bigInteger('group_number')->nullable();
             $table->bigInteger('card_1')->nullable();
             $table->bigInteger('card_2')->nullable();
             $table->bigInteger('seethroughedcard')->nullable();

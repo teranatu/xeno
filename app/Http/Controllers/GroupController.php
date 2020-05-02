@@ -53,24 +53,28 @@ class GroupController extends Controller
                 $group->group_user_id_1 = Auth::id();
                 $group->save();
                 $user->group_id = $request->group;
+                $user->group_number = 1;
                 $user->update();
                 return redirect()->route('groups.show', [$group->id] );
             } if ( !isset($group->group_user_id_2) ) {
                 $group->group_user_id_2 = Auth::id();
                 $group->save();
                 $user->group_id = $request->group;
+                $user->group_number = 2;
                 $user->update();
                 return redirect()->route('groups.show', [$group->id] );
             } if ( !isset($group->group_user_id_3) ) {
                 $group->group_user_id_3 = Auth::id();
                 $group->save();
                 $user->group_id = $request->group;
+                $user->group_number = 3;
                 $user->update();
                 return redirect()->route('groups.show', [$group->id] );
             } if ( !isset($group->group_user_id_4) ) {
                 $group->group_user_id_4 = Auth::id();
                 $group->save();
                 $user->group_id = $request->group;
+                $user->group_number = 4;
                 $user->update();
                 return redirect()->route('groups.show', [$group->id] );
             } else {
@@ -78,7 +82,7 @@ class GroupController extends Controller
             }
 
         }
-        return redirect()->route('groups.show', [$group->id] );
+        return redirect()->route('groups.show', [$group->id] )->with('message',"所属している部屋があります。");
     }
 
 
