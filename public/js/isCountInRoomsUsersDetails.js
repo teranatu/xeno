@@ -76,7 +76,6 @@ function hasUserCards() {
       url: "result/ajaxInRoomUsersDetails",
       dataType: "json",
       success: data => {
-        let date = new Date();
         $("#cardLeft").find(".userid-visible").remove();
         $("#cardRight").find(".userid-visible").remove();
         for (let i = 1,ii =1; i < 11; i++,ii+=10) {
@@ -84,10 +83,10 @@ function hasUserCards() {
             for (let j = 1; j < 5; j++) {
               if ( document.getElementById(`Group_number${j}`) ) {
                 html1 = `
-                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${(data.inRoomUsersDetails[i-1][j-1].card_1) / Number(date.getMonth())}.png">
+                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomUsersDetails[i-1][j-1].card_1}.png">
                 `;
                 html2 = `
-                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${(data.inRoomUsersDetails[i-1][j-1].card_2) / Number(date.getDate())}.png">
+                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomUsersDetails[i-1][j-1].card_2}.png">
                 `;
                 $("#cardLeft").append(html1);
                 $("#cardRight").append(html2);
