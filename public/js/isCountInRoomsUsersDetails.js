@@ -81,10 +81,13 @@ function hasUserCards() {
         var today = new Date();
         var d = today.getDate();
         var m = (today.getMonth()+1);
+        console.log(d);
+        console.log(m);
         for (let i = 1,ii =1; i < 11; i++,ii+=10) {
           if ( document.getElementById(`Group${ii}`) ) {
             for (let j = 1; j < 5; j++) {
               if ( document.getElementById(`Group_number${j}`) ) {
+                console.log();
                 card1 = (data.inRoomUsersDetails[i-1][j-1].card_1) / d;
                 card2 = (data.inRoomUsersDetails[i-1][j-1].card_2) / m;
                 html1 = `
