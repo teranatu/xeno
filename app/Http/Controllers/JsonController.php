@@ -64,6 +64,7 @@ class JsonController extends Controller
     {
         $inRoomUsersDetails = [];
         $inRoomPublicexectute = [];
+        $now = Carbon::now();
 
         for ($i=1,$ii=1; $i < 11 ; $i++,$ii += 10) {
             ${'inRoomUsersDetails_'.$i} = User::where('group_id',$ii)->orderBy('group_number', 'asc')->get(['name','card_1','card_2']);
@@ -71,7 +72,6 @@ class JsonController extends Controller
                 $user->card_1 = $user->card_1 * (int)$date->format('d');
                 $user->card_2 = $user->card_2 * (int)$date->format('m');
             };
-            dd(${'inRoomUsersDetails_'.$i} );
             $inRoomUsersDetails[] = ${'inRoomUsersDetails_'.$i};
             ${'group_'.$i} = Group::where('id', $ii)->first();
             
