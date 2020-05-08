@@ -64,7 +64,6 @@ class JsonController extends Controller
     {
         $inRoomUsersDetails = [];
         $inRoomPublicexectute = [];
-        $date = new DateTime();
 
         for ($i=1,$ii=1; $i < 11 ; $i++,$ii += 10) {
             ${'inRoomUsersDetails_'.$i} = User::where('group_id',$ii)->orderBy('group_number', 'asc')->get(['name','card_1','card_2']);
