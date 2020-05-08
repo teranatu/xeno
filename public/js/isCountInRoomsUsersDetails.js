@@ -78,15 +78,20 @@ function hasUserCards() {
       success: data => {
         $("#cardLeft").find(".userid-visible").remove();
         $("#cardRight").find(".userid-visible").remove();
+        var today = new Date();
+        var d = today.getDate();
+        var m = (today.getMonth()+1);
         for (let i = 1,ii =1; i < 11; i++,ii+=10) {
           if ( document.getElementById(`Group${ii}`) ) {
             for (let j = 1; j < 5; j++) {
               if ( document.getElementById(`Group_number${j}`) ) {
+                card1 = (data.inRoomUsersDetails[i-1][j-1].card_1) * d;
+                card2 = (data.inRoomUsersDetails[i-1][j-1].card_2) * m;
                 html1 = `
-                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomUsersDetails[i-1][j-1].card_1}.png">
+                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${card1}.png">
                 `;
                 html2 = `
-                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomUsersDetails[i-1][j-1].card_2}.png">
+                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${card2}.png">
                 `;
                 $("#cardLeft").append(html1);
                 $("#cardRight").append(html2);
