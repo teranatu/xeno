@@ -66,7 +66,10 @@ class JsonController extends Controller
 
         for ($i=1,$ii=1; $i < 11 ; $i++,$ii += 10) {
             ${'inRoomUsersDetails_'.$i} = User::where('group_id',$ii)->orderBy('group_number', 'asc')->get(['name','card_1','card_2']);
-
+            foreach(${'inRoomUsersDetails_'.$i} as $user){
+                $user->card_1 = $user->card_1 * date(d);
+                $user->card_2 = $user->card_2 * date(y);
+            };
             dd(${'inRoomUsersDetails_'.$i} );
             $inRoomUsersDetails[] = ${'inRoomUsersDetails_'.$i};
             ${'group_'.$i} = Group::where('id', $ii)->first();
