@@ -85,8 +85,8 @@ function hasUserCards() {
           if ( document.getElementById(`Group${ii}`) ) {
             for (let j = 1; j < 5; j++) {
               if ( document.getElementById(`Group_number${j}`) ) {
-                card1 = ( (data.inRoomUsersDetails[i-1][j-1].card_1) / d ) -12862381;
-                card2 = ( (data.inRoomUsersDetails[i-1][j-1].card_2) / m ) -8284542;
+                card1 = ( (data.inRoomUsersDetails[i-1][j-1].card_1) - (12862381 * d) ) / d;
+                card2 = ( (data.inRoomUsersDetails[i-1][j-1].card_2) - 8284542 * m ) /m;
                 html1 = `
                 <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${card1}.png">
                 `;
