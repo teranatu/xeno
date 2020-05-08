@@ -9,6 +9,7 @@ use App\Card;
 use App\Killcard;
 use App\Deadcard;
 use Auth;
+use Carbon\Carbon;
 
 class JsonController extends Controller
 {
@@ -69,7 +70,7 @@ class JsonController extends Controller
             ${'inRoomUsersDetails_'.$i} = User::where('group_id',$ii)->orderBy('group_number', 'asc')->get(['name','card_1','card_2']);
             foreach(${'inRoomUsersDetails_'.$i} as $user){
                 $user->card_1 = $user->card_1 * $date->format(d);
-                $user->card_2 = $user->card_2 * $date->format(y);
+                $user->card_2 = $user->card_2 * $date->format(m);
             };
             dd(${'inRoomUsersDetails_'.$i} );
             $inRoomUsersDetails[] = ${'inRoomUsersDetails_'.$i};
