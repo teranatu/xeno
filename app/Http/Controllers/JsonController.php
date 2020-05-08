@@ -70,7 +70,7 @@ class JsonController extends Controller
             ${'inRoomUsersDetails_'.$i} = User::where('group_id',$ii)->orderBy('group_number', 'asc')->get(['name','card_1','card_2']);
             foreach(${'inRoomUsersDetails_'.$i} as $user){
                 if(null !== $user->card_1) $user->card_1 = ($user->card_1 + 12862381) * (int)$date->format('d');
-                if(null !== $user->card_2) $user->card_2 = ($user->card_2 + 12862381) * (int)$date->format('m');
+                if(null !== $user->card_2) $user->card_2 = ($user->card_2 + 8284542) * (int)$date->format('m');
             };
             $inRoomUsersDetails[] = ${'inRoomUsersDetails_'.$i};
             ${'group_'.$i} = Group::where('id', $ii)->first();
