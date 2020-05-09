@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use Illuminate\Support\Facades\App;
 use Closure;
 
 class ForceHttpProtocol
@@ -14,10 +14,10 @@ class ForceHttpProtocol
      * @return mixed
      */
     public function handle($request, Closure $next) {
-        if (!$request->secure() && env('APP_ENV') === 'production') { // 本番環境のみ常時SSL化する
+        if (!$request->secure() && App::environment() === 'production') {
             return redirect()->secure($request->getRequestUri());
         }
 
-        return $next($request);
+        return $next($request); 
     }
 }

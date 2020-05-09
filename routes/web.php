@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware('forceSsl')->group(function() {
 
+  
 Route::get('/', function () {return view('home');})->middleware('auth');
 //auth管理
 Auth::routes();
@@ -58,3 +60,6 @@ Route::post('groups/{group}/exchangedCard','ExchangeCardController@exchangedCard
 Route::get('/groups/result/ajax', 'JsonController@isCount');
 Route::get('/groups/result/ajaxInRoomUsersDetails', 'JsonController@isCountInRoomUsersDetails');
 Route::get('/groups/result/ajaxInRoomUsers', 'JsonController@isCountInRoomUsers');
+
+
+});
