@@ -24,7 +24,7 @@
               0
               </div>
               <div id="cardDeck" class="h-70">
-                <img class="w-100 mb-3 mt-3 cardDeck-visible" src="{{ asset("/xenoCards/xenoNoCard.png") }}">
+                <img class="mh-100 mw-100 mb-3 mt-3 cardDeck-visible" src="{{ asset("/xenoCards/xenoNoCard.png") }}">
               </div>
               <div class="row h-15">
                 <div class="col-6 text-center">
