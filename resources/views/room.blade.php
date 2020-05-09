@@ -20,8 +20,10 @@
         <div class="card h-100">
           <div class="row h-100 pt-2 pb-2">
             <div class="col-6 text-center h-100">
-              <div id="isCountCard" class="h-15 d-flex align-items-center">
-              0
+              <div class="h-15">
+                <div id="isCountCard" class="d-flex align-items-center">
+                  0
+                </div>
               </div>
               <div id="cardDeck" class="h-70">
                 <img class="mh-100 mw-100 mb-3 mt-3 cardDeck-visible" src="{{ asset("/xenoCards/xenoNoCard.png") }}">
