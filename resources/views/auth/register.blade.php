@@ -3,9 +3,9 @@
 @section('content')
 <div class="bgi_fronttop">
     <div class="row offset-2">
-        <div class="col-md-4">
+        <div class="col-4">
             <div class="card mt-5">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header text-center">貴殿の名を下に記し申請したまえ。</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -23,7 +23,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    申請する
                                 </button>
                             </div>
                         </div>
