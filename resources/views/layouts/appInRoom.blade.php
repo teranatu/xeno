@@ -21,11 +21,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
 
-        <main class="py-4">
+        <main class="">
         @if (session('message'))
             <div class="alert alert-danger">{{ session('message') }}</div>
         @endif

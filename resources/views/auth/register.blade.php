@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.appInRoom')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+<div class="bgi_fronttop">
+    <div class="row offset-2">
+        <div class="col-md-4">
+            <div class="card mt-5">
                 <div class="card-header">{{ __('Register') }}</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">

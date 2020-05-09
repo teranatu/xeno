@@ -10954,3 +10954,6 @@ a.text-dark:focus {
 .pl-15px {
   padding-left: 15px;
 }
+.bg-custom {
+  background-color: #d7afee !important;
+}

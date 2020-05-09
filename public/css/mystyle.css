@@ -1,0 +1,15 @@
+.bgi_front {
+  background-image : url("https://res.cloudinary.com/dsv09nxlz/image/upload/v1589000798/xeno/homeFront_a0o0xr.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.bgi_fronttop {
+  background-image : url("https://res.cloudinary.com/dsv09nxlz/image/upload/c_scale,h_741,w_1045/v1589008135/xeno/king-william-iii-93199_1920_fmp0bp.jpg");
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
