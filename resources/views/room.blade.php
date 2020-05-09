@@ -18,9 +18,9 @@
 
     <div style="height: 350px" class="col-6">
         <div class="card h-100">
-          <div class="row h-100">
-            <div class="col-6 pt-2 pb-2 text-center h-100">
-              <div id="isCountCard" class="h-15">
+          <div class="row h-100 pt-2 pb-2">
+            <div class="col-6 text-center h-100">
+              <div id="isCountCard" class="h-15 d-flex align-items-center">
               0
               </div>
               <div id="cardDeck" class="h-70">
@@ -36,9 +36,13 @@
               </div>
             </div>
 
-            <div class=" col-6 pt-2 pb-2 text-center">
-              <p id="usedCard">フィールド：?</p>
-              <div id="usedCardLatest" class="text-center">
+            <div class=" col-6 text-center h-100">
+              <div id="usedCard" class="h-15 d-flex align-items-center">
+                フィールド：?
+              </div>
+              <div id="usedCardLatest" class="h-70">
+              </div>
+              <div class="h-15">
               </div>
             </div>
           </div>

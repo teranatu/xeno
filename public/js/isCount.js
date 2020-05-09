@@ -21,19 +21,19 @@ function isCountCard() {
           if ( (isCountGroupCards !== 0) && (isCountGroupKillCard === 0) ) {
             $("#cardDeck").find(".cardDeck-visible").remove();
             var html =`
-            <img class="cardDeck-visible mw-100 mh-100 pb-2" src="http://xenotera.herokuapp.com/xenoCards/xenoNoCardDeck.png">
+            <img class="cardDeck-visible mw-100 mh-100 pb-3" src="http://xenotera.herokuapp.com/xenoCards/xenoNoCardDeck.png">
             `
             $("#cardDeck").append(html);
           } if ( (isCountGroupCards === 0) && (isCountGroupKillCard !== 0) ) {
             $("#cardDeck").find(".cardDeck-visible").remove();
             var html =`
-            <img class="cardDeck-visible mw-100 mh-100 pb-2" src="http://xenotera.herokuapp.com/xenoCards/xenoRebirthCardDeck.png">
+            <img class="cardDeck-visible mw-100 mh-100 pb-3" src="http://xenotera.herokuapp.com/xenoCards/xenoRebirthCardDeck.png">
             `
             $("#cardDeck").append(html);
           } if ( (isCountGroupCards !== 0) && (isCountGroupKillCard !== 0) ) {
             $("#cardDeck").find(".cardDeck-visible").remove();
             var html =`
-            <img class="cardDeck-visible mw-100 mh-100 pb-2" src="http://xenotera.herokuapp.com/xenoCards/xenoCardDeck.png">
+            <img class="cardDeck-visible mw-100 mh-100 pb-3" src="http://xenotera.herokuapp.com/xenoCards/xenoCardDeck.png">
             `
             $("#cardDeck").append(html);
           }
@@ -55,7 +55,7 @@ function usedCard() {
         for (let i = 1,ii =1; i < 11; i++,ii+=10) {
           if ( document.getElementById(`Group${ii}`) ) {
             var html =`
-              <img class="usedCardLatest-visible w-38 mb-3 mt-3" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.isCountGroupUsedCard[i-1]}.png">
+              <img class="usedCardLatest-visible mw-100 mh-100 pb-3" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.isCountGroupUsedCard[i-1]}.png">
             `
             if (document.getElementById('usedCard')) {
               document.getElementById('usedCard').textContent = 'フィールド：' + data.isCountGroupUsedCard[i-1] ;
