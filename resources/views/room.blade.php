@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <div class="ml-2 pr-2 row mt-5">
+  <div class="ml-2 mr-3 pr-2 row mt-4">
 
     <div style="height: 300px" class="col-3">
       <div class="card col-12 h-15">
@@ -19,19 +19,27 @@
     <div style="height: 300px" class="col-6">
         <div class="card h-100">
           <div class="row h-100">
-            <div id="isCountCard" class="col-6 pt-2 pb-2 text-center">0</div>
-            <div id="usedCard" class=" col-6 pt-2 pb-2 text-center">フィールド：? </div>
-            <div  id="cardDeck" class="col-6 text-center">
-              <img class="w-50 mb-3 mt-3 cardDeck-visible" src="{{ asset("/xenoCards/xenoNoCard.png") }}">
+            <div class="col-6 pt-2 pb-2 text-center h-100">
+              <div id="isCountCard" class="h-15">
+              0
+              </div>
+              <div id="cardDeck" class="h-70">
+                <img class="w-50 mb-3 mt-3 cardDeck-visible" src="{{ asset("/xenoCards/xenoNoCard.png") }}">
+              </div>
+              <div class="row h-15">
+                <div class="col-6 text-center">
+                  <button class="btn btn-primary pt-2 pb-2 w-80" onclick="style.visibility ='hidden';location.href='{{ route('drawCard',[$group])}}'">1枚引く</button>
+                </div>
+                <div class="col-6 text-center">
+                  <button class="btn btn-primary pt-2 pb-2 w-80" onclick="style.visibility ='hidden';location.href='{{ route('drawKillCard',[$group])}}'">転生札を引く</button>
+                </div>
+              </div>
             </div>
-            <div id="usedCardLatest" class="col-6 text-center">
 
-            </div>
-            <div class="col-3 text-center">
-              <button class="btn btn-primary pt-2 pb-2 w-80" onclick="style.visibility ='hidden';location.href='{{ route('drawCard',[$group])}}'">1枚引く</button>
-            </div>
-            <div class="col-3 text-center">
-              <button class="btn btn-primary pt-2 pb-2 w-80" onclick="style.visibility ='hidden';location.href='{{ route('drawKillCard',[$group])}}'">転生札を引く</button>
+            <div class=" col-6 pt-2 pb-2 text-center">
+              <p id="usedCard">フィールド：?</p>
+              <div id="usedCardLatest" class="text-center">
+              </div>
             </div>
           </div>
         </div>

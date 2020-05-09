@@ -10891,6 +10891,10 @@ a.text-dark:focus {
   height: 15% !important;
 }
 
+.h-70 {
+  height: 70% !important;
+}
+
 .h-20 {
   height: 20% !important;
 }
