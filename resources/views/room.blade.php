@@ -4,7 +4,7 @@
 
   <div class="ml-2 pr-2 row mt-5">
 
-    <div style="height: 400px" class="col-3">
+    <div style="height: 300px" class="col-3">
       <div class="card col-12 h-15">
         <div class="row h-100">
           <div class="col-4 d-flex align-items-center">ユーザー</div>
@@ -16,9 +16,9 @@
       </div>
     </div>
 
-    <div style="height: 400px" class="col-6">
+    <div style="height: 300px" class="col-6">
         <div class="card h-100">
-          <div class="row">
+          <div class="row h-100">
             <div id="isCountCard" class="col-6 pt-2 pb-2 text-center">0</div>
             <div id="usedCard" class=" col-6 pt-2 pb-2 text-center">フィールド：? </div>
             <div  id="cardDeck" class="col-6 text-center">
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div style="height: 400px" class="col-3 card">
+    <div style="height: 300px" class="col-3 card">
       <div class="row h-100">
         <div class="col-6 d-flex align-items-center" id="Deadcard_1">1:0枚</div>
         <div class="col-6 d-flex align-items-center" id="Deadcard_2">2:0枚</div>
