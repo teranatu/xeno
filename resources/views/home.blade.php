@@ -10,7 +10,7 @@
                     @for($i=1,$ii=1; $i < 81; $i += 10,$ii++)
                         <div class="col-6 mt-3 text-center ">
                             
-                            <button class="btn btn-primary text-center w-80" onclick="style.visibility ='hidden';document.getElementById('colosseum').submit()">
+                            <button class="btn btn-primary text-center w-80" onclick="style.visibility ='hidden';document.getElementById('colosseum{{ $ii }}').submit()">
                                 <p></p>
                                 <p class="lead">闘技場{{ $ii }}に入場</p>
                                 <div class="pb-3">
@@ -18,7 +18,7 @@
                                     <div class="d-inline" id="inRoomUsers_{{ $ii }}">0/4人</div>
                                 </div>
                             </button>
-                            <form id ="colosseum" method="POST" action="{{ route('groups.store') }}" style="display: none;">
+                            <form id ="colosseum{{ $ii }}" method="POST" action="{{ route('groups.store') }}" style="display: none;">
                                 @csrf
                                 <input type="hidden" name="group" value={{ $i }}>
                             </form>
