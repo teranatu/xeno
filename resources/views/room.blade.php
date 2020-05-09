@@ -21,7 +21,7 @@
           <div class="row h-100 pt-2 pb-2">
             <div class="col-6 text-center h-100">
               <div class="h-15">
-                <div id="isCountCard" class="d-flex align-items-center">
+                <div id="isCountCard" class="d-flex align-items-center justify-content-center">
                   0
                 </div>
               </div>
@@ -39,7 +39,7 @@
             </div>
 
             <div class=" col-6 text-center h-100">
-              <div id="usedCard" class="h-15 d-flex align-items-center">
+              <div id="usedCard" class="h-15 d-flex align-items-center justify-content-center">
                 フィールド：?
               </div>
               <div id="usedCardLatest" class="h-70">
