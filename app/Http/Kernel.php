@@ -62,6 +62,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'forceSsl' => App\Http\Middleware\ForceHttpProtocol::class, // 追加
+        'forceSsl' => \App\Http\Middleware\ForceHttpProtocol::class, // 追加
     ];
 }
