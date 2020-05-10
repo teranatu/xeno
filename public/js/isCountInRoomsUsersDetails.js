@@ -88,10 +88,10 @@ function hasUserCards() {
                 card1 = data.inRoomUsersDetails[i-1][j-1].card_1 / (d * 38502317);
                 card2 = data.inRoomUsersDetails[i-1][j-1].card_2 / (m * 11465713);
                 html1 = `
-                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${card1}.png">
+                <img class="userid-visible w-60 mt-4" src="https://xenotera.herokuapp.com/xenoCards/xenoCard_${card1}.png">
                 `;
                 html2 = `
-                <img class="userid-visible w-60 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${card2}.png">
+                <img class="userid-visible w-60 mt-4" src="https://xenotera.herokuapp.com/xenoCards/xenoCard_${card2}.png">
                 `;
                 $("#cardLeft").append(html1);
                 $("#cardRight").append(html2);
@@ -117,10 +117,10 @@ function publicexcuteUser() {
         for (let i = 1,ii =1; i < 11; i++,ii+=10) {
           if ( document.getElementById(`Group${ii}`) ) {
             html1 = `
-            <img class="publicexecutecard_1 w-50 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomPublicexectute[i-1].publicexecutecard_1}.png">
+            <img class="publicexecutecard_1 w-50 mt-4" src="https://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomPublicexectute[i-1].publicexecutecard_1}.png">
             `;
             html2 = `
-            <img class="publicexecutecard_2 w-50 mt-4" src="http://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomPublicexectute[i-1].publicexecutecard_2}.png">
+            <img class="publicexecutecard_2 w-50 mt-4" src="https://xenotera.herokuapp.com/xenoCards/xenoCard_${data.inRoomPublicexectute[i-1].publicexecutecard_2}.png">
             `;
             $("#inRoomPublicexectute").append(html1);
             $("#inRoomPublicexectute").append(html2);
