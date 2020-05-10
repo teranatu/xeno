@@ -19,9 +19,13 @@ class ForceSSL
         if(!$this->is_ssl() && config('app.env') === 'production'){
             return redirect('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
         }
+        if (env('APP_ENV') === 'production')
+        {
+            URL::forceScheme('https');
+        }
         return $next($request);
     }
-    
+
         public function is_ssl()
     {
         if ( isset($_SERVER['HTTPS']) === true ) // Apache
