@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware('ssl')->group(function() {
 
   
 Route::get('/', function () {return view('home');})->middleware('auth');
@@ -61,5 +60,3 @@ Route::get('/groups/result/ajax', 'JsonController@isCount');
 Route::get('/groups/result/ajaxInRoomUsersDetails', 'JsonController@isCountInRoomUsersDetails');
 Route::get('/groups/result/ajaxInRoomUsers', 'JsonController@isCountInRoomUsers');
 
-
-});
