@@ -56,7 +56,7 @@ Route::get('groups/{group}/exchangecard','ExchangeCardController@exchangeCard')-
 Route::post('groups/{group}/exchangedCard','ExchangeCardController@exchangedCard')->name('exchangedCard');
 
 //非同期処理用コントローラー
-Route::get('/groups/result/ajax', 'JsonController@isCount');
-Route::get('/groups/result/ajaxInRoomUsersDetails', 'JsonController@isCountInRoomUsersDetails');
-Route::get('/groups/result/ajaxInRoomUsers', 'JsonController@isCountInRoomUsers');
+Route::get('groups/result/ajax', 'JsonController@isCount');
+Route::get('groups/result/ajaxInRoomUsersDetails', 'JsonController@isCountInRoomUsersDetails');
+Route::get('groups/result/ajaxInRoomUsers', 'JsonController@isCountInRoomUsers');
 
