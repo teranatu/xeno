@@ -48,7 +48,7 @@ function isCountCard() {
 
 function usedCard() {
   $.ajax({
-      url: "result/ajax/",
+      url: "result/ajax",
       dataType: "json",
       success: data => {
         $("#usedCardLatest").find(".usedCardLatest-visible").remove();
@@ -73,7 +73,7 @@ function usedCard() {
 
 function deadCard() {
   $.ajax({
-      url: "result/ajax/",
+      url: "result/ajax",
       dataType: "json",
       success: data => {
         for (let i = 1,ii =1; i < 11; i++,ii+=10) {
