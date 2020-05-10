@@ -20,11 +20,9 @@
         <div class="card h-100">
           <div class="row h-100 pt-2 pb-2">
             <div class="col-6 text-center h-100">
-              <div class="h-15">
-                <div id="isCountCard" class="d-flex align-items-center justify-content-center">
+                <div id="isCountCard" class="h-15 d-flex align-items-center justify-content-center">
                   0
                 </div>
-              </div>
               <div id="cardDeck" class="h-70">
                 <img class="mh-100 mw-100 mb-3 mt-3 cardDeck-visible" src="{{ asset("/xenoCards/xenoNoCard.png") }}">
               </div>
@@ -53,16 +51,17 @@
 
     <div style="height: 350px" class="col-3 card">
       <div class="row h-100">
-        <div class="col-6 d-flex align-items-center" id="Deadcard_1">1:0枚</div>
-        <div class="col-6 d-flex align-items-center" id="Deadcard_2">2:0枚</div>
-        <div class="col-6 d-flex align-items-center" id="Deadcard_3">3:0枚</div>
-        <div class="col-6 d-flex align-items-center" id="Deadcard_4">4:0枚</div>
-        <div class="col-6 d-flex align-items-center" id="Deadcard_5">5:0枚</div>
-        <div class="col-6 d-flex align-items-center" id="Deadcard_6">6:0枚</div>
-        <div class="col-6 d-flex align-items-center" id="Deadcard_7">7:0枚</div>
-        <div class="col-6 d-flex align-items-center" id="Deadcard_8">8:0枚</div>
-        <div class="col-6 d-flex align-items-center" id="Deadcard_9">9:0枚</div>
-        <div class="col-6 d-flex align-items-center" id="Deadcard_10">10:0枚</div>
+        <div class="col-12 d-flex align-items-center justify-content-center">捨て札</div>
+        <div class="col-6 d-flex align-items-center justify-content-center" id="Deadcard_1">1:0枚</div>
+        <div class="col-6 d-flex align-items-center justify-content-center" id="Deadcard_2">2:0枚</div>
+        <div class="col-6 d-flex align-items-center justify-content-center" id="Deadcard_3">3:0枚</div>
+        <div class="col-6 d-flex align-items-center justify-content-center" id="Deadcard_4">4:0枚</div>
+        <div class="col-6 d-flex align-items-center justify-content-center" id="Deadcard_5">5:0枚</div>
+        <div class="col-6 d-flex align-items-center justify-content-center" id="Deadcard_6">6:0枚</div>
+        <div class="col-6 d-flex align-items-center justify-content-center" id="Deadcard_7">7:0枚</div>
+        <div class="col-6 d-flex align-items-center justify-content-center" id="Deadcard_8">8:0枚</div>
+        <div class="col-6 d-flex align-items-center justify-content-center" id="Deadcard_9">9:0枚</div>
+        <div class="col-6 d-flex align-items-center justify-content-center" id="Deadcard_10">10:0枚</div>
       </div>
     </div>
 
